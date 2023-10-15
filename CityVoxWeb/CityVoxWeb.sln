@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityVoxWeb.API", "CityVoxWeb.API\CityVoxWeb.API.csproj", "{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3A070CF9-E118-4AEA-80FD-9E0B4C9E8ACC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9C2E6310-12D9-478B-8C21-42461A14CA8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B8E77E3E-CF0A-4D65-9B0E-4FC83D4322C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D1244AA0-AA13-438B-AB06-8CBF4732E53E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityVoxWeb.Data", "CityVoxWeb.Data\CityVoxWeb.Data.csproj", "{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityVoxWeb.Data.Models", "CityVoxWeb.Data.Models\CityVoxWeb.Data.Models.csproj", "{F1B367BB-E377-4CA1-994C-80042F15144E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityVoxWeb.Common", "CityVoxWeb.Common\CityVoxWeb.Common.csproj", "{A52F724E-1864-4E59-B761-FDFB89869C0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B367BB-E377-4CA1-994C-80042F15144E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B367BB-E377-4CA1-994C-80042F15144E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B367BB-E377-4CA1-994C-80042F15144E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B367BB-E377-4CA1-994C-80042F15144E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A52F724E-1864-4E59-B761-FDFB89869C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A52F724E-1864-4E59-B761-FDFB89869C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A52F724E-1864-4E59-B761-FDFB89869C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A52F724E-1864-4E59-B761-FDFB89869C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C0703DBC-81C8-41A6-9A66-A2A1F61BA2BB} = {3A070CF9-E118-4AEA-80FD-9E0B4C9E8ACC}
+		{4F146B6B-0E5D-41CC-9E1E-7B94D92DDAF6} = {9C2E6310-12D9-478B-8C21-42461A14CA8B}
+		{F1B367BB-E377-4CA1-994C-80042F15144E} = {9C2E6310-12D9-478B-8C21-42461A14CA8B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78163770-BBA0-46C5-ACED-F193FF770FAF}
+	EndGlobalSection
+EndGlobal
