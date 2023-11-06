@@ -1,26 +1,45 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "CityVoxWeb.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/CityVoxWeb.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CityVoxWeb.Common.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "CityVoxWeb.Common/1.0.0": {
+      "type": "project",
+      "path": "../CityVoxWeb.Common/CityVoxWeb.Common.csproj",
+      "msbuildProject": "../CityVoxWeb.Common/CityVoxWeb.Common.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "CityVoxWeb.Common >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\Arki\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj",
       "projectName": "CityVoxWeb.DTOs",
-      "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj",
-      "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\obj\\",
+      "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj",
+      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +52,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
+              "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -61,7 +84,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }
