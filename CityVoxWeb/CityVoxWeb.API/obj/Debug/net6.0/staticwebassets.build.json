@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cPKaNkg+YuH91ykSs2qbfGdBSE+Zg+0EwU9U3ddLFT4=",
+  "Source": "CityVoxWeb.API",
+  "BasePath": "_content/CityVoxWeb.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

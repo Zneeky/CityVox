@@ -1,0 +1,12 @@
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.deps.json
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.pdb
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.csproj.AssemblyReference.cache
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.AssemblyInfoInputs.cache
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.AssemblyInfo.cs
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.csproj.CoreCompileInputs.cache
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\refint\CityVoxWeb.Common.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.pdb
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\ref\CityVoxWeb.Common.dll
