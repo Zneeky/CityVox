@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CityVoxWeb.DTOs.Geo
 {
-    internal class MunicipalityExportDto
+    public  class MunicipalityExportDto
     {
+        public string Id { get; set; } = null!;
+        public string MunicipalityName { get; set; } = null!;
+        public string OpenStreetMapCode { get; set; } = null!;
+        public string RegionId { get; set; } = null!;
     }
 }

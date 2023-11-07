@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CityVoxWeb.DTOs.Geo
 {
-    internal class RegionExportDto
+    public class RegionExportDto
     {
+        public string Id { get; set; } = null!;
+        public string RegionName { get; set; } = null!;
     }
 }

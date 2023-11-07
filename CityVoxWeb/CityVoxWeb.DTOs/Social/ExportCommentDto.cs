@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static CityVoxWeb.Common.EntityValidationConstants.CommentValidations;
 
 namespace CityVoxWeb.DTOs.Social
 {
-    internal class ExportCommentDto
+    public class ExportCommentDto
     {
+        public string Id { get; set; } = null!;
+        [Required]
+        [MaxLength(TextMaxLength)]
+        public string Text { get; set; } = null!;
+
+        public string CreatedAt { get; set; } = null!;
+
+        public string Username { get; set; } = null!;
+
+        public string? ProfilePictureUrl { get; set; }
+
+        public bool Edited { get; set; }
     }
 }

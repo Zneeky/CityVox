@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using static CityVoxWeb.Common.EntityValidationConstants.CommentValidations;
 
 namespace CityVoxWeb.DTOs.Social
 {
-    internal class CreateCommentDto
+    public class CreateCommentDto
     {
+        [Required]
+        [MaxLength(TextMaxLength)]
+        public string Text { get; set; } = null!;
+
+        [Required]
+        public string UserId { get; set; } = null!;
+
+        [Required]
+        public string PostId { get; set; } = null!;
     }
 }
