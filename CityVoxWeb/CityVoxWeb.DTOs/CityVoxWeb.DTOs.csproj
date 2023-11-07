@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CityVoxWeb.Common\CityVoxWeb.Common.csproj" />
+  </ItemGroup>
+
 </Project>

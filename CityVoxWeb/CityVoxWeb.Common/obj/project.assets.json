@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\Arki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
+      "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
       "projectName": "CityVoxWeb.Common",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\obj\\",
+      "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
+      "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

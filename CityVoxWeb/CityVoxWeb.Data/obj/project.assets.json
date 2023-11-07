@@ -2223,19 +2223,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\Arki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
+      "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
       "projectName": "CityVoxWeb.Data",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\obj\\",
+      "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
+      "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2249,8 +2249,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj"
+            "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
+              "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj"
             }
           }
         }
@@ -2306,7 +2306,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
