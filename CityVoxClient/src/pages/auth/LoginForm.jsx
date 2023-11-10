@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Formik } from "formik";
-import axios from "axios";
 import * as yup from "yup"; //client validation library
+import { useDispatch } from "react-redux";
 import {
   Box,
   Button,
@@ -24,6 +24,7 @@ import {
   redirect,
 } from "react-router-dom";
 import { LoginUser } from "../../utils/api";
+import { setLogin } from "../../redux";
 
 const LoginSchema = yup.object().shape({
   password: yup.string().required("required"),
@@ -35,9 +36,20 @@ const initialValuesLogin = {
   password: "",
 };
 
+const appUser = {
+  accessToken: null,
+  email : null,
+  fName : null,
+  lName : null,
+  pfp: null,
+  role: null,
+  id: null,
+}
+
 const LoginForm = () => {
   const { setAuth } = useAuth();
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/home";
@@ -53,15 +65,20 @@ const LoginForm = () => {
         if (response.status === 200) {
           console.log("Success");
 
-          const accessToken = response?.data?.AccessToken;
-          const email = response?.data?.Email;
-          const fName = response?.data?.FirstName;
-          const lName = response?.data?.LastName;
-          const pfp = response?.data?.ProfilePicture;
-          const role = response?.data?.role;
-          const id = response?.data?.Id;
+          appUser.accessToken = response?.data?.AccessToken;
+          appUser.email = response?.data?.Email;
+          appUser.fName = response?.data?.FirstName;
+          appUser.lName = response?.data?.LastName;
+          appUser.pfp = response?.data?.ProfilePicture;
+          appUser.role = response?.data?.Role;
+          appUser.id = response?.data?.Id;
 
-          setAuth({ accessToken, email, fName, lName, pfp, role, id });
+          setAuth({appUser})
+          dispatch(
+            setLogin({
+              user: appUser,
+            })
+          );
           resolve(response);
         } else {
           reject(new Error("Login failed with status: " + response.status));
@@ -110,7 +127,7 @@ const LoginForm = () => {
           </Typography>
           <Typography color="text.secondary" variant="h6" sx={{ mb: "1rem" }}>
             Don't have an account? &nbsp;
-            <LinkMui href="/auth/login" underline="hover" variant="h6">
+            <LinkMui href="/auth/register" underline="hover" variant="h6">
               Register
             </LinkMui>
           </Typography>
