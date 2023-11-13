@@ -3,7 +3,7 @@ using static CityVoxWeb.Common.EntityValidationConstants.ApplicationUserValidati
 
 
 
-namespace CityVoxWeb.DataTransferObjects.Users
+namespace CityVoxWeb.DTOs.Users
 {
     public class UserWithIdDto
     {

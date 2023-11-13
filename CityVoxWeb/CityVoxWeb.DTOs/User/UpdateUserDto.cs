@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using static CityVoxWeb.Common.EntityValidationConstants.ApplicationUserValidations;
 
-namespace CityVoxWeb.DataTransferObjects.Users
+namespace CityVoxWeb.DTOs.Users
 {
     public class UpdateUserDto
     {

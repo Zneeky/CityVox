@@ -3,7 +3,7 @@ using static CityVoxWeb.Common.EntityValidationConstants.MunicipalityRepresentat
 
 
 
-namespace CityVoxWeb.DataTransferObjects.Users
+namespace CityVoxWeb.DTOs.Users
 {
     public class CreateMuniRepDto
     {
