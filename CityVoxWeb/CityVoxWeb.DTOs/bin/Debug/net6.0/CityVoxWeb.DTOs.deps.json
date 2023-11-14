@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "CityVoxWeb.DTOs/1.0.0": {
+        "dependencies": {
+          "CityVoxWeb.Common": "1.0.0"
+        },
         "runtime": {
           "CityVoxWeb.DTOs.dll": {}
+        }
+      },
+      "CityVoxWeb.Common/1.0.0": {
+        "runtime": {
+          "CityVoxWeb.Common.dll": {}
         }
       }
     }
   },
   "libraries": {
     "CityVoxWeb.DTOs/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CityVoxWeb.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
