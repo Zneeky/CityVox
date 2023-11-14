@@ -1,0 +1,45 @@
+# Built application files
+bin/
+obj/
+
+# MSTest test results
+TestResults/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Visual Studio files and folders
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+
+# User-specific files
+*.rsuser
+
+# NuGet
+**/[Pp]ackages/*
+**/[Pp]ackage[Rr]estore[Ss]tate.xml
+
+# Windows image file caches
+Thumbs.db
+
+# Rider
+.idea/
+*.sln.iml
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
