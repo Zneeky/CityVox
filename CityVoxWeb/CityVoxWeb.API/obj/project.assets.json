@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "AutoMapper/12.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -61,7 +77,7 @@
           }
         }
       },
-      "Microsoft.CSharp/4.5.0": {
+      "Microsoft.CSharp/4.7.0": {
         "type": "package",
         "compile": {
           "ref/netcoreapp2.0/_._": {}
@@ -979,10 +995,53 @@
         "runtime": {
           "bin/placeholder/CityVoxWeb.Data.Models.dll": {}
         }
+      },
+      "CityVoxWeb.DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "CityVoxWeb.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CityVoxWeb.DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CityVoxWeb.DTOs.dll": {}
+        }
+      },
+      "CityVoxWeb.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "CityVoxWeb.DTOs": "1.0.0",
+          "CityVoxWeb.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CityVoxWeb.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CityVoxWeb.Services.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "AutoMapper/12.0.1": {
+      "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "type": "package",
+      "path": "automapper/12.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "automapper.12.0.1.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/netstandard2.1/AutoMapper.dll",
+        "lib/netstandard2.1/AutoMapper.xml"
+      ]
+    },
     "Humanizer.Core/2.8.26": {
       "sha512": "OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
       "type": "package",
@@ -1052,10 +1111,10 @@
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.CSharp/4.5.0": {
-      "sha512": "kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+    "Microsoft.CSharp/4.7.0": {
+      "sha512": "pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
       "type": "package",
-      "path": "microsoft.csharp/4.5.0",
+      "path": "microsoft.csharp/4.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1068,6 +1127,7 @@
         "lib/netcoreapp2.0/_._",
         "lib/netstandard1.3/Microsoft.CSharp.dll",
         "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.xml",
         "lib/portable-net45+win8+wp8+wpa81/_._",
         "lib/uap10.0.16299/_._",
         "lib/win8/_._",
@@ -1077,7 +1137,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "microsoft.csharp.4.5.0.nupkg.sha512",
+        "microsoft.csharp.4.7.0.nupkg.sha512",
         "microsoft.csharp.nuspec",
         "ref/MonoAndroid10/_._",
         "ref/MonoTouch10/_._",
@@ -2406,29 +2466,41 @@
       "type": "project",
       "path": "../CityVoxWeb.Data.Models/CityVoxWeb.Data.Models.csproj",
       "msbuildProject": "../CityVoxWeb.Data.Models/CityVoxWeb.Data.Models.csproj"
+    },
+    "CityVoxWeb.DTOs/1.0.0": {
+      "type": "project",
+      "path": "../CityVoxWeb.DTOs/CityVoxWeb.DTOs.csproj",
+      "msbuildProject": "../CityVoxWeb.DTOs/CityVoxWeb.DTOs.csproj"
+    },
+    "CityVoxWeb.Services/1.0.0": {
+      "type": "project",
+      "path": "../CityVoxWeb.Services/CityVoxWeb.Services.csproj",
+      "msbuildProject": "../CityVoxWeb.Services/CityVoxWeb.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "CityVoxWeb.DTOs >= 1.0.0",
       "CityVoxWeb.Data >= 1.0.0",
+      "CityVoxWeb.Services >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.11",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Asus\\.nuget\\packages\\": {}
+    "C:\\Users\\Arki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
+      "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
       "projectName": "CityVoxWeb.API",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
-      "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\obj\\",
+      "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
+      "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2442,8 +2514,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {
-              "projectPath": "C:\\Users\\Asus\\OneDrive\\Документи\\GitHub\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj"
+            "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {
+              "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj"
+            },
+            "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj": {
+              "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj"
+            },
+            "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Services\\CityVoxWeb.Services.csproj": {
+              "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Services\\CityVoxWeb.Services.csproj"
             }
           }
         }
@@ -2488,7 +2566,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

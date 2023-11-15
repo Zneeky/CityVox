@@ -25,3 +25,6 @@ C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.D
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.DTOs\obj\Debug\net6.0\refint\CityVoxWeb.DTOs.dll
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.DTOs\obj\Debug\net6.0\CityVoxWeb.DTOs.pdb
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.DTOs\obj\Debug\net6.0\ref\CityVoxWeb.DTOs.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.DTOs\bin\Debug\net6.0\CityVoxWeb.Common.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.DTOs\bin\Debug\net6.0\CityVoxWeb.Common.pdb
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.DTOs\obj\Debug\net6.0\CityVoxWeb.DTOs.csproj.CopyComplete

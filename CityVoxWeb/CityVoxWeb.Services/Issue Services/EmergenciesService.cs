@@ -58,6 +58,28 @@ namespace CityVoxWeb.Services.Issue_Services
             }
         }
 
+        public async Task<ExportEmergencyDto> UpdateAsync(string emergencyId, UpdateEmergencyDto emergencyDto)
+        {
+            try
+            {
+                var emergency = await _dbContext.Emergencies
+                    .Include(e => e.Municipality)
+                    .Include(e => e.User)
+                    .FirstOrDefaultAsync(e => e.Id.ToString() == emergencyId)
+                    ?? throw new Exception("Invalid id!");
+
+                _mapper.Map(emergencyDto, emergency);
+                await _dbContext.SaveChangesAsync();
+
+                var exportEmergencyDto = _mapper.Map<ExportEmergencyDto>(emergency);
+                return exportEmergencyDto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("The operation concluded with an exeption!", ex);
+            }
+        }
+
         public Task<ExportEmergencyDto> GetByIdAsync(string id)
         {
             throw new NotImplementedException();
@@ -81,28 +103,6 @@ namespace CityVoxWeb.Services.Issue_Services
         public Task<int> GetRequestsCountAsync()
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<ExportEmergencyDto> UpdateAsync(string emergencyId, UpdateEmergencyDto emergencyDto)
-        {
-            try
-            {
-                var emergency = await _dbContext.Emergencies
-                    .Include(e => e.Municipality)
-                    .Include(e => e.User)
-                    .FirstOrDefaultAsync(e => e.Id.ToString() == emergencyId)
-                    ?? throw new Exception("Invalid id!");
-
-                _mapper.Map(emergencyDto, emergency);
-                await _dbContext.SaveChangesAsync();
-
-                var exportEmergencyDto = _mapper.Map<ExportEmergencyDto>(emergency);
-                return exportEmergencyDto;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("The operation concluded with an exeption!", ex);
-            }
         }
     }
 }
