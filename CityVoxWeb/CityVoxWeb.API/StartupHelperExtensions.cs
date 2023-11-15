@@ -1,4 +1,9 @@
 ﻿using CityVoxWeb.Data;
+using CityVoxWeb.DTOs.Issues.Emergencies;
+using CityVoxWeb.DTOs.Issues.InfIssues;
+using CityVoxWeb.DTOs.Issues.Reports;
+using CityVoxWeb.Services.Interfaces;
+using CityVoxWeb.Services.Issue_Services;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -38,6 +43,16 @@ namespace CityVoxWeb.API
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
             });
 
+            //AutoMapper Dependency Injection
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //Adding services
+            //Issue manipulating services
+            builder.Services.AddScoped<IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto>, ReportsService>();
+            builder.Services.AddScoped<IGenericIssuesService<CreateEmergencyDto, ExportEmergencyDto, UpdateEmergencyDto>, EmergenciesService>();
+            builder.Services.AddScoped<IGenericIssuesService<CreateInfIssueDto, ExportInfIssueDto, UpdateInfIssueDto>, InfrastructureIssuesService>();
+           
+            
             return builder.Build();
         }
 
@@ -56,8 +71,6 @@ namespace CityVoxWeb.API
 
             app.UseResponseCaching();
 
-            /* var logger = app.ApplicationServices.GetService<ILogger<Startup>>();
-             logger.LogInformation("API started");*/
             // app.UseRouting();
 
             app.UseCors("AllowAll");

@@ -8,12 +8,25 @@
     ".NETCoreApp,Version=v6.0": {
       "CityVoxWeb.API/1.0.0": {
         "dependencies": {
+          "CityVoxWeb.DTOs": "1.0.0",
           "CityVoxWeb.Data": "1.0.0",
+          "CityVoxWeb.Services": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "6.0.11",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
           "CityVoxWeb.API.dll": {}
+        }
+      },
+      "AutoMapper/12.0.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.0"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -55,7 +68,7 @@
           }
         }
       },
-      "Microsoft.CSharp/4.5.0": {},
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.Data.SqlClient/2.1.4": {
         "dependencies": {
           "Microsoft.Data.SqlClient.SNI.runtime": "2.1.1",
@@ -315,7 +328,7 @@
       },
       "Microsoft.IdentityModel.Tokens/6.8.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.5.0",
+          "Microsoft.CSharp": "4.7.0",
           "Microsoft.IdentityModel.Logging": "6.8.0",
           "System.Security.Cryptography.Cng": "4.5.0"
         },
@@ -562,6 +575,24 @@
         "runtime": {
           "CityVoxWeb.Data.Models.dll": {}
         }
+      },
+      "CityVoxWeb.DTOs/1.0.0": {
+        "dependencies": {
+          "CityVoxWeb.Common": "1.0.0"
+        },
+        "runtime": {
+          "CityVoxWeb.DTOs.dll": {}
+        }
+      },
+      "CityVoxWeb.Services/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "CityVoxWeb.DTOs": "1.0.0",
+          "CityVoxWeb.Data": "1.0.0"
+        },
+        "runtime": {
+          "CityVoxWeb.Services.dll": {}
+        }
       }
     }
   },
@@ -570,6 +601,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
+      "path": "automapper/12.0.1",
+      "hashPath": "automapper.12.0.1.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -599,12 +637,12 @@
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/6.0.11",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.6.0.11.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.5.0": {
+    "Microsoft.CSharp/4.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
-      "path": "microsoft.csharp/4.5.0",
-      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.Data.SqlClient/2.1.4": {
       "type": "package",
@@ -953,6 +991,16 @@
       "sha512": ""
     },
     "CityVoxWeb.Data.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CityVoxWeb.DTOs/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CityVoxWeb.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
