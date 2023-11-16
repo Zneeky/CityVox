@@ -79,31 +79,99 @@ namespace CityVoxWeb.Services.Issue_Services
             }
         }
 
-        public Task<ExportInfIssueDto> GetByIdAsync(string id)
+        public async Task<ExportInfIssueDto> GetByIdAsync(string infIssueId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var infIssue = await _dbContext.InfrastructureIssues
+                    .Include(i => i.Municipality)
+                    .Include(i => i.User)
+                    .FirstOrDefaultAsync(i => i.Id.ToString() == infIssueId)
+                    ?? throw new Exception("Invalid report Id!");
+
+                var exportInfIssueDto = _mapper.Map<ExportInfIssueDto>(infIssue);
+                return exportInfIssueDto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("The operation concluded with an exeption!", ex);
+            }
         }
 
-        public Task<ICollection<ExportInfIssueDto>> GetByMunicipalityAsync(string municipalityId)
+        public async Task<ICollection<ExportInfIssueDto>> GetByMunicipalityAsync(string municipalityId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var infIssues = await _dbContext.InfrastructureIssues
+                    .Include(i => i.Municipality)
+                    .Include(i => i.User)
+                    .Where(i => i.Municipality.Id.ToString() == municipalityId && i.Status != 0)
+                    .ToListAsync();
+
+                var exportInfIssues = _mapper.Map<List<ExportInfIssueDto>>(infIssues);
+                return exportInfIssues;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Invalid municipality id!", ex);
+            }
         }
 
-        public Task<ICollection<ExportInfIssueDto>> GetByUserIdAsync(string userId)
+        public async Task<ICollection<ExportInfIssueDto>> GetRequestsAsync(int page, int count)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var notApprovedInfIssues = await _dbContext.InfrastructureIssues
+                    .Include(i => i.Municipality)
+                    .Include(i => i.User)
+                    .Where(i => i.Status == 0)
+                    .Skip(page * count)
+                    .Take(count)
+                    .ToListAsync();
+
+                var exportInfIssues = _mapper.Map<List<ExportInfIssueDto>>(notApprovedInfIssues);
+                return exportInfIssues;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error!", ex);
+            }
         }
 
-        public Task<ICollection<ExportInfIssueDto>> GetRequestsAsync(int page, int count)
+        public async Task<int> GetRequestsCountAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requestCount = await _dbContext.InfrastructureIssues
+                    .Where(e => e.Status == 0)
+                    .CountAsync();
+
+                return requestCount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error!", ex);
+            }
         }
 
-        public Task<int> GetRequestsCountAsync()
+        public async Task<ICollection<ExportInfIssueDto>> GetByUserIdAsync(string userId)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var infIssues = await _dbContext.InfrastructureIssues
+                    .Include(i => i.Municipality)
+                    .Include(i => i.User)
+                    .Where(i => i.UserId.ToString() == userId && i.Status != 0)
+                    .ToListAsync();
 
-        
+                var exportInfIssues = _mapper.Map<List<ExportInfIssueDto>>(infIssues);
+                return exportInfIssues;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Action conlcuded with error!", ex);
+            }
+        }
     }
 }

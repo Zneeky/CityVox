@@ -21,3 +21,15 @@ C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.C
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\refint\CityVoxWeb.Common.dll
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.pdb
 C:\Users\Asus\OneDrive\Документи\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\ref\CityVoxWeb.Common.dll
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.deps.json
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.dll
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\bin\Debug\net6.0\CityVoxWeb.Common.pdb
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.csproj.AssemblyReference.cache
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.AssemblyInfoInputs.cache
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.AssemblyInfo.cs
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.csproj.CoreCompileInputs.cache
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.dll
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\refint\CityVoxWeb.Common.dll
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\CityVoxWeb.Common.pdb
+C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Common\obj\Debug\net6.0\ref\CityVoxWeb.Common.dll
