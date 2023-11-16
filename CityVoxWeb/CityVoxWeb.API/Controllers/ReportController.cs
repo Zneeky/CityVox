@@ -8,7 +8,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/reports")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ReportController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto> _reportService;
@@ -47,6 +47,38 @@ namespace CityVoxWeb.API.Controllers
             await _reportService.DeleteAsync(reportId);
 
             return Ok();
+        }
+
+        [HttpGet("municipalities/{municipalityId}")]
+        public async Task<IActionResult> GetReportsByMunicipality(string municipalityId)
+        {
+            var reports = await _reportService.GetByMunicipalityAsync(municipalityId);
+
+            return Ok(reports);
+        }
+
+        [HttpGet("requests")]
+        public async Task<IActionResult> GetReportRequests(int page, int count)
+        {
+            var reports = await _reportService.GetRequestsAsync(page, count);
+
+            return Ok(reports);
+        }
+
+        [HttpGet("requests/count")]
+        public async Task<IActionResult> GetReportRequestsCount()
+        {
+            var reportsCount = await _reportService.GetRequestsCountAsync();
+
+            return Ok(reportsCount);
+        }
+
+        [HttpGet("valid/users/{userId}")]
+        public async Task<IActionResult> GetReportsByUser(string userId)
+        {
+            var reports = await _reportService.GetByUserIdAsync(userId);
+
+            return Ok(reports);
         }
     }
 }

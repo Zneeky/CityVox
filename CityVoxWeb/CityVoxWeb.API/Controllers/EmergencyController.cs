@@ -8,7 +8,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/emergencies")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class EmergencyController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateEmergencyDto, ExportEmergencyDto, UpdateEmergencyDto> _emergencyService;
@@ -48,6 +48,38 @@ namespace CityVoxWeb.API.Controllers
             await _emergencyService.DeleteAsync(emergencyId);
 
             return Ok();
+        }
+
+        [HttpGet("municipalities/{municipalityId}")]
+        public async Task<IActionResult> GetEmergenciesByMunicipality(string municipalityId)
+        {
+            var emergencies = await _emergencyService.GetByMunicipalityAsync(municipalityId);
+
+            return Ok(emergencies);
+        }
+
+        [HttpGet("requests")]
+        public async Task<IActionResult> GetEmergencyRequests(int page, int count)
+        {
+            var emergencies = await _emergencyService.GetRequestsAsync(page, count);
+
+            return Ok(emergencies);
+        }
+
+        [HttpGet("requests/count")]
+        public async Task<IActionResult> GetEmergencyRequestsCount()
+        {
+            var count = await _emergencyService.GetRequestsCountAsync();
+
+            return Ok(count);
+        }
+
+        [HttpGet("valid/users/{userId}")]
+        public async Task<IActionResult> GetReportsByUser(string userId)
+        {
+            var infIssues = await _emergencyService.GetByUserIdAsync(userId);
+
+            return Ok(infIssues);
         }
     }
 }

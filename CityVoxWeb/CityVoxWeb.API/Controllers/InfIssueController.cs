@@ -7,6 +7,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class InfIssueController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateInfIssueDto, ExportInfIssueDto, UpdateInfIssueDto> _infIssuesService;
@@ -46,6 +47,38 @@ namespace CityVoxWeb.API.Controllers
             await _infIssuesService.DeleteAsync(infIssueId);
 
             return Ok();
+        }
+
+        [HttpGet("municipalities/{municipalityId}")]
+        public async Task<IActionResult> GetInfIssuesByMunicipality(string municipalityId)
+        {
+            var infIssues = await _infIssuesService.GetByMunicipalityAsync(municipalityId);
+
+            return Ok(infIssues);
+        }
+
+        [HttpGet("requests")]
+        public async Task<IActionResult> GetInfIssueRequests(int page, int count)
+        {
+            var infIssues = await _infIssuesService.GetRequestsAsync(page, count);
+
+            return Ok(infIssues);
+        }
+
+        [HttpGet("requests/count")]
+        public async Task<IActionResult> GetInfIssueRequestsCount()
+        {
+            var count = await _infIssuesService.GetRequestsCountAsync();
+
+            return Ok(count);
+        }
+
+        [HttpGet("valid/users/{userId}")]
+        public async Task<IActionResult> GetReportsByUser(string userId)
+        {
+            var infIssues = await _infIssuesService.GetByUserIdAsync(userId);
+
+            return Ok(infIssues);
         }
     }
 }
