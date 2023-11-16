@@ -80,29 +80,99 @@ namespace CityVoxWeb.Services.Issue_Services
             }
         }
 
-        public async Task<ExportReportDto> GetByIdAsync(string id)
+        public async Task<ExportReportDto> GetByIdAsync(string reportId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var report = await _dbContext.Reports
+                    .Include(r => r.Municipality)
+                    .Include(r => r.User)
+                    .FirstOrDefaultAsync(r => r.Id.ToString() == reportId)
+                    ?? throw new Exception("Invalid report Id!");
+
+                var exportReport = _mapper.Map<ExportReportDto>(report);
+                return exportReport;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("The operation concluded with an exeption!", ex);
+            }
         }
 
         public async Task<ICollection<ExportReportDto>> GetByMunicipalityAsync(string municipalityId)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var reports = await _dbContext.Reports
+                    .Include(r => r.Municipality)
+                    .Include(r => r.User)
+                    .Where(r => r.Municipality.Id.ToString() == municipalityId && r.Status != 0)
+                    .ToListAsync();
 
-        public async Task<ICollection<ExportReportDto>> GetByUserIdAsync(string userId)
-        {
-            throw new NotImplementedException();
+                var exportReports = _mapper.Map<List<ExportReportDto>>(reports);
+                return exportReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Invalid municipality id!", ex);
+            }
         }
 
         public async Task<ICollection<ExportReportDto>> GetRequestsAsync(int page, int count)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var notApprovedReports = await _dbContext.Reports
+                    .Include(r => r.Municipality)
+                    .Include(r => r.User)
+                    .Where(r => r.Status == 0)
+                    .Skip(page * count)
+                    .Take(count)
+                    .ToListAsync();
+
+                var exportReports = _mapper.Map<List<ExportReportDto>>(notApprovedReports);
+                return exportReports;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error!", ex);
+            }
         }
 
         public async Task<int> GetRequestsCountAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requestsCount = await _dbContext.Reports
+                    .Where(r => r.Status == 0)
+                    .CountAsync();
+
+                return requestsCount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Action conlcuded with error", ex);
+            }
+        }
+
+        public async Task<ICollection<ExportReportDto>> GetByUserIdAsync(string userId)
+        {
+            try
+            {
+                var reports = await _dbContext.Reports
+                    .Include(r => r.Municipality)
+                    .Include(r => r.User)
+                    .Where(r => r.UserId.ToString() == userId && r.Status != 0)
+                    .ToListAsync();
+
+                var exportReports = _mapper.Map<List<ExportReportDto>>(reports);
+                return exportReports;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Action conlcuded with error!", ex);
+            }
         }
 
     }
