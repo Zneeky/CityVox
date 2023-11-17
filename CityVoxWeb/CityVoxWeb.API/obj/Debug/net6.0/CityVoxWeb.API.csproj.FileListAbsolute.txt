@@ -245,3 +245,11 @@ C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\CityVoxWeb.API.pdb
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\CityVoxWeb.API.genruntimeconfig.cache
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\ref\CityVoxWeb.API.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Web.Cors.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Web.Http.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Web.Http.Cors.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

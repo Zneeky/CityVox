@@ -11,6 +11,6 @@ namespace CityVoxWeb.Services.Interfaces
     public interface IJwtUtils
     {
         string GenerateJwtToken(UserWithIdDto user);
-        ClaimsPrincipal GetPrincipalFromExpiredToken(string JwtToken);
+        ClaimsPrincipal GetPrincipalFromExpiredToken(string JwtToken); 
     }
 }

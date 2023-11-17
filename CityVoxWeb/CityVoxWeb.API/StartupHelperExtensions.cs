@@ -1,10 +1,16 @@
 ﻿using CityVoxWeb.Data;
+using CityVoxWeb.Data.Models.UserEntities;
 using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.DTOs.Issues.Reports;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CityVoxWeb.API
@@ -13,6 +19,53 @@ namespace CityVoxWeb.API
     {
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
+            //Identity configuration
+            builder.Services
+                         .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+                         {
+                             options.Password.RequireDigit = true;
+                             options.Password.RequiredLength = 6;
+                             options.Password.RequireLowercase = true;
+                             options.Password.RequireUppercase = true;
+                             options.Password.RequireNonAlphanumeric = false;
+                         })
+                         .AddEntityFrameworkStores<CityVoxDbContext>()
+                         .AddDefaultTokenProviders();
+
+
+            //JWT Token configuration
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        //ValidateLifetime = true,
+                        ClockSkew = TimeSpan.Zero,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+                        RoleClaimType = ClaimTypes.Role,
+                    };
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnChallenge = context =>
+                        {
+                            context.HandleResponse();
+                            context.Response.StatusCode = 401;
+                            context.Response.ContentType = "application/json";
+                            var result = System.Text.Json.JsonSerializer.Serialize(new { message = "Unauthorized" });
+                            return context.Response.WriteAsync(result);
+                        },
+                    };
+                });
+
             builder.Services.AddControllers(configure =>
             {
                 configure.ReturnHttpNotAcceptable = true;
