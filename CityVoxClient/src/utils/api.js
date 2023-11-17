@@ -72,3 +72,9 @@ export const LogoutRefresh = async () => {
         console.error("Log in with credentials", error);
     }
 }
+
+//Authorized api calls
+//For Authorized calls there will be the need of JWT token and the RefreshToken which is HTTPS only
+//Instance for being able to manage the token states
+
+  

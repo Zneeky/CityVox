@@ -12,17 +12,9 @@ import {
   CircularProgress,
   useTheme,
   useMediaQuery,
-  Link as LinkMui,
+  Link as LinkMui
 } from "@mui/material";
-import FlexBetween from "../../components/styling/flex-between";
-import Dropzone from "react-dropzone";
-import useAuth from "../../hooks/UseAuth";
-import {
-  Link as LinkRouter,
-  useNavigate,
-  useLocation,
-  redirect,
-} from "react-router-dom";
+import {  Link as LinkRouter,useNavigate, useLocation, redirect } from "react-router-dom";
 import { LoginUser } from "../../utils/api";
 import { setLogin } from "../../redux";
 
@@ -36,8 +28,9 @@ const initialValuesLogin = {
   password: "",
 };
 
-const appUser = {
+let appUser = {
   accessToken: null,
+  username: null,
   email : null,
   fName : null,
   lName : null,
@@ -47,8 +40,6 @@ const appUser = {
 }
 
 const LoginForm = () => {
-  const { setAuth } = useAuth();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -58,25 +49,27 @@ const LoginForm = () => {
   const [failText, setFailText] = useState("");
   const { palette } = useTheme();
   const isNonMobile = useMediaQuery("(min-width:600px)");
+
   const Login = async (values, onSubmitProps) => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await LoginUser(values, onSubmitProps);
         if (response.status === 200) {
-          console.log("Success");
+          console.log('Success');
+           let currentUser = { ...appUser };
 
-          appUser.accessToken = response?.data?.AccessToken;
-          appUser.email = response?.data?.Email;
-          appUser.fName = response?.data?.FirstName;
-          appUser.lName = response?.data?.LastName;
-          appUser.pfp = response?.data?.ProfilePicture;
-          appUser.role = response?.data?.Role;
-          appUser.id = response?.data?.Id;
+           currentUser.accessToken = response?.data?.AccessToken;
+           currentUser.username = response?.data?.Username;
+           currentUser.email = response?.data?.Email;
+           currentUser.fName = response?.data?.FirstName;
+           currentUser.lName = response?.data?.LastName;
+           currentUser.pfp = response?.data?.ProfilePicture;
+           currentUser.role = response?.data?.Role;
+           currentUser.id = response?.data?.Id;
 
-          setAuth({appUser})
           dispatch(
             setLogin({
-              user: appUser,
+              user: currentUser,
             })
           );
           resolve(response);
@@ -84,21 +77,24 @@ const LoginForm = () => {
           reject(new Error("Login failed with status: " + response.status));
         }
       } catch (error) {
+        alert("Login failed");
         reject(error);
       } finally {
         setIsLoading(false);
       }
     });
   };
+
   const handleFormSubmit = async (values, onSubmitProps) => {
     setIsLoading(true);
     try {
       await Login(values, onSubmitProps);
-      navigate(from, { replace: true });
+      navigate(from, {replace : true});
     } catch (error) {
       console.error("Login failed:", error);
     }
   };
+
   return (
     <Formik
       onSubmit={handleFormSubmit}
@@ -125,11 +121,20 @@ const LoginForm = () => {
           <Typography fontWeight="500" variant="h3" sx={{ mb: "0.3rem" }}>
             Login
           </Typography>
-          <Typography color="text.secondary" variant="h6" sx={{ mb: "1rem" }}>
-            Don't have an account? &nbsp;
-            <LinkMui href="/auth/register" underline="hover" variant="h6">
-              Register
-            </LinkMui>
+          <Typography
+                color="text.secondary"
+                variant="h6"
+                sx={{ mb: "1rem" }}
+              >
+                Don't have an account?
+                &nbsp;
+                <LinkMui
+                  href="/auth/register"
+                  underline="hover"
+                  variant="h6"
+                >
+                  Register
+                </LinkMui>
           </Typography>
           <Typography color="red">{failText}</Typography>
           <Box
@@ -170,7 +175,7 @@ const LoginForm = () => {
                 m: "2rem 0",
                 p: "1rem",
                 backgroundColor: palette.primary.main,
-                color: palette.background.alt,
+                color: palette.background.default,
                 "&:hover": { color: palette.primary.main },
               }}
             >
@@ -182,4 +187,5 @@ const LoginForm = () => {
     </Formik>
   );
 };
+
 export default LoginForm;
