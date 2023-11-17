@@ -14,7 +14,7 @@ import {
   useMediaQuery,
   Link as LinkMui,
 } from "@mui/material";
-import FlexBetween from "../../components/styling/FlexBetween";
+import FlexBetween from "../../components/styling/flex-between";
 import Dropzone from "react-dropzone";
 import useAuth from "../../hooks/UseAuth";
 import {

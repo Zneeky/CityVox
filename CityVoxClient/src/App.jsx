@@ -3,16 +3,15 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-// import { themeSettings } from './theme';
-import { createThemeSettings } from "./theme/theme";
-import RequireAuth from "./components/RequireAuth";
-import Register from "./pages/auth/Register";
-import Login from "./pages/auth/Login";
-import Dashboard from "./pages/admin/Dashboard";
+import { createThemeSettings } from './theme/theme';
+import RequireAuth from "./components/require-auth";
+import Register from "./pages/auth/register-page";
+import Login from "./pages/auth/login-page";
+import Dashboard from "./pages/admin/dashboard-page";
 
 function App() {
   const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const theme = useMemo(() => createTheme(createThemeSettings(mode)), [mode]);
   const isAuthenticated = useSelector((state) => !!state.user?.Username);
 
   return (
@@ -32,7 +31,7 @@ function App() {
             ) : (
               <>
                 {/*Public routes for non-authenticated users*/}
-                <Route path="/" element={<Root />} />
+                {/* <Route path="/" element={<Root />} /> */}
                 <Route path="/auth/register" element={<Register />} />
                 <Route path="/auth/login" element={<Login />} />
               </>
