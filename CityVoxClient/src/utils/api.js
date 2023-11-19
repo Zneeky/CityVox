@@ -73,8 +73,18 @@ export const LogoutRefresh = async () => {
     }
 }
 
-//Authorized api calls
-//For Authorized calls there will be the need of JWT token and the RefreshToken which is HTTPS only
-//Instance for being able to manage the token states
+//Call to get the regions
+export const GetRegions = async (token) => {
+    try {
+      const response = await instance.get("api/map/regions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   
