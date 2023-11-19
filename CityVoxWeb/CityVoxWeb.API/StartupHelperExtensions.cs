@@ -3,12 +3,17 @@ using CityVoxWeb.Data.Models.UserEntities;
 using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.DTOs.Issues.Reports;
+using CityVoxWeb.DTOs.User;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
+using CityVoxWeb.Services.Token_Services;
+using CityVoxWeb.Services.User_Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -19,20 +24,29 @@ namespace CityVoxWeb.API
     {
         public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
         {
+            //Swagger API documentation service
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+            });
+
             //Identity configuration
             builder.Services
-                         .AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+                         .AddIdentity<ApplicationUser, IdentityRole<Guid>>
+                         (options =>
                          {
                              options.Password.RequireDigit = true;
                              options.Password.RequiredLength = 6;
                              options.Password.RequireLowercase = true;
                              options.Password.RequireUppercase = true;
                              options.Password.RequireNonAlphanumeric = false;
+
+                             options.SignIn.RequireConfirmedEmail = true;
                          })
                          .AddEntityFrameworkStores<CityVoxDbContext>()
                          .AddDefaultTokenProviders();
 
-
+            
             //JWT Token configuration
             builder.Services.AddAuthentication(options =>
             {
@@ -104,7 +118,13 @@ namespace CityVoxWeb.API
             builder.Services.AddScoped<IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto>, ReportsService>();
             builder.Services.AddScoped<IGenericIssuesService<CreateEmergencyDto, ExportEmergencyDto, UpdateEmergencyDto>, EmergenciesService>();
             builder.Services.AddScoped<IGenericIssuesService<CreateInfIssueDto, ExportInfIssueDto, UpdateInfIssueDto>, InfrastructureIssuesService>();
-           
+            builder.Services.AddScoped<IJwtUtils, JWTService>();
+            builder.Services.AddScoped<IRefreshTokenService,R>
+            builder.Services.AddScoped<IEmailService,EmailService>();
+            builder.Services.AddScoped<IUsersService, UsersService>();
+
+
+            builder.Services.Configure<SMTPConfigModel>(builder.Configuration.GetSection("SMTPConfig"));
             
             return builder.Build();
         }

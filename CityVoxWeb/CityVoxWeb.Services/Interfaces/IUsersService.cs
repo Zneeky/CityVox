@@ -1,4 +1,5 @@
-﻿using CityVoxWeb.DTOs.Users;
+﻿using CityVoxWeb.Data.Models.UserEntities;
+using CityVoxWeb.DTOs.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace CityVoxWeb.Services.Interfaces
     public interface IUsersService
     {
         public Task<UserWithIdDto> RegisterUserAsync(RegisterDto registerDto);
+        public Task SendEmailConfirmationAsync(ApplicationUser user, string token);
         public Task<UserWithIdDto> AuthenticateUserAsync(LoginDto loginDto);
         public Task<UserWithIdDto> GetUserAsync(string userId);
         public Task<UserDefaultDto> GetByUsernameAsync(string username);
