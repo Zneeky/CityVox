@@ -12,10 +12,12 @@ namespace CityVoxWeb.DTOs.User
         { 
             this.ToEmails = new List<string>();
             this.PlaceHolders = new List<KeyValuePair<string, string>>();
+            this.Subject = "";
+            this.Body = "";
         }
         public List<string> ToEmails { get; set; } = null!;
-        public string Subject { get; set; } = null!;
-        public string Body { get; set; } = null!;
+        public string Subject { get; set; } 
+        public string Body { get; set; } 
         public List<KeyValuePair<string, string>> PlaceHolders { get; set; } = null!;
     }
 }

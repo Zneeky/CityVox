@@ -8,11 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityVoxWeb.Services.AutoMapper
+namespace CityVoxWeb.Mapper.Issue_Profiles
 {
     public class EmergencyProfile : Profile
     {
-        public EmergencyProfile() 
+        public EmergencyProfile()
         {
             CreateMap<CreateEmergencyDto, Emergency>()
                     .ForMember(dest => dest.UserId,

@@ -24,13 +24,14 @@ namespace CityVoxWeb.Services.User_Services
         private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
-        public UsersService(IMapper mapper, CityVoxDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IConfiguration configuration)
+        public UsersService(IMapper mapper, CityVoxDbContext dbContext, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole<Guid>> roleManager, IConfiguration configuration, IEmailService emailService)
         {
             _mapper = mapper;
             _dbContext = dbContext;
             _userManager = userManager;
             _roleManager = roleManager;
            _configuration = configuration;
+            _emailService = emailService;
         }
 
         public async Task<UserWithIdDto> RegisterUserAsync(RegisterDto registerDto)

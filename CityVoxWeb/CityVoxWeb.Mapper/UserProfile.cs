@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
-using CityVoxWeb.Data.Models;
 using CityVoxWeb.Data.Models.UserEntities;
+using CityVoxWeb.Data.Models;
 using CityVoxWeb.DTOs.Token;
 using CityVoxWeb.DTOs.Users;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityVoxWeb.Services.AutoMapper
+namespace CityVoxWeb.Mapper
 {
     public class UserProfile : Profile
     {
@@ -53,4 +52,3 @@ namespace CityVoxWeb.Services.AutoMapper
         }
     }
 }
-

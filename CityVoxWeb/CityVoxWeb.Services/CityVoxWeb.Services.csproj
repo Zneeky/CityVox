@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CityVoxWeb.Data\CityVoxWeb.Data.csproj" />
     <ProjectReference Include="..\CityVoxWeb.DTOs\CityVoxWeb.DTOs.csproj" />
+    <ProjectReference Include="..\CityVoxWeb.Mapper\CityVoxWeb.Mapper.csproj" />
   </ItemGroup>
 
 </Project>

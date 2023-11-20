@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityVoxWeb.Services.AutoMapper
+namespace CityVoxWeb.Mapper.Issue_Profiles
 {
     public class InfIssueProfile : Profile
     {

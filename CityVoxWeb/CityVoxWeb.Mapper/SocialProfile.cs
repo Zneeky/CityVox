@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CityVoxWeb.Data.Models.SocialEntities;
 using CityVoxWeb.Data.Models.SocialEntities.Enumerators;
+using CityVoxWeb.Data.Models.SocialEntities;
 using CityVoxWeb.DTOs.Social;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CityVoxWeb.Services.AutoMapper
+namespace CityVoxWeb.Mapper
 {
     public class SocialProfile : Profile
     {
@@ -23,24 +23,24 @@ namespace CityVoxWeb.Services.AutoMapper
                   .ForMember(dest => dest.CreatedAt,
                               opt => opt.MapFrom(src => DateTime.UtcNow))
                   .AfterMap((src, dest) =>
-                              {
-                                  var issueId = Guid.Parse(src.IssueId);
-                                  switch (dest.PostType)
-                                  {
-                                      case PostType.Report:
-                                          dest.ReportId = issueId;
-                                          break;
-                                      case PostType.Emergency:
-                                          dest.EmergencyId = issueId;
-                                          break;
-                                      case PostType.Event:
-                                          dest.EventId = issueId;
-                                          break;
-                                      case PostType.InfrastructureIssue:
-                                          dest.InfrastructureIssueId = issueId;
-                                          break;
-                                  }
-                              });
+                  {
+                      var issueId = Guid.Parse(src.IssueId);
+                      switch (dest.PostType)
+                      {
+                          case PostType.Report:
+                              dest.ReportId = issueId;
+                              break;
+                          case PostType.Emergency:
+                              dest.EmergencyId = issueId;
+                              break;
+                          case PostType.Event:
+                              dest.EventId = issueId;
+                              break;
+                          case PostType.InfrastructureIssue:
+                              dest.InfrastructureIssueId = issueId;
+                              break;
+                      }
+                  });
 
             CreateMap<CreateFormalPostDto, Post>()
                   .ForMember(dest => dest.UserId,
@@ -70,9 +70,9 @@ namespace CityVoxWeb.Services.AutoMapper
                    .ForMember(dest => dest.IsUpVoted,
                                opt => opt.MapFrom((src, _, _, context) => src.Votes.Any(v => v.UserId == (Guid)context.Items["UserId"])))
                    .ForMember(dest => dest.Comments,
-                                opt => opt.MapFrom(src => src.Comments)) ; // Mapping comments;
+                                opt => opt.MapFrom(src => src.Comments)); // Mapping comments;
 
-            CreateMap<Post,ExportFormalPostDto>()
+            CreateMap<Post, ExportFormalPostDto>()
                    .ForMember(dest => dest.Id,
                                opt => opt.MapFrom(src => src.Id.ToString()))
                    .ForMember(dest => dest.Username,

@@ -4,6 +4,7 @@ using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.DTOs.Issues.Reports;
 using CityVoxWeb.DTOs.User;
+using CityVoxWeb.Mapper;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
 using CityVoxWeb.Services.Token_Services;
@@ -112,6 +113,7 @@ namespace CityVoxWeb.API
 
             //AutoMapper Dependency Injection
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 
             //Adding services
             //Issue manipulating services
@@ -119,10 +121,11 @@ namespace CityVoxWeb.API
             builder.Services.AddScoped<IGenericIssuesService<CreateEmergencyDto, ExportEmergencyDto, UpdateEmergencyDto>, EmergenciesService>();
             builder.Services.AddScoped<IGenericIssuesService<CreateInfIssueDto, ExportInfIssueDto, UpdateInfIssueDto>, InfrastructureIssuesService>();
             builder.Services.AddScoped<IJwtUtils, JWTService>();
-            builder.Services.AddScoped<IRefreshTokenService,R>
+            builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
             builder.Services.AddScoped<IEmailService,EmailService>();
             builder.Services.AddScoped<IUsersService, UsersService>();
 
+            builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
             builder.Services.Configure<SMTPConfigModel>(builder.Configuration.GetSection("SMTPConfig"));
             

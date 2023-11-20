@@ -12,6 +12,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "CityVoxWeb.DTOs": "1.0.0",
           "CityVoxWeb.Data": "1.0.0",
+          "CityVoxWeb.Mapper": "1.0.0",
           "CityVoxWeb.Services": "1.0.0",
           "Microsoft.AspNet.WebApi.Cors": "5.2.9",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.11",
@@ -286,6 +287,11 @@
       "Microsoft.Extensions.Configuration.Abstractions/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "6.0.0"
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/6.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection/6.0.1": {
@@ -1445,11 +1451,23 @@
           "CityVoxWeb.DTOs.dll": {}
         }
       },
+      "CityVoxWeb.Mapper/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "12.0.1",
+          "CityVoxWeb.DTOs": "1.0.0",
+          "CityVoxWeb.Data": "1.0.0",
+          "Microsoft.Extensions.Configuration.Binder": "6.0.0"
+        },
+        "runtime": {
+          "CityVoxWeb.Mapper.dll": {}
+        }
+      },
       "CityVoxWeb.Services/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
           "CityVoxWeb.DTOs": "1.0.0",
-          "CityVoxWeb.Data": "1.0.0"
+          "CityVoxWeb.Data": "1.0.0",
+          "CityVoxWeb.Mapper": "1.0.0"
         },
         "runtime": {
           "CityVoxWeb.Services.dll": {}
@@ -1630,6 +1648,13 @@
       "sha512": "sha512-qWzV9o+ZRWq+pGm+1dF+R7qTgTYoXvbyowRoBxQJGfqTpqDun2eteerjRQhq5PQ/14S+lqto3Ft4gYaRyl4rdQ==",
       "path": "microsoft.extensions.configuration.abstractions/6.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Binder/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-b3ErKzND8LIC7o08QAVlKfaEIYEvLJbtmVbFZVBRXeu9YkKfSSzLZfR1SUfQPBIy9mKLhEtJgGYImkcMNaKE0A==",
+      "path": "microsoft.extensions.configuration.binder/6.0.0",
+      "hashPath": "microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection/6.0.1": {
       "type": "package",
@@ -2466,6 +2491,11 @@
       "sha512": ""
     },
     "CityVoxWeb.DTOs/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CityVoxWeb.Mapper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
