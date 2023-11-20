@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityVoxWeb.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -41,12 +41,19 @@ namespace CityVoxWeb.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("confirm-email")]
-        public async Task<IActionResult> ConfirmEmail(string token)
+        public async Task<IActionResult> ConfirmEmail(string uid, string token)
         {
-            // Validate token and update user status
-            // ...
 
-            return Ok("Email confirmed successfully!");
+            if (!string.IsNullOrEmpty(uid) && !string.IsNullOrEmpty(token))
+            {
+                token = token.Replace(' ', '+');
+                var result = await _userService.ConfirmEmailAsync(uid,token);
+                if (result.Succeeded)
+                {
+                    return Ok("Your email has been confirmed successfully! You can now go and login");
+                }
+            }
+            return BadRequest("Failed to confirm your email!");
         }
 
         // Login Endpoint
@@ -58,7 +65,7 @@ namespace CityVoxWeb.API.Controllers
 
             if (user == null)
             {
-                return BadRequest(new { message = "Invalid credentials!" });
+                return BadRequest(new { message = "Invalid user!" });
             }
 
             // Generate both tokens
@@ -90,7 +97,7 @@ namespace CityVoxWeb.API.Controllers
         // Helper method to get validity days based on token type
         private int GetTokenValidityDays(string tokenType)
         {
-            var validityKey = tokenType == "refreshToken" ? "RefreshToken:ValidityInDays" : "JwtToken:ValidityInDays";
+            var validityKey = tokenType == "refreshToken" ? "RefreshToken:ValidityInDays" : "Jwt:TokenValidityInMinutes";
             _ = int.TryParse(_config[validityKey], out int tokenValidityDays);
             return tokenValidityDays;
         }

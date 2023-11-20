@@ -83,6 +83,11 @@ namespace CityVoxWeb.Services.User_Services
             await _emailService.SendEmailForEmailConfirmationAsync(options);
         }
 
+        public async Task<IdentityResult> ConfirmEmailAsync(string uid, string token)
+        {
+            return await _userManager.ConfirmEmailAsync(await _userManager.FindByIdAsync(uid), token);
+        }
+
         public async Task<UserWithIdDto> AuthenticateUserAsync(LoginDto loginDto)
         {
             // Find the user
@@ -90,7 +95,7 @@ namespace CityVoxWeb.Services.User_Services
 
 
             // If user does not exist or password is not correct, return null
-            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password))
+            if (user == null || !await _userManager.CheckPasswordAsync(user, loginDto.Password) || !await _userManager.IsEmailConfirmedAsync(user))
             {
                 return null;
             }
