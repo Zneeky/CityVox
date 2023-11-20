@@ -1,16 +1,50 @@
 ﻿﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #32a852;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #32a852;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        Hello {{UserName}}, <br />
-        Thank you for using the Book store web application. <br />
-        You have created a new account on book store application. <br /> <br />
-        Click on the following link to verify your email id. <br /><br />
-
-        <a href="{{Link}}">Verify email</a>
+    <div class="container">
+        <h1>Email Confirmation</h1>
+        <p> Hello {{UserName}}</p>
+        <p>Thanks for signing up! Please confirm your email address by clicking on the button-link below.</p>
+        <a href="{{Link}}" class="button">Confirm Email</a>
+        <p>If you did not sign up for this account, you can ignore this email.</p>
+        <p>Best regards,<br>CityVox</p>
+    </div>
 </body>
 </html>
