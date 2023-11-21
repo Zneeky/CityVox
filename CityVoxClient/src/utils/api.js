@@ -49,10 +49,10 @@ export const RegisterUser = async (values, onSubmitProps) => {
   };
   
   //login with refreshToken api call anonymous
-  export const LoginRefresh = async (accessToken) => {
+  export const LoginRefresh = async () => {
     try {
       const response = await instance.get(
-        `${httpsApiCode}api/auth/login/token?JwtToken=${accessToken}`
+        `${httpsApiCode}api/auth/login/token`
       );
   
       return response;
