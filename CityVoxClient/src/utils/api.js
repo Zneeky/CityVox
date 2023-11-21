@@ -171,4 +171,79 @@ export const CreateFormalPost = async (token, postData) => {
     }
   };
 
-  
+  //Call to get posts by municipalityId
+export const GetPostsByMuni = async (token, muniId) => {
+  try {
+    const response = await instance.get(`api/posts/municipalities/${muniId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get formal posts by municipalityId
+export const GetFormalPostsByMuni = async (token, muniId) => {
+  try {
+    const response = await instance.get(
+      `api/posts/formal/municipalities/${muniId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to create a comment
+export const CreateComment = async (token, commentDto) => {
+  try {
+    const response = await instance.post(`api/posts/comments`, commentDto, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to create a vote
+export const CreateUpVote = async (token, postId) => {
+  try {
+    const response = await instance.post(
+      `api/posts/vote/${postId}`,
+      {}, //  body of the request
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to delete a vote
+export const DeleteUpVote = async (token, postId) => {
+  try {
+    const response = await instance.delete(`api/posts/vote/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
