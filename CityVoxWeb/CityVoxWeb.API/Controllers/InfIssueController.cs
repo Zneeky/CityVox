@@ -1,5 +1,6 @@
 ﻿using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
