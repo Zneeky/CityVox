@@ -85,9 +85,11 @@ const RegisterForm = () => {
     setIsLoading(true);
     try {
       await register(values, onSubmitProps);
+      alert("Registration successful! Please check your email to confirm your account.");
       navigate("/auth/login");
     } catch (error) {
       console.error("Registration failed:", error);
+      alert("Registration failed. Please try again.");
     }
   };
 
