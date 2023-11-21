@@ -9,8 +9,6 @@ namespace CityVoxWeb.DTOs.Users
     {
         public Guid Id { get; set; }
 
-        public string? AccessToken { get; set; }
-
         [Required]
         [MinLength(FirstNameMinLength)]
         [MaxLength(FirstNameMaxLength)]

@@ -80,6 +80,48 @@ namespace CityVoxWeb.API.Controllers
             return Ok(user);
         }
 
+        [AllowAnonymous]
+        [HttpGet("login/token")]
+        public async Task<IActionResult> LogInWithRefreshToken()
+        {
+            // Get the refresh token from the cookie
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (refreshToken == null)
+            {
+                return BadRequest(new { message = "Refresh token not found. Sign in again!" });
+            }
+
+            // Get the JWT from the cookie
+            var jwtToken = Request.Cookies["jwtToken"];
+            if (jwtToken == null)
+            {
+                return BadRequest(new { message = "JWT token not found. Sign in again!" });
+            }
+
+            // Verify the validity of the refresh token (and optionally the JWT token)
+            var response = await _refreshTokenService.IsValid(refreshToken, jwtToken);
+            if (!response.isValid)
+            {
+                return BadRequest(new { message = "Invalid tokens! Sign in again!" });
+            }
+
+            // Get user information
+            var user = await _userService.GetUserAsync(response.userId);
+            if (user == null)
+            {
+                return BadRequest(new { message = "User not found." });
+            }
+
+            // Generate a new JWT token
+            var newJwtToken = _jwtUtils.GenerateJwtToken(user);
+
+            // Optionally, you can set the new JWT token in the cookie again
+            SetTokenInCookie(newJwtToken, "jwtToken");
+
+            return Ok(user);
+        }
+
+
         // Method to set tokens in cookies
         private void SetTokenInCookie(string token, string cookieName)
         {

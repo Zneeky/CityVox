@@ -1,4 +1,5 @@
-﻿using CityVoxWeb.Data;
+﻿using CityVoxWeb.API.Middleware;
+using CityVoxWeb.Data;
 using CityVoxWeb.Data.Models.UserEntities;
 using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
@@ -134,6 +135,8 @@ namespace CityVoxWeb.API
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
+            app.UseMiddleware<JwtTokenCookieMiddleware>();
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

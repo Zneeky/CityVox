@@ -8,7 +8,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/reports")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class ReportController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto> _reportService;

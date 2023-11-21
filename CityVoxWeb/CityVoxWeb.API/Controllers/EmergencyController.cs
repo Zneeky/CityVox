@@ -8,7 +8,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/emergencies")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class EmergencyController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateEmergencyDto, ExportEmergencyDto, UpdateEmergencyDto> _emergencyService;

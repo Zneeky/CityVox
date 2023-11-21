@@ -7,7 +7,7 @@ namespace CityVoxWeb.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class InfIssueController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateInfIssueDto, ExportInfIssueDto, UpdateInfIssueDto> _infIssuesService;
