@@ -29,7 +29,6 @@ const initialValuesLogin = {
 };
 
 let appUser = {
-  accessToken: null,
   username: null,
   email : null,
   fName : null,
@@ -57,8 +56,7 @@ const LoginForm = () => {
         if (response.status === 200) {
           console.log('Success');
            let currentUser = { ...appUser };
-
-           currentUser.accessToken = response?.data?.AccessToken;
+           
            currentUser.username = response?.data?.Username;
            currentUser.email = response?.data?.Email;
            currentUser.fName = response?.data?.FirstName;

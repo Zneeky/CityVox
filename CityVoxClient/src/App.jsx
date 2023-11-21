@@ -8,11 +8,12 @@ import RequireAuth from "./components/require-auth";
 import Register from "./pages/auth/register-page";
 import Login from "./pages/auth/login-page";
 import Dashboard from "./pages/admin/dashboard-page";
+import HomePage from "./pages/home-page";
 
 function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(createThemeSettings(mode)), [mode]);
-  const isAuthenticated = useSelector((state) => !!state.user?.Username);
+  const isAuthenticated = useSelector((state) => !!state.user?.username);
 
   return (
     <div className="app">
@@ -41,12 +42,12 @@ function App() {
             <Route
               element={
                 <RequireAuth
-                  allowedRoles={["user", "representative", "admin"]}
+                  allowedRoles={["User", "Representative", "Admin"]}
                 />
               }
             >
               <Route path="/"></Route>
-              <Route path="/home"></Route>
+              <Route path="/home" element={<HomePage />}></Route>
               <Route path="/reports"></Route>
               <Route path="/emergencies"></Route>
               <Route path="/events"></Route>
@@ -54,7 +55,7 @@ function App() {
             </Route>
 
             {/*Protected routes for security tier users*/}
-            <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+            <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
               <Route path="/admin/dashboard" element={<Dashboard />}></Route>
               <Route path="/admin/requests"></Route>
             </Route>
