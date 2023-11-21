@@ -397,22 +397,6 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/6.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "6.0.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.Extensions.DependencyInjection/6.0.1": {
         "type": "package",
         "dependencies": {
@@ -2576,30 +2560,13 @@
           "bin/placeholder/CityVoxWeb.DTOs.dll": {}
         }
       },
-      "CityVoxWeb.Mapper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "AutoMapper": "12.0.1",
-          "CityVoxWeb.DTOs": "1.0.0",
-          "CityVoxWeb.Data": "1.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "6.0.0"
-        },
-        "compile": {
-          "bin/placeholder/CityVoxWeb.Mapper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CityVoxWeb.Mapper.dll": {}
-        }
-      },
       "CityVoxWeb.Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "AutoMapper": "12.0.1",
           "CityVoxWeb.DTOs": "1.0.0",
-          "CityVoxWeb.Data": "1.0.0",
-          "CityVoxWeb.Mapper": "1.0.0"
+          "CityVoxWeb.Data": "1.0.0"
         },
         "compile": {
           "bin/placeholder/CityVoxWeb.Services.dll": {}
@@ -3111,25 +3078,6 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
-        "useSharedDesignerContext.txt"
-      ]
-    },
-    "Microsoft.Extensions.Configuration.Binder/6.0.0": {
-      "sha512": "b3ErKzND8LIC7o08QAVlKfaEIYEvLJbtmVbFZVBRXeu9YkKfSSzLZfR1SUfQPBIy9mKLhEtJgGYImkcMNaKE0A==",
-      "type": "package",
-      "path": "microsoft.extensions.configuration.binder/6.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/net461/Microsoft.Extensions.Configuration.Binder.xml",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
-        "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
-        "microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
-        "microsoft.extensions.configuration.binder.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -7868,11 +7816,6 @@
       "path": "../CityVoxWeb.DTOs/CityVoxWeb.DTOs.csproj",
       "msbuildProject": "../CityVoxWeb.DTOs/CityVoxWeb.DTOs.csproj"
     },
-    "CityVoxWeb.Mapper/1.0.0": {
-      "type": "project",
-      "path": "../CityVoxWeb.Mapper/CityVoxWeb.Mapper.csproj",
-      "msbuildProject": "../CityVoxWeb.Mapper/CityVoxWeb.Mapper.csproj"
-    },
     "CityVoxWeb.Services/1.0.0": {
       "type": "project",
       "path": "../CityVoxWeb.Services/CityVoxWeb.Services.csproj",
@@ -7885,7 +7828,6 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "CityVoxWeb.DTOs >= 1.0.0",
       "CityVoxWeb.Data >= 1.0.0",
-      "CityVoxWeb.Mapper >= 1.0.0",
       "CityVoxWeb.Services >= 1.0.0",
       "Microsoft.AspNet.WebApi.Cors >= 5.2.9",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.11",
@@ -7928,9 +7870,6 @@
             },
             "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj": {
               "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.DTOs\\CityVoxWeb.DTOs.csproj"
-            },
-            "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Mapper\\CityVoxWeb.Mapper.csproj": {
-              "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Mapper\\CityVoxWeb.Mapper.csproj"
             },
             "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Services\\CityVoxWeb.Services.csproj": {
               "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Services\\CityVoxWeb.Services.csproj"

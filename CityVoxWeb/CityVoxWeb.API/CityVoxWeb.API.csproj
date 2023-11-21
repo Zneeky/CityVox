@@ -24,7 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CityVoxWeb.Data\CityVoxWeb.Data.csproj" />
     <ProjectReference Include="..\CityVoxWeb.DTOs\CityVoxWeb.DTOs.csproj" />
-    <ProjectReference Include="..\CityVoxWeb.Mapper\CityVoxWeb.Mapper.csproj" />
     <ProjectReference Include="..\CityVoxWeb.Services\CityVoxWeb.Services.csproj" />
   </ItemGroup>
 

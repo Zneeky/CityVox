@@ -114,7 +114,7 @@ namespace CityVoxWeb.API
 
             //AutoMapper Dependency Injection
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
+            //builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 
             //Adding services
             //Issue manipulating services

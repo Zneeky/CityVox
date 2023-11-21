@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uQTiaCPCI0TiC9GCctzNynXBmjc+zinW2okhsZYEKImZdmPP/I4kbT9KdLlUJRB5GIlIX7SgNATfh8Hl0lNlOg==",
+  "dgSpecHash": "iINEpGLp+SMCLIg1V9vBbETXhz9KUyvsfZnjSBGVc0chS8RLKm3MwCKO5f7aD72lRQxqeX2bnpib/3eylzt5Jg==",
   "success": true,
   "projectFilePath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,6 @@
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.1\\microsoft.extensions.dependencyinjection.6.0.1.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.identity.core\\6.0.11\\microsoft.extensions.identity.core.6.0.11.nupkg.sha512",
