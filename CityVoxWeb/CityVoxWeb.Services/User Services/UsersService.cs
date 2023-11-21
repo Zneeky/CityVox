@@ -36,6 +36,12 @@ namespace CityVoxWeb.Services.User_Services
 
         public async Task<UserWithIdDto> RegisterUserAsync(RegisterDto registerDto)
         {
+            var existingUser = await _userManager.FindByEmailAsync(registerDto.Email);
+            if (existingUser != null)
+            {
+                return null;
+            }
+
             var user = _mapper.Map<ApplicationUser>(registerDto);
             user.CreatedAt = DateTime.UtcNow;
 

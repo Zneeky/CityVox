@@ -253,5 +253,3 @@ E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Web.Http.C
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.dll
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
-E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\CityVoxWeb.Mapper.dll
-E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\CityVoxWeb.Mapper.pdb
