@@ -50,7 +50,9 @@ namespace CityVoxWeb.API.Controllers
                 var result = await _userService.ConfirmEmailAsync(uid,token);
                 if (result.Succeeded)
                 {
-                    return Ok("Your email has been confirmed successfully! You can now go and login");
+                    // Redirect to the frontend login page upon successful confirmation
+                    var loginPageUrl = _config["FrontEndSettings:LoginPath"];
+                    return Redirect(loginPageUrl);
                 }
             }
             return BadRequest("Failed to confirm your email!");

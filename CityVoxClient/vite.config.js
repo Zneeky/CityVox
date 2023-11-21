@@ -7,11 +7,5 @@ export default defineConfig({
   plugins: [react() , viteBasicSslPlugin()],
   server: {
     https: true,
-    hmr: {
-      protocol: 'wss',
-      host: 'localhost',
-      // Optionally specify a port if the default one is not suitable
-      //port: 5173,
-    },
   },
 })

@@ -94,12 +94,13 @@ namespace CityVoxWeb.API
                 .AddXmlDataContractSerializerFormatters();
 
             //CORS Policy configuration
+            var frontEndAppDomain = builder.Configuration["FrontEndSettings:AppDomain"];
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
                 builder =>
                 {
-                    builder.WithOrigins("https://localhost:5173") // Add here all the origins that you want to allow.
+                    builder.WithOrigins(frontEndAppDomain) // Add here all the origins that you want to allow.
                            .AllowAnyHeader()
                            .AllowAnyMethod()
                            .AllowCredentials(); // This allows cookies to be sent with the CORS requests.
