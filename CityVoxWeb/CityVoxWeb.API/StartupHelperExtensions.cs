@@ -5,7 +5,6 @@ using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.DTOs.Issues.Reports;
 using CityVoxWeb.DTOs.User;
-using CityVoxWeb.Mapper;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
 using CityVoxWeb.Services.Token_Services;
@@ -114,7 +113,6 @@ namespace CityVoxWeb.API
 
             //AutoMapper Dependency Injection
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            //builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 
             //Adding services
             //Issue manipulating services
