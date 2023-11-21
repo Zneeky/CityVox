@@ -121,6 +121,21 @@ namespace CityVoxWeb.API.Controllers
             return Ok(user);
         }
 
+        [AllowAnonymous]
+        [HttpGet("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if (refreshToken == null)
+            {
+                return BadRequest(new { message = "Invalid tokens! Sing in again!" });
+            }
+            await _refreshTokenService.RevokeTokenAsync(refreshToken);
+            Response.Cookies.Delete("refreshToken");
+            Response.Cookies.Delete("jwtToken");
+            return Ok();
+        }
+
 
         // Method to set tokens in cookies
         private void SetTokenInCookie(string token, string cookieName)
