@@ -126,21 +126,6 @@ export const GetRegions = async (token) => {
       return null; // or handle the error in a way suitable for your application
     }
   };
-  //img upload to cloudinary.com anonymous
-  export const uploadToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-  
-    try {
-      const response = await axios.post(`${CLOUDINARY_UPLOAD_URL}`, formData);
-  
-      const img = await response.data;
-      return img.secure_url;
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
   //Call to create a Post
   export const CreatePost = async (token, postData) => {
     try {
