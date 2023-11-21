@@ -144,7 +144,7 @@ namespace CityVoxWeb.API.Controllers
             {
                 HttpOnly = true,
                 Expires = DateTime.UtcNow.AddDays(GetTokenValidityDays(cookieName)),
-                SameSite = SameSiteMode.None,
+                SameSite = SameSiteMode.Strict,
                 Domain = "localhost", // Adjust as needed
                 Secure = true,
             };

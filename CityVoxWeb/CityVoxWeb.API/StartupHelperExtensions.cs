@@ -99,9 +99,10 @@ namespace CityVoxWeb.API
                 options.AddPolicy("AllowAll",
                 builder =>
                 {
-                    builder.AllowAnyOrigin()
+                    builder.WithOrigins("https://localhost:5173") // Add here all the origins that you want to allow.
                            .AllowAnyHeader()
-                           .AllowAnyMethod();
+                           .AllowAnyMethod()
+                           .AllowCredentials(); // This allows cookies to be sent with the CORS requests.
                 });
             });
 
