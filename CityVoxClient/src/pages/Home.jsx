@@ -1,14 +1,14 @@
-import { TopNav } from "../components/navigation/TopNav";
+import { TopNav } from "../components/navigation/top-nav";
 import { useCallback, useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import useAuth from "../hooks/UseAuth";
+import useAuth from "../hooks/use-auth";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
-import { SideNav } from "../components/navigation/SideNav";
+import { SideNav } from "../components/navigation/side-nav";
 import { useLocation } from "react-router-dom";
-import MapView from "../components/MapView";
-import RegionDropdown from "../components/dropdown/RegionDropdown";
-import MunicipalityDropdown from "../components/dropdown/MunicipalityDropdown";
+// import MapView from "../components/map-view";
+import RegionDropdown from "../components/dropdown/region-dropdown";
+import MunicipalityDropdown from "../components/dropdown/municipality-dropdown";
 import { Grid, Box } from "@mui/material";
 
 export const SIDE_NAV_WIDTH = 280;
@@ -75,7 +75,7 @@ const Home = () => {
             </Grid>
           </Grid>
           <Box mt="1rem" p="1rem" width="100%" height={750} overflow="auto">
-            <MapView selectedMunicipalityId={selectedMunicipality?.municipalityId} osmId={selectedMunicipality?.osmId} token={appUser.accessToken}/>
+            {/* <MapView selectedMunicipalityId={selectedMunicipality?.municipalityId} osmId={selectedMunicipality?.osmId} token={appUser.accessToken}/> */}
           </Box>
         </LayoutContainer>
       </LayoutRoot>

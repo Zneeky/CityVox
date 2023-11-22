@@ -1,21 +1,26 @@
 import { useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/material';
-import { useAuth } from 'src/hooks/use-auth';
+import { setLogout } from '../../redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 export const AccountPopover = (props) => {
+  const appUser = useSelector((state) => state.user)
   const { anchorEl, onClose, open } = props;
-  const router = useRouter();
-  const auth = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignOut = useCallback(
     () => {
       onClose?.();
-      auth.signOut();
-      router.push('/auth/login');
+      dispatch(
+        setLogout()
+      );
+      navigate('/auth/login');
     },
-    [onClose, auth, router]
+    [onClose, navigate]
   );
 
   return (
@@ -42,7 +47,9 @@ export const AccountPopover = (props) => {
           color="text.secondary"
           variant="body2"
         >
-          Anika Visser
+          {appUser.fName} {appUser.lName}
+          <br/>
+          Role: {appUser.role}
         </Typography>
       </Box>
       <Divider />

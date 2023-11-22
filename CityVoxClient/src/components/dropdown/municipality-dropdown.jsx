@@ -7,16 +7,15 @@ import { GetMunicipalities } from '../../utils/api';
 const MunicipalityDropdown = ({ regionId, onChange }) => {
   const [municipalities, setMunicipalities] = useState([]);
   const [selectedMunicipality, setSelectedMunicipality] = useState(null); // New state
-  const token = useSelector(state => state.user.accessToken);
 
   useEffect(() => {
     if (regionId===null || regionId===undefined) return;
 
-    GetMunicipalities(token,regionId)
+    GetMunicipalities(regionId)
       .then(response => {
         setMunicipalities(response.$values);
       });
-  }, [regionId, token]);
+  }, [regionId]);
 
   const handleChange = event => {
     const selectedMunicipalityId = event.target.value;

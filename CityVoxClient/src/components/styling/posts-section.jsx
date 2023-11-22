@@ -7,16 +7,15 @@ import { useSelector } from 'react-redux';
 const PostsSection = ({ type, municipalityId }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const token = useSelector((state) => state.user.accessToken);
 
   useEffect(() => {
     const fetchPosts = async () => {
         setLoading(true);
         if(type===0){
-          const data = await GetPostsByMuni(token, municipalityId)
+          const data = await GetPostsByMuni(municipalityId)
           setPosts(data);
         }else{
-          const data = await GetFormalPostsByMuni(token, municipalityId)
+          const data = await GetFormalPostsByMuni(municipalityId)
           setPosts(data);
         }
         setLoading(false);

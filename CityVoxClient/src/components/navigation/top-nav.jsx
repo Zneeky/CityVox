@@ -18,8 +18,8 @@ import {
   useTheme,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
-import { usePopover } from "../../hooks/UsePopover";
-import { AccountPopover } from "./AccountPopover";
+import { usePopover } from "../../hooks/use-popover";
+import { AccountPopover } from "./account-popover";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../redux/index";
 

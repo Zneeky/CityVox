@@ -14,9 +14,9 @@ import {
   Link as LinkMui
 } from "@mui/material";
 import { Logo } from "../styling/Logo";
-import { Scrollbar } from "../styling/ScrollBar";
-import { items } from "./Config";
-import { SideNavItem } from "./SideNavItem";
+import { Scrollbar } from "../styling/scroll-bar";
+import { items } from "./configuration";
+import { SideNavItem } from "./side-nav-item";
 
 export const SideNav = (props) => {
   const { open, onClose } = props;

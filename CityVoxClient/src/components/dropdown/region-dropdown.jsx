@@ -7,14 +7,13 @@ import { useSelector } from 'react-redux';
 const RegionDropdown = ({ onChange }) => {
     const [regions, setRegions] = useState([]);
     const [selectedRegion, setSelectedRegion] = useState(''); // Added this state
-    const token = useSelector(state => state.user.accessToken);
-  
+
     useEffect(() => {
-      GetRegions(token)
+      GetRegions()
         .then(response => {
           setRegions(response);
         });
-    }, [token]);
+    }, []);
   
     const handleChange = event => {
       const selectedRegionId = event.target.value;
