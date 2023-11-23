@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, CircularProgress } from '@mui/material';
-import SinglePost from '../widget/SinglePost';
+import SinglePost from '../widget/single-post';
 import { GetPostsByMuni, GetFormalPostsByMuni } from '../../utils/api';
 import { useSelector } from 'react-redux';
 

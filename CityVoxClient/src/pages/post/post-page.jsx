@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import RegionDropdown from "../../components/dropdown/RegionDropdown";
 import MunicipalityDropdown from "../../components/dropdown/MunicipalityDropdown";
 import PostsSection from "../../components/styling/PostsSection";
-import CreatePost from '../../components/widget/CreatePost';
+import CreatePost from '../../components/widget/create-post';
 import PencilSquareIcon from "@heroicons/react/24/outline/PencilSquareIcon";
 
 const PostPage = () => {

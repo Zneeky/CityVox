@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Select, MenuItem, Card, Button, TextField, Box, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Divider, InputBase, useTheme } from '@mui/material';
-import WidgetWrapper from '../styling/WidgetWrapper';
+import WidgetWrapper from '../styling/widget-wrapper';
 import Dropzone from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
