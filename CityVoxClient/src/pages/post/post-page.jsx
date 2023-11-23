@@ -1,13 +1,13 @@
 import { Box, useMediaQuery, Grid, AppBar, Tabs, Tab, Paper, Button, IconButton, SvgIcon, Typography } from "@mui/material";
 import { LayoutRoot, LayoutContainer, SIDE_NAV_WIDTH } from "../Home";
-import { TopNav } from "../../components/navigation/TopNav";
+import { TopNav } from "../../components/navigation/top-nav";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { SideNav } from "../../components/navigation/SideNav";
+import { SideNav } from "../../components/navigation/side-nav";
 import { useLocation } from "react-router-dom";
-import RegionDropdown from "../../components/dropdown/RegionDropdown";
-import MunicipalityDropdown from "../../components/dropdown/MunicipalityDropdown";
-import PostsSection from "../../components/styling/PostsSection";
+import RegionDropdown from "../../components/dropdown/region-dropdown";
+import MunicipalityDropdown from "../../components/dropdown/municipality-dropdown";
+import PostsSection from "../../components/styling/posts-section";
 import CreatePost from '../../components/widget/create-post';
 import PencilSquareIcon from "@heroicons/react/24/outline/PencilSquareIcon";
 
