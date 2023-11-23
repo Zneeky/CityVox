@@ -5,6 +5,7 @@ using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.DTOs.Issues.InfIssues;
 using CityVoxWeb.DTOs.Issues.Reports;
 using CityVoxWeb.DTOs.User;
+using CityVoxWeb.Services;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
 using CityVoxWeb.Services.Token_Services;
@@ -125,6 +126,8 @@ namespace CityVoxWeb.API
             builder.Services.AddScoped<IRefreshTokenService, RefreshTokenService>();
             builder.Services.AddScoped<IEmailService,EmailService>();
             builder.Services.AddScoped<IUsersService, UsersService>();
+            builder.Services.AddScoped<IGeoService, GeoService>();
+            builder.Services.AddScoped<ISocialsService, SocialsService>();
 
             builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
