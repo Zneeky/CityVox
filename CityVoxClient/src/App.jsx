@@ -9,6 +9,8 @@ import Register from "./pages/auth/register-page";
 import Login from "./pages/auth/login-page";
 import Dashboard from "./pages/admin/dashboard-page";
 import Home from "./pages/Home";
+import Requests from './pages/admin/requests-page';
+import PostPage from './pages/post/post-page';
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -52,12 +54,13 @@ function App() {
               <Route path="/emergencies"></Route>
               <Route path="/events"></Route>
               <Route path="/infrastructureIssues"></Route>
+              <Route path="/posts" element={<PostPage />}></Route>
             </Route>
 
             {/*Protected routes for security tier users*/}
             <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
               <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-              <Route path="/admin/requests"></Route>
+              <Route path='/admin/requests' element={<Requests />}></Route>
             </Route>
             {/*catch all */}
             <Route path="*"></Route>
