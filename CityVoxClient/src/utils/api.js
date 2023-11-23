@@ -246,3 +246,97 @@ export const DeleteUpVote = async (postId) => {
     console.log(err);
   }
 };
+
+
+//Call to get all requested emergencies
+export const GetRequestedEmergencies = async (token, page, count) => {
+  try {
+    const response = await instance.get(
+      `api/emergencies/requests?page=${page}&count=${count}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get the count of all requested reports
+export const GetRequestedEmergenciesCount = async (token) => {
+  try {
+    const response = await instance.get(`api/emergencies/requests/count`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get all requested reports
+export const GetRequestedReports = async (token, page, count) => {
+  try {
+    const response = await instance.get(
+      `api/reports/requests?page=${page}&count=${count}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get the count of all requested reports
+export const GetRequestedReportsCount = async (token) => {
+  try {
+    const response = await instance.get(`api/reports/requests/count`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get all requested InfIssues
+export const GetRequestedInfIssues = async (token, page, count) => {
+  try {
+    const response = await instance.get(
+      `api/infIssues/requests?page=${page}&count=${count}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get the count of all requested InfIssues
+export const GetRequestedInfIssuesCount = async (token) => {
+  try {
+    const response = await instance.get(`api/infIssues/requests/count`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
