@@ -1,12 +1,13 @@
-import { TopNav } from "../components/navigation/top-nav";
-import { useCallback, useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
+// Import necessary components and libraries
+import { TopNav } from "../components/navigation/top-nav"; // Top navigation bar component
+import { useCallback, useEffect, useState } from "react"; // React hooks for state and side effects
+import { styled } from "@mui/material/styles"; // Styling utility from Material-UI
 import useAuth from "../hooks/use-auth";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector"; // Redux hook for accessing the store
 import { useDispatch } from "react-redux";
 import { SideNav } from "../components/navigation/side-nav";
 import { useLocation } from "react-router-dom";
-// import MapView from "../components/map-view";
+import MapView from "../components/map-view";
 import RegionDropdown from "../components/dropdown/region-dropdown";
 import MunicipalityDropdown from "../components/dropdown/municipality-dropdown";
 import { Grid, Box } from "@mui/material";
@@ -41,7 +42,7 @@ const Home = () => {
 
   const handleRegionChange = (selectedRegionId) => {
     setSelectedRegion(selectedRegionId);
-  }
+  };
 
   const handlePathnameChange = useCallback(() => {
     if (openNav) {
@@ -63,7 +64,12 @@ const Home = () => {
       <SideNav onClose={() => setOpenNav(false)} open={openNav} />
       <LayoutRoot>
         <LayoutContainer>
-          <Grid container spacing={2} style={{ justifyContent: "flex-start" }} pl="1.5rem">
+          <Grid
+            container
+            spacing={2}
+            style={{ justifyContent: "flex-start" }}
+            pl="1.5rem"
+          >
             <Grid item xs={12} sm={2} style={{ flexBasis: "33.33%" }}>
               <RegionDropdown onChange={handleRegionChange} />
             </Grid>
@@ -75,7 +81,13 @@ const Home = () => {
             </Grid>
           </Grid>
           <Box mt="1rem" p="1rem" width="100%" height={750} overflow="auto">
-            {/* <MapView selectedMunicipalityId={selectedMunicipality?.municipalityId} osmId={selectedMunicipality?.osmId} token={appUser.accessToken}/> */}
+            {
+              <MapView
+                selectedMunicipalityId={selectedMunicipality?.municipalityId}
+                osmId={selectedMunicipality?.osmId}
+                token={appUser.accessToken}
+              />
+            }
           </Box>
         </LayoutContainer>
       </LayoutRoot>
