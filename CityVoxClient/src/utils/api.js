@@ -5,18 +5,49 @@ import { store } from "../redux/store";
 
 //img upload to cloudinary.com anonymous
 export const uploadToCloudinary = async (file) => {
-    const formData = new FormData();
-    formData.append("file", file)
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-    try {
-        const response = await axios.post(`${CLOUDINARY_UPLOAD_URL}`, formData)
-    
-        const img = await response.data;
-        return img.secure_url
-    } catch (error) {
-        console.error("Error uploading image:", error);
-    }
-}
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+  try {
+    const response = await axios.post(`${CLOUDINARY_UPLOAD_URL}`, formData);
+
+    const img = await response.data;
+    return img.secure_url;
+  } catch (error) {
+    console.error("Error uploading image:", error);
+  }
+};
+
+//API calls to OpenStreetMap.com overpass-turbo
+const overpassApiUrl = "https://overpass-api.de/api/interpreter";
+
+//API call for getting municipality boundaries
+export const MunicipalityBoundaries = async (osmId) => {
+  const query = `
+    [out:json];
+    (
+      relation(${osmId});
+    );
+    out body;
+    >;
+    out skel qt;
+    `;
+
+  try {
+    const response = await axios.post(
+      overpassApiUrl,
+      { data: query },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 //Registration api call anonymous
 export const RegisterUser = async (values, onSubmitProps) => {
