@@ -11,6 +11,7 @@ import Dashboard from "./pages/admin/dashboard-page";
 import Home from "./pages/Home";
 import Requests from './pages/admin/requests-page';
 import PostPage from './pages/post/post-page';
+import 'leaflet/dist/leaflet.css'
 
 function App() {
   const mode = useSelector((state) => state.mode);

@@ -175,6 +175,20 @@ export const GetRegions = async () => {
       console.log(err);
     }
   };
+
+  //Call to get all reports by municipality
+export const GetReportsByMunicipality = async (muniId) => {
+  try {
+    const response = await instance.get(
+      `api/reports/municipalities/${muniId}`
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+  
+
  //Call to get User's approved issue so they can create posts
   export const GetApprovedIssuesForUser = async (userId) => {
     try {
@@ -298,6 +312,80 @@ export const GetRequestedEmergenciesCount = async () => {
   }
 };
 
+//Call to create an emergency
+export const CreateEmergency = async (formData) => {
+  const appropriateDTO = {
+    CreatorId: formData.creatorId,
+    Title: formData.title,
+    Description: formData.description,
+    ImageUrl: formData.imageUrl,
+    Latitude: parseFloat(formData.latitude),
+    Longitude: parseFloat(formData.longitude),
+    Address: formData.address,
+    MunicipalityId: formData.municipalityId,
+    Type: formData.issueType,
+  };
+
+  try {
+    const response = await instance.post(`api/emergencies`, appropriateDTO);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get an emergency
+export const GetEmergency = async (emergencyId) => {
+  try {
+    const response = await instance.get(`api/emergencies/${emergencyId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to update an emergency
+export const UpdateEmergency = async (formData) => {
+  const updateEmergecyDto = {
+    Title: formData.Title,
+    Description: formData.Description,
+    ImageUrl: formData.ImageUrl,
+    Type: formData.TypeValue,
+    Status: formData.StatusValue,
+  };
+  try {
+    const response = await instance.patch(
+      `api/emergencies/${formData.Id}`,
+      updateEmergecyDto
+    );
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to delete an emergency
+export const DeleteEmergency = async (emergencyId) => {
+  try {
+    const response = await instance.delete(`api/emergencies/${emergencyId}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get all emergencies by municipality
+export const GetEmergenciesByMunicipality = async (muniId) => {
+  try {
+    const response = await instance.get(
+      `api/emergencies/municipalities/${muniId}`
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Call to get all requested reports
 export const GetRequestedReports = async (page, count) => {
   try {
@@ -320,6 +408,67 @@ export const GetRequestedReportsCount = async () => {
   }
 };
 
+//Call to create a new report
+export const CreateReport = async (formData) => {
+  const appropriateDTO = {
+    CreatorId: formData.creatorId,
+    Title: formData.title,
+    Description: formData.description,
+    ImageUrl: formData.imageUrl,
+    Latitude: parseFloat(formData.latitude),
+    Longitude: parseFloat(formData.longitude),
+    Address: formData.address,
+    MunicipalityId: formData.municipalityId,
+    Type: formData.issueType,
+  };
+
+  try {
+    const response = await instance.post(`api/reports`, appropriateDTO);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get a report
+export const GetReport = async (reportId) => {
+  try {
+    const response = await instance.get(`api/reports/${reportId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to update a report
+export const UpdateReport = async (formData) => {
+  const updateReportDto = {
+    Title: formData.Title,
+    Description: formData.Description,
+    ImageUrl: formData.ImageUrl,
+    Type: formData.TypeValue,
+    Status: formData.StatusValue,
+  };
+  try {
+    const response = await instance.patch(
+      `api/reports/${formData.Id}`,
+      updateReportDto);
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to delete a reprot
+export const DeleteReport = async (reportId) => {
+  try {
+    const response = await instance.delete(`api/reports/${reportId}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Call to get all requested InfIssues
 export const GetRequestedInfIssues = async (page, count) => {
   try {
@@ -337,6 +486,80 @@ export const GetRequestedInfIssuesCount = async () => {
   try {
     const response = await instance.get(`api/infIssues/requests/count`);
     return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get all infIssues by municipality
+export const GetInfIssuesByMunicipality = async (muniId) => {
+  try {
+    const response = await instance.get(
+      `api/infIssues/municipalities/${muniId}`
+    );
+    return response?.data?.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to create a new InfIssue
+export const CreateInfIssue = async (formData) => {
+  const appropriateDTO = {
+    CreatorId: formData.creatorId,
+    Title: formData.title,
+    Description: formData.description,
+    ImageUrl: formData.imageUrl,
+    Latitude: parseFloat(formData.latitude),
+    Longitude: parseFloat(formData.longitude),
+    Address: formData.address,
+    MunicipalityId: formData.municipalityId,
+    Type: formData.issueType,
+  };
+
+  try {
+    const response = await instance.post(`api/infIssues`, appropriateDTO);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get a InfIssue
+export const GetInfIssue = async (infIssueId) => {
+  try {
+    const response = await instance.get(`api/infIssues/${infIssueId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to update a InfIssue
+export const UpdateInfIssue = async (formData) => {
+  const updateInfIssueDto = {
+    Title: formData.Title,
+    Description: formData.Description,
+    ImageUrl: formData.ImageUrl,
+    Type: formData.TypeValue,
+    Status: formData.StatusValue,
+  };
+  try {
+    const response = await instance.patch(
+      `api/infIssues/${formData.Id}`,
+      updateInfIssueDto
+      );
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to create an infIssue
+export const DeleteInfIssue = async (infIssueId) => {
+  try {
+    const response = await instance.delete(`api/infIssues/${infIssueId}`);
   } catch (err) {
     console.log(err);
   }

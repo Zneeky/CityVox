@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityVoxWeb.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/infIssues")]
     [ApiController]
     [Authorize]
     public class InfIssueController : ControllerBase
