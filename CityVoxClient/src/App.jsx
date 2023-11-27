@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { createThemeSettings } from './theme/theme';
+import { createThemeSettings } from "./theme/theme";
 import RequireAuth from "./components/require-auth";
 import Register from "./pages/auth/register-page";
 import Login from "./pages/auth/login-page";
@@ -29,8 +29,10 @@ function App() {
               <>
                 <Route path="/" element={<Navigate to="/home" />} />
                 <Route path="/auth/login" element={<Navigate to="/home" />} />
-                <Route path="/auth/register" element={<Navigate to="/home" />} />
-
+                <Route
+                  path="/auth/register"
+                  element={<Navigate to="/home" />}
+                />
               </>
             ) : (
               <>
@@ -50,18 +52,21 @@ function App() {
               }
             >
               <Route path="/"></Route>
-              <Route path="/home" element={<Home/>}></Route>
-              <Route path="/reports"></Route>
-              <Route path="/emergencies"></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/report" element={<CreateReport />}></Route>
+              <Route path="/emergency" element={<CreateEmergency />}></Route>
               <Route path="/events"></Route>
-              <Route path="/infrastructureIssues"></Route>
+              <Route
+                path="/infrastructure_issue"
+                element={<CreateInfIssue />}
+              ></Route>
               <Route path="/posts" element={<PostPage />}></Route>
             </Route>
 
             {/*Protected routes for security tier users*/}
             <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
               <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-              <Route path='/admin/requests' element={<Requests />}></Route>
+              <Route path="/admin/requests" element={<Requests />}></Route>
             </Route>
             {/*catch all */}
             <Route path="*"></Route>
