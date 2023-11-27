@@ -8,7 +8,10 @@ import RequireAuth from "./components/require-auth";
 import Register from "./pages/auth/register-page";
 import Login from "./pages/auth/login-page";
 import Dashboard from "./pages/admin/dashboard-page";
-import Home from "./pages/Home";
+import Home from "./pages/home-page";
+import CreateReport from "./pages/create-report";
+import CreateEmergency from "./pages/create-emergency";
+import CreateInfIssue from "./pages/create-inf-issue";
 import Requests from './pages/admin/requests-page';
 import PostPage from './pages/post/post-page';
 import 'leaflet/dist/leaflet.css'
@@ -52,7 +55,7 @@ function App() {
               }
             >
               <Route path="/"></Route>
-              <Route path="/home" element={<Home />}></Route>
+              <Route path="/home" element={<Home/>}></Route>
               <Route path="/report" element={<CreateReport />}></Route>
               <Route path="/emergency" element={<CreateEmergency />}></Route>
               <Route path="/events"></Route>

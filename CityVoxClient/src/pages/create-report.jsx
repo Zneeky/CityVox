@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 import RegionDropdown from "../components/dropdown/region-dropdown";
 import MunicipalityDropdown from "../components/dropdown/municipality-dropdown";
 import { Grid, Box, Typography } from "@mui/material";
-import { LayoutRoot, LayoutContainer, SIDE_NAV_WIDTH } from "./Home";
+import { LayoutRoot, LayoutContainer, SIDE_NAV_WIDTH } from "./home-page"
 import IssueForm from "../components/issue-form";
 import MapViewIssueCreate from "../components/map/map-view-issue-create";
 import { CreateReport as CreateReportAPICall } from "../utils/api";
@@ -51,7 +51,7 @@ const CreateReport = () => {
       formData.imageUrl = imgUrl;
     }
     // Make API call to create a report with the form data
-    const res = await CreateReportAPICall(appUser.accessToken, formData);
+    const res = await CreateReportAPICall(formData);
 
     // Show an alert with the report submission confirmation
     alert(`Your report has been submited for investigation! ID:${res}`);

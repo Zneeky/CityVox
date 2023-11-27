@@ -1,5 +1,5 @@
 import { Box, useMediaQuery, Grid, AppBar, Tabs, Tab, Paper, Button, IconButton, SvgIcon, Typography } from "@mui/material";
-import { LayoutRoot, LayoutContainer, SIDE_NAV_WIDTH } from "../Home";
+import { LayoutRoot, LayoutContainer, SIDE_NAV_WIDTH } from "../home-page";
 import { TopNav } from "../../components/navigation/top-nav";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
