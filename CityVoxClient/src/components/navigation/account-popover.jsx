@@ -5,6 +5,7 @@ import { Box, Divider, MenuItem, MenuList, Popover, Typography } from '@mui/mate
 import { setLogout } from '../../redux';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { LogoutRefresh } from '../../utils/api';
 
 export const AccountPopover = (props) => {
   const appUser = useSelector((state) => state.user)
@@ -15,6 +16,7 @@ export const AccountPopover = (props) => {
   const handleSignOut = useCallback(
     () => {
       onClose?.();
+      LogoutRefresh();
       dispatch(
         setLogout()
       );

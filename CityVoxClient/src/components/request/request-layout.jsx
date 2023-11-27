@@ -21,7 +21,6 @@ const RequestLayout = ({ type }) => {
   const [requests, setRequests] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const token = useSelector((state) => state.user.accessToken)
   const cardsPerPage = 6;
 
   const handlePageChange = (event, value) => {
@@ -31,42 +30,42 @@ const RequestLayout = ({ type }) => {
   useEffect(() => {
     //REPORTS
     const fetchRequestedReportsCount = async () => {
-      const response = await GetRequestedReportsCount(token);
+      const response = await GetRequestedReportsCount();
       if (!isNaN(response.data)) {
         setTotalPages(Math.ceil(response.data / cardsPerPage));
       }
     };
 
     const fetchRequestedReports = async () => {
-      const response = await GetRequestedReports(token, currentPage - 1, cardsPerPage);
+      const response = await GetRequestedReports(currentPage - 1, cardsPerPage);
 
       setRequests(response);
     }
 
     //EMERGENCIES
     const fetchRequestedEmergeciesCount = async () => {
-      const response = await GetRequestedEmergenciesCount(token);
+      const response = await GetRequestedEmergenciesCount();
       if (!isNaN(response)) {
         setTotalPages(Math.ceil(response.data / cardsPerPage));
       }
     };
 
     const fetchRequestedEmergencies = async () => {
-      const response = await GetRequestedEmergencies(token, currentPage - 1, cardsPerPage);
+      const response = await GetRequestedEmergencies(currentPage - 1, cardsPerPage);
 
       setRequests(response);
     }
 
     //InfIssues
     const fetchRequestedInfIssuesCount = async () => {
-      const response = await GetRequestedInfIssuesCount(token);
+      const response = await GetRequestedInfIssuesCount();
       if (!isNaN(response)) {
         setTotalPages(Math.ceil(response.data / cardsPerPage));
       }
     };
 
     const fetchRequestedInfIssues = async () => {
-      const response = await GetRequestedInfIssues(token, currentPage - 1, cardsPerPage);
+      const response = await GetRequestedInfIssues(currentPage - 1, cardsPerPage);
 
       setRequests(response);
     }
@@ -81,7 +80,7 @@ const RequestLayout = ({ type }) => {
       fetchRequestedInfIssuesCount();
       fetchRequestedInfIssues();
     }
-  }, [type, token, currentPage, totalPages])
+  }, [type, currentPage, totalPages])
   return (
     <Box
       component="main"

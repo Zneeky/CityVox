@@ -128,11 +128,10 @@ namespace CityVoxWeb.API.Controllers
         public async Task<IActionResult> Logout()
         {
             var refreshToken = Request.Cookies["refreshToken"];
-            if (refreshToken == null)
+            if (refreshToken != null)
             {
-                return BadRequest(new { message = "Invalid tokens! Sing in again!" });
+                await _refreshTokenService.RevokeTokenAsync(refreshToken);
             }
-            await _refreshTokenService.RevokeTokenAsync(refreshToken);
             Response.Cookies.Delete("refreshToken");
             Response.Cookies.Delete("jwtToken");
             return Ok();

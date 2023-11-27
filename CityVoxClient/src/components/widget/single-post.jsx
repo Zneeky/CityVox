@@ -62,7 +62,7 @@ const SinglePost = ({
         PostId: postId
       }
       setNewComment("");
-      const response = await CreateComment(appUser.accessToken, createPostDto);
+      const response = await CreateComment(createPostDto);
       setComments(response);
     }
   };
@@ -70,13 +70,13 @@ const SinglePost = ({
   const handleLikePost = async (postId, voteState) => {
     try {
       if (!voteState) {
-        const response = await CreateUpVote(appUser.accessToken, postId);
+        const response = await CreateUpVote(postId);
         if (response.status === 200) { // assuming HTTP 200 means success
           setVoteState(!voteState);
           setUpVoteCount(upVoteCountState + 1); // assuming you have upVoteCount state
         }
       } else {
-        const response = await DeleteUpVote(appUser.accessToken, postId);
+        const response = await DeleteUpVote(postId);
         if (response.status === 200) {
           setVoteState(!voteState);
           setUpVoteCount(upVoteCountState - 1); // assuming you have upVoteCount state

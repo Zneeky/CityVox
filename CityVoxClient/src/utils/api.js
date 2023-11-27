@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_UPLOAD_URL, httpsApiCode } from './consts';
+import { setLogin, setLogout } from "../redux";
+import { store } from "../redux/store";
 
 //img upload to cloudinary.com anonymous
 export const uploadToCloudinary = async (file) => {
@@ -202,12 +204,7 @@ export const GetPostsByMuni = async (muniId) => {
 export const GetFormalPostsByMuni = async (muniId) => {
   try {
     const response = await instance.get(
-      `api/posts/formal/municipalities/${muniId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `api/posts/formal/municipalities/${muniId}`
     );
     return response.data.$values;
   } catch (err) {
@@ -229,7 +226,7 @@ export const CreateComment = async (commentDto) => {
 export const CreateUpVote = async (postId) => {
   try {
     const response = await instance.post(
-      `api/posts/vote/${postId}`,
+      `api/posts/vote/${postId}`
     );
     return response;
   } catch (err) {
@@ -249,15 +246,10 @@ export const DeleteUpVote = async (postId) => {
 
 
 //Call to get all requested emergencies
-export const GetRequestedEmergencies = async (token, page, count) => {
+export const GetRequestedEmergencies = async (page, count) => {
   try {
     const response = await instance.get(
-      `api/emergencies/requests?page=${page}&count=${count}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `api/emergencies/requests?page=${page}&count=${count}`
     );
     return response?.data?.$values;
   } catch (err) {
@@ -266,13 +258,9 @@ export const GetRequestedEmergencies = async (token, page, count) => {
 };
 
 //Call to get the count of all requested reports
-export const GetRequestedEmergenciesCount = async (token) => {
+export const GetRequestedEmergenciesCount = async () => {
   try {
-    const response = await instance.get(`api/emergencies/requests/count`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instance.get(`api/emergencies/requests/count`);
     return response;
   } catch (err) {
     console.log(err);
@@ -280,15 +268,10 @@ export const GetRequestedEmergenciesCount = async (token) => {
 };
 
 //Call to get all requested reports
-export const GetRequestedReports = async (token, page, count) => {
+export const GetRequestedReports = async (page, count) => {
   try {
     const response = await instance.get(
-      `api/reports/requests?page=${page}&count=${count}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `api/reports/requests?page=${page}&count=${count}`
     );
     return response?.data?.$values;
   } catch (err) {
@@ -297,13 +280,9 @@ export const GetRequestedReports = async (token, page, count) => {
 };
 
 //Call to get the count of all requested reports
-export const GetRequestedReportsCount = async (token) => {
+export const GetRequestedReportsCount = async () => {
   try {
-    const response = await instance.get(`api/reports/requests/count`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instance.get(`api/reports/requests/count`);
     return response;
   } catch (err) {
     console.log(err);
@@ -311,15 +290,10 @@ export const GetRequestedReportsCount = async (token) => {
 };
 
 //Call to get all requested InfIssues
-export const GetRequestedInfIssues = async (token, page, count) => {
+export const GetRequestedInfIssues = async (page, count) => {
   try {
     const response = await instance.get(
-      `api/infIssues/requests?page=${page}&count=${count}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+      `api/infIssues/requests?page=${page}&count=${count}`
     );
     return response?.data?.$values;
   } catch (err) {
@@ -328,13 +302,9 @@ export const GetRequestedInfIssues = async (token, page, count) => {
 };
 
 //Call to get the count of all requested InfIssues
-export const GetRequestedInfIssuesCount = async (token) => {
+export const GetRequestedInfIssuesCount = async () => {
   try {
-    const response = await instance.get(`api/infIssues/requests/count`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instance.get(`api/infIssues/requests/count`);
     return response;
   } catch (err) {
     console.log(err);

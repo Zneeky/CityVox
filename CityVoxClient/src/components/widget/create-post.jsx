@@ -78,7 +78,7 @@ const CreatePost = ({ open, handleClose }) => {
             };
 
             try {
-                const result = await CreatePostApi(user.accessToken, postData);  // Assuming you have the user's accessToken from your state.
+                const result = await CreatePostApi(postData);  // Assuming you have the user's accessToken from your state.
                 console.log(result);  // The result from your backend, e.g., "Post creation status: true"
 
                 // After creating the post
@@ -117,7 +117,7 @@ const CreatePost = ({ open, handleClose }) => {
             };
 
             try {
-                const result = await CreateFormalPostApi(user.accessToken, postData);  // Assuming you have the user's accessToken from your state.
+                const result = await CreateFormalPostApi(postData);  // Assuming you have the user's accessToken from your state.
                 console.log(result);  // The result from your backend, e.g., "Post creation status: true"
 
                 // After creating the post
@@ -132,7 +132,7 @@ const CreatePost = ({ open, handleClose }) => {
 
     useEffect(() => {
         const fetchUserIssues = async () => {
-            const issues = await GetApprovedIssuesForUser(user.accessToken, user.id);
+            const issues = await GetApprovedIssuesForUser(user.id);
             setUserIssues(issues || []);
         };
 
