@@ -6,10 +6,10 @@ on:
     branches:
       - main
       - SofiaCallWebCrawler
-    paths: ['CityVox/CityVoxWeb/**']  # Specify the paths to trigger this workflow
+    paths: -'CityVoxWeb/**'  # Specify the paths to trigger this workflow
   pull_request:
     branches: [ main ]
-    paths: ['CityVox/CityVoxWeb/**']
+    paths: -'CityVoxWeb/**'
 
 jobs:
   build:
@@ -24,10 +24,10 @@ jobs:
         dotnet-version: '6.0.x'  # Specify your .NET Core version
 
     - name: Restore dependencies
-      run: dotnet restore ./CityVoxWeb.sln # Restore NuGet packages
+      run: dotnet restore CityVoxWeb/CityVoxWeb.sln # Restore NuGet packages
 
     - name: Build
-      run: dotnet build ./CityVoxWeb.sln --configuration Development --no-restore  # Build the project
+      run: dotnet build --no-restore CityVoxWeb/CityVoxWeb.sln 
 
     - name: Publish
-      run: dotnet publish ./CityVoxWeb.sln --configuration Development --no-build  # Run tests
+      run: dotnet publish CityVoxWeb/CityVoxWeb.sln -c Release -o out
