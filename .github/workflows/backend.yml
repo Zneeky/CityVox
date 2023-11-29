@@ -2,7 +2,9 @@ name: CI-Backend  # Name of the workflow
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - SofiaCallWebCrawler
     paths: ['CityVox/CityVoxWeb/**']  # Specify the paths to trigger this workflow
   pull_request:
     branches: [ main ]
