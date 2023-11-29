@@ -1,0 +1,30 @@
+name: CI-Backend  # Name of the workflow
+
+on:
+  push:
+    branches: [ main ]
+    paths: ['CityVox/CityVoxWeb/**']  # Specify the paths to trigger this workflow
+  pull_request:
+    branches: [ main ]
+    paths: ['CityVox/CityVoxWeb/**']
+
+jobs:
+  build:
+    runs-on: windows-latest  # Using a Windows runner for .NET
+
+    steps:
+    - uses: actions/checkout@v2  # Checks-out your repository
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1  # Sets up .NET Core
+      with:
+        dotnet-version: '6.0.x'  # Specify your .NET Core version
+
+    - name: Restore dependencies
+      run: dotnet restore  # Restore NuGet packages
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore  # Build the project
+
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal  # Run tests
