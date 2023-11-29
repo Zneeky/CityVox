@@ -33,7 +33,7 @@ jobs:
       run: dotnet build --no-restore CityVoxWeb/CityVoxWeb.sln 
 
     - name: Publish
-      run: dotnet publish CityVoxWeb/CityVoxWeb.sln -c Release --no-build -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      run: dotnet publish CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj -c Release --no-build -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
 
     - name: Deployment
