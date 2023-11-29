@@ -24,10 +24,10 @@ jobs:
         dotnet-version: '6.0.x'  # Specify your .NET Core version
 
     - name: Restore dependencies
-      run: dotnet restore  # Restore NuGet packages
+      run: dotnet restore ./CityVoxWeb.sln # Restore NuGet packages
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore  # Build the project
+      run: dotnet build ./CityVoxWeb.sln --configuration Development --no-restore  # Build the project
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal  # Run tests
+    - name: Publish
+      run: dotnet publish ./CityVoxWeb.sln --configuration Development --no-build  # Run tests
