@@ -36,8 +36,9 @@ jobs:
       run: dotnet publish CityVoxWeb/CityVoxWeb.sln -c Release -o out --no-build --output '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}'
 
     - name: Deployment
-      uses: actions/webapps-deploy@v2
+      uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
+        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
