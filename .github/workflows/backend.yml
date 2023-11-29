@@ -2,12 +2,11 @@ name: CI-Backend  # Name of the workflow
 
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches: [main]
     paths: -'CityVoxWeb/**'  # Specify the paths to trigger this workflow
-  pull_request:
-    branches: [ main ]
-    paths: -'CityVoxWeb/**'
+    
 env:
   AZURE_WEBAPP_NAME: CityVox
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
