@@ -1,6 +1,7 @@
 name: CI-Backend  # Name of the workflow
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -12,13 +13,13 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Using a Windows runner for .NET
+    runs-on: ubuntu-latest  # Using a Windows runner for .NET
 
     steps:
     - uses: actions/checkout@v2  # Checks-out your repository
 
     - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1  # Sets up .NET Core
+      uses: actions/setup-dotnet@v3  # Sets up .NET Core
       with:
         dotnet-version: '6.0.x'  # Specify your .NET Core version
 
