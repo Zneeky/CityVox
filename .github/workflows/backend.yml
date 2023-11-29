@@ -3,9 +3,7 @@ name: CI-Backend  # Name of the workflow
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - SofiaCallWebCrawler
+    branches: [main]
     paths: -'CityVoxWeb/**'  # Specify the paths to trigger this workflow
   pull_request:
     branches: [ main ]
@@ -36,10 +34,25 @@ jobs:
       run: dotnet publish CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
 
-    - name: Deployment
-      uses: azure/webapps-deploy@v2
-      with: 
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    #- name: Deployment
+     # uses: azure/webapps-deploy@v2
+      #with: 
+       # app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        #publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+        #package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
+  qodana:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      checks: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+          fetch-depth: 0  # a full history is required for pull request analysis
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2023.2
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_PROJECT_TOKEN }}
