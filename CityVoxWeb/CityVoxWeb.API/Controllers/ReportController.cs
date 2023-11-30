@@ -84,7 +84,6 @@ namespace CityVoxWeb.API.Controllers
         [HttpPost("submission")]
         public async Task<IActionResult> SubmitReportToSofiaCall([FromBody] ExportReportDto exportReportDto)
         {
-            await _reportService.SubmitAsync(exportReportDto);
 
             return Ok();
         }
