@@ -34,6 +34,12 @@ jobs:
     - name: Publish
       run: dotnet publish CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-app
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
 
   qodana:
     runs-on: ubuntu-latest
