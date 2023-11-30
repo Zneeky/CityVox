@@ -3,12 +3,14 @@ on:
   push:
     branches:
     - SofiaCallWebCrawler
+    paths: 
+    - 'CityVoxWeb/**'
 env:
   AZURE_WEBAPP_NAME: CityVox
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: CityVoxWeb.API
+  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj
 jobs:
   build:
     runs-on: windows-latest
