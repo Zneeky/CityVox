@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj
+  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/
 jobs:
   build:
     runs-on: windows-latest
