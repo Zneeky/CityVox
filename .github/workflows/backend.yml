@@ -4,16 +4,16 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: [main]
+    branches: 
+      -main
     paths: -'CityVoxWeb/**'  # Specify the paths to trigger this workflow
     
 env:
-  AZURE_WEBAPP_NAME: CityVox
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
 
 jobs:
   build:
-    runs-on: ubuntu-latest 
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2  # Checks-out your repository
@@ -33,13 +33,6 @@ jobs:
       run: dotnet publish CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj -c Release -o ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
 
-    #- name: Deployment
-     # uses: azure/webapps-deploy@v2
-      #with: 
-       # app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        #publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        #package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-
   qodana:
     runs-on: ubuntu-latest
     permissions:
@@ -55,3 +48,25 @@ jobs:
         uses: JetBrains/qodana-action@v2023.2
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_PROJECT_TOKEN }}
+
+  deploy:
+   runs-on: windows-latest
+   needs: build
+   environment:
+     name: 'Production'
+     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+   steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'CityVox'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A13E53351BCD420BA2A47CC5CF3EDEA9 }}
+          package: .
