@@ -1,14 +1,14 @@
-name: Build and deploy .NET Core application to Web App CityVox
+name: Deploy ASP.NET WEB API to Azure and run test on Qodana
 on:
   push:
     branches:
     - SofiaCallWebCrawler
 env:
   AZURE_WEBAPP_NAME: CityVox
-  AZURE_WEBAPP_PACKAGE_PATH: CityVoxWeb.API\publish
+  AZURE_WEBAPP_PACKAGE_PATH: ./publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: CityVoxWeb.API
+  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/
 jobs:
   build:
     runs-on: windows-latest
@@ -31,6 +31,8 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+        
   deploy:
     runs-on: windows-latest
     needs: build
@@ -46,3 +48,21 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+        
+
+  qodana:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+        pull-requests: write
+        checks: write
+      steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+          fetch-depth: 0  # a full history is required for pull request analysis
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2023.2
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_PROJECT_TOKEN }}
