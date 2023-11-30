@@ -3,8 +3,6 @@ on:
   push:
     branches:
     - SofiaCallWebCrawler
-    paths: 
-    - 'CityVoxWeb/**'
 env:
   AZURE_WEBAPP_NAME: CityVox
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
