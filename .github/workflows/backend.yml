@@ -5,8 +5,10 @@ on:
   pull_request:
   push:
     branches: 
-      -main
-    paths: -'CityVoxWeb/**'  # Specify the paths to trigger this workflow
+      - main
+      - SofiaCallWebCrawler
+    paths: 
+      - 'CityVoxWeb/**'  # Specify the paths to trigger this workflow
     
 env:
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
