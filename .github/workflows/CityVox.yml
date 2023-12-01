@@ -53,6 +53,8 @@ jobs:
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
          # New step to install dotnet-ef tool
+    - name: Checkout repository
+      uses: actions/checkout@v3
     - name: Build the Project
       run: dotnet build ${{ env.DATA_PROJECT_PATH }} --configuration Release
     - name: Apply EF Core Migrations
