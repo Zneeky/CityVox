@@ -43,32 +43,33 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: webapp
-        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }} 
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+         # New step to install dotnet-ef tool
     - name: Run EF 
       run: | 
-        dotnet tool install --global dotnet-ef
-        dotnet tool restore
-        dotnet ef database update -p ${{ envDATA_PROJECT_PATH }} -s ${{ env.WORKING_DIRECTORY }} --connection '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
+       dotnet tool install --global dotnet-ef
+       dotnet tool restore
+       dotnet ef database update -p ${{env.DATA_PROJECT_PATH}} -s ${{env.WORKING_DIRECTORY}}/CityVoxWeb.API.csproj --connection '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
         
 
-  #qodana:
-  #    runs-on: ubuntu-latest
-  #    permissions:
-  #      contents: write
-  #      pull-requests: write
-  #      checks: write
-  #    steps:
-  #    - uses: actions/checkout@v3
-  #      with:
-  #        ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-  #        fetch-depth: 0  # a full history is required for pull request analysis
-  #    - name: 'Qodana Scan'
-  #      uses: JetBrains/qodana-action@v2023.2
-  #      env:
-  #        QODANA_TOKEN: ${{ secrets.QODANA_PROJECT_TOKEN }}
+  qodana:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: write
+        pull-requests: write
+        checks: write
+      steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
+          fetch-depth: 0  # a full history is required for pull request analysis
+      - name: 'Qodana Scan'
+        uses: JetBrains/qodana-action@v2023.2
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_PROJECT_TOKEN }}
