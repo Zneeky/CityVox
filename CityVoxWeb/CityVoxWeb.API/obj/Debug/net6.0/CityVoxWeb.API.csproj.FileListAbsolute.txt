@@ -253,3 +253,6 @@ E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\System.Web.Http.C
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.dll
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\appsettings.Production.json
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\PuppeteerSharp.dll

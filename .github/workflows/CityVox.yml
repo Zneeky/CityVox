@@ -8,7 +8,8 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/
+  DATA_PROJECT_PATH: CityVoxWeb/CityVoxWeb.Data/CityVoxWeb.Data.csproj
+  WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj
 jobs:
   build:
     runs-on: windows-latest
@@ -48,6 +49,12 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        # New step to apply EF Core migrations from the class library
+    - name: Apply EF Core Migrations
+      run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} --startup-project ${{ env.WORKING_DIRECTORY }}
+      env:
+        ASPNETCORE_ENVIRONMENT: Production
+        ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
 
         
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a1D4o2cVVqhm7h49VU+omtKXQGGMWLa0tXaK+ejISkSNXPa2aNinr0vIMd5nIfeHq8ASy0+77McEU6pKZsVF6A==",
+  "dgSpecHash": "3JvxOQ4Vi/QvewkNGJKbp+lV2FtCif7ZJVCgss40QFb1UKPcXOzcj+rA8oFZXmor62qXmHtV4oqnmb0azcgcAA==",
   "success": true,
   "projectFilePath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.API\\CityVoxWeb.API.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,7 @@
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.entityframeworkcore.design\\6.0.11\\microsoft.entityframeworkcore.design.6.0.11.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\6.0.11\\microsoft.entityframeworkcore.relational.6.0.11.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\6.0.11\\microsoft.entityframeworkcore.sqlserver.6.0.11.nupkg.sha512",
+    "C:\\Users\\Arki\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\6.0.5\\microsoft.entityframeworkcore.tools.6.0.5.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\Arki\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",

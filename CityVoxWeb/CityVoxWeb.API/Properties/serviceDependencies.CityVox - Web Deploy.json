@@ -4,10 +4,9 @@
       "secretStore": "AzureAppSettings",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/zneeky-db-hosting-server/databases/CityVoxDB",
       "type": "mssql.azure",
-      "connectionId": "ConnectionStrings:DefaultConnection",
-      "dynamicId": null
+      "connectionId": "ConnectionStrings:DefaultConnection"
     },
-    "apis1": {
+    "apis2": {
       "apiEndpoint": "https://cityvoxwebapimanagement.azure-api.net/management",
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/CityVoxWebAPIManagement/apis/CityVoxWebAPI",
       "type": "apis.azure"
