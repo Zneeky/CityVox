@@ -53,18 +53,12 @@ jobs:
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
          # New step to install dotnet-ef tool
-    - name: Install EF Tool
-      run: |
-          dotnet new tool-manifest # If you don't have a tool-manifest already
-          dotnet tool install dotnet-ef
-    - name: Generate scripts
-      run: dotnet ef migrations script --output migrate.sql --idempotent --project ${{ env.DATA_PROJECT_PATH }}
-    - name: Azure SQL Deploy
-      uses: Azure/sql-action@v1
-      with:
-        server-name: zneeky-db-hosting-server.database.windows.net
-        connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-        sql-file: migrate.sql
+    - name: Build the Project
+      run: dotnet build ${{ env.DATA_PROJECT_PATH }} --configuration Release
+    - name: Apply EF Core Migrations
+      run: dotnet-ef database update --project ${{ env.DATA_PROJECT_PATH }}
+      env:
+        ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
         
 
   qodana:
