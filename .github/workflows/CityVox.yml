@@ -54,8 +54,7 @@ jobs:
     - name: Run EF 
       run: | 
        dotnet tool install --global dotnet-ef
-       dotnet tool restore
-       dotnet ef database update -p ${{env.DATA_PROJECT_PATH}} -s ${{env.WORKING_DIRECTORY}}/CityVoxWeb.API.csproj --connection '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
+       dotnet ef database update -p CityVoxWeb/CityVoxWeb.Data/CityVoxWeb.Data.csproj -s ${{env.WORKING_DIRECTORY}}/CityVoxWeb.API.csproj --connection '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
         
 
   qodana:
