@@ -44,6 +44,8 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: List directory structure
+      run: tree    
     - name: Deploy to Azure WebApp
       uses: azure/webapps-deploy@v2
       with:
@@ -55,7 +57,7 @@ jobs:
       run: dotnet tool install --global dotnet-ef
         # New step to apply EF Core migrations from the class library
     - name: Apply EF Core Migrations
-      run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} --project ${{ env.DATA_PROJECT_PATH }} --startup-project ${{ env.WORKING_DIRECTORY }}/CityVoxWeb.API.csproj
+      run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} --project ${{ env.DATA_PROJECT_PATH }} --startup-project ${{ env.WORKING_DIRECTORY }}/CityVoxWeb.API.csproj --connection '${{ secrets.AZURE_SQL_CONNECTION_STRING }}'
       env:
         ASPNETCORE_ENVIRONMENT: Production
         ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
