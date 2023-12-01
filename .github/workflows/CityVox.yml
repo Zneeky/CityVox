@@ -1,4 +1,5 @@
 name: Deploy ASP.NET WEB API to Azure and run test on Qodana
+
 on:
   push:
     branches:
@@ -11,6 +12,8 @@ env:
   DATA_PROJECT_PATH: CityVoxWeb/CityVoxWeb.Data/CityVoxWeb.Data.csproj
   DATA_DIRECTORY: CityVoxWeb/CityVoxWeb.Data
   WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API
+
+
 jobs:
   build:
     runs-on: windows-latest
