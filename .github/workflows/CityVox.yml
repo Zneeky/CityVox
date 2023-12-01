@@ -49,6 +49,9 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.CityVox_AB57 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+         # New step to install dotnet-ef tool
+    - name: Install EF Core CLI
+      run: dotnet tool install --global dotnet-ef --version 6.0.11
         # New step to apply EF Core migrations from the class library
     - name: Apply EF Core Migrations
       run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} --startup-project ${{ env.WORKING_DIRECTORY }}
