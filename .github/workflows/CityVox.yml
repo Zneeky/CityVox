@@ -8,7 +8,8 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ./publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 6.0.x
-  DATA_PROJECT_PATH: CityVoxWeb/CityVoxWeb.Data/
+  DATA_PROJECT_PATH: CityVoxWeb/CityVoxWeb.Data/CityVoxWeb.Data.csproj
+  DATA_DIRECTORY: CityVoxWeb/CityVoxWeb.Data
   WORKING_DIRECTORY: CityVoxWeb/CityVoxWeb.API/CityVoxWeb.API.csproj
 jobs:
   build:
@@ -52,9 +53,10 @@ jobs:
          # New step to install dotnet-ef tool
     - name: Install EF Core CLI
       run: dotnet tool install --global dotnet-ef
+      working-directory: ${{ env.DATA_DIRECTORY }}
         # New step to apply EF Core migrations from the class library
     - name: Apply EF Core Migrations
-      run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} --startup-project ${{ env.WORKING_DIRECTORY }}
+      run: dotnet ef database update --project ${{ env.DATA_PROJECT_PATH }} #--startup-project ${{ env.WORKING_DIRECTORY }}
       env:
         ASPNETCORE_ENVIRONMENT: Production
         ConnectionStrings__DefaultConnection: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
