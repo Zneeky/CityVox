@@ -435,7 +435,7 @@
             },
             "PuppeteerSharp": {
               "target": "Package",
-              "version": "[13.0.1, )"
+              "version": "[10.1.0, )"
             }
           },
           "imports": [
