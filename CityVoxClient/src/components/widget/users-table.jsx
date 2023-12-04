@@ -13,6 +13,7 @@ import {
     Typography
 } from '@mui/material';
 import { useState } from 'react';
+import UserRoleChangeDialog from './user-role-change-dialogue';
 
 const UsersTable = ({ users, page, count, onPageChange }) => {
 
