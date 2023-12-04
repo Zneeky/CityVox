@@ -70,7 +70,7 @@ function App() {
             </Route>
 
             {/*Protected routes for security tier users*/}
-            <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+            <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
               <Route path="/admin/dashboard" element={<Dashboard />}></Route>
               <Route path="/admin/requests" element={<Requests />}></Route>
               <Route path='/admin/manage_users' element={<ManageUsers />}></Route>
