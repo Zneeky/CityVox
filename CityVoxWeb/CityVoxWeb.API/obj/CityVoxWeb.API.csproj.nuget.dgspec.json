@@ -410,6 +410,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
+                "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj"
+              },
               "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {
                 "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj"
               },

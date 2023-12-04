@@ -2454,6 +2454,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "AutoMapper": "12.0.1",
+          "CityVoxWeb.Common": "1.0.0",
           "CityVoxWeb.DTOs": "1.0.0",
           "CityVoxWeb.Data": "1.0.0",
           "PuppeteerSharp": "10.1.0"

@@ -16,7 +16,7 @@ namespace CityVoxWeb.Services.Interfaces
         Task<IdentityResult> ConfirmEmailAsync(string uid, string token);
         public Task<UserWithIdDto> AuthenticateUserAsync(LoginDto loginDto);
         public Task<UserWithIdDto> GetUserAsync(string userId);
-        public Task<UserDefaultDto> GetByUsernameAsync(string username);
+        public Task<UserWithIdDto> GetByUsernameAsync(string username);
         public Task<UserWithIdDto> UpdateUserAsync(UpdateUserDto updateUserDto);
         public Task<ICollection<UserDefaultDto>> GetUsersAsync(int page, int count);
         public Task<int> GetUsersCountAsync();

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CityVoxWeb.Common\CityVoxWeb.Common.csproj" />
     <ProjectReference Include="..\CityVoxWeb.Data\CityVoxWeb.Data.csproj" />
     <ProjectReference Include="..\CityVoxWeb.DTOs\CityVoxWeb.DTOs.csproj" />
   </ItemGroup>
