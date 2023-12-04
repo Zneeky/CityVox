@@ -48,7 +48,7 @@ export const createPalette = (mode) => {
           selected: alpha(neutral[900], 0.12),
         },
         background: {
-          default: "#2E3B4E",
+          default: "#1A2534",
           paper: colorTokens.grey[800],
         },
         divider: '#F2F4F7',
