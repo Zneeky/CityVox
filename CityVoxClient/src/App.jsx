@@ -12,6 +12,12 @@ import Home from "./pages/home-page";
 import CreateReport from "./pages/create-report";
 import CreateEmergency from "./pages/create-emergency";
 import CreateInfIssue from "./pages/create-inf-issue";
+import EditReport from "./edit-pages/edit-report";
+import EditEmergency from "./edit-pages/edit-emergency";
+import EditInfIssue from "./edit-pages/edit-inf-issue";
+import Requests from "./pages/admin/requests-page";
+import PostPage from "./pages/post/post-page";
+import "leaflet/dist/leaflet.css";
 import Requests from './pages/admin/requests-page';
 import PostPage from './pages/post/post-page';
 import ManageUsers from './pages/admin/manage-users';
@@ -57,7 +63,7 @@ function App() {
               }
             >
               <Route path="/"></Route>
-              <Route path="/home" element={<Home/>}></Route>
+              <Route path="/home" element={<Home />}></Route>
               <Route path="/report" element={<CreateReport />}></Route>
               <Route path="/account" element={<Account />}></Route>
               <Route path="/emergency" element={<CreateEmergency />}></Route>
@@ -65,6 +71,18 @@ function App() {
               <Route
                 path="/infrastructure_issue"
                 element={<CreateInfIssue />}
+              ></Route>
+              <Route
+                path="/reports/edit/:reportId"
+                element={<EditReport />}
+              ></Route>
+              <Route
+                path="/emergencies/edit/:emergencyId"
+                element={<EditEmergency />}
+              ></Route>
+              <Route
+                path="/infrastructure_issues/edit/:infIssueId"
+                element={<EditInfIssue />}
               ></Route>
               <Route path="/posts" element={<PostPage />}></Route>
             </Route>
