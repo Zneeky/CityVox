@@ -29,12 +29,12 @@ const ManageUsers = () => {
     useEffect(
         () => {
             async function fetchUsersCount() {
-                const usersCount = await GetUsersCount(appUser.accessToken);
+                const usersCount = await GetUsersCount();
                 setCount(usersCount);
             }
             
             async function fetchUsers() {
-                const usersData = await GetUsers(appUser.accessToken, page, 5); // here 5 is the rows per page
+                const usersData = await GetUsers(page, 5); // here 5 is the rows per page
                 setUsers(usersData);
             }
 
