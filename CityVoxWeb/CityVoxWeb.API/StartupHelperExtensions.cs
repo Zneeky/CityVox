@@ -128,6 +128,7 @@ namespace CityVoxWeb.API
             builder.Services.AddScoped<IUsersService, UsersService>();
             builder.Services.AddScoped<IGeoService, GeoService>();
             builder.Services.AddScoped<ISocialsService, SocialsService>();
+            builder.Services.AddScoped<SofiaCallWebCrawlerService>();
 
             builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 

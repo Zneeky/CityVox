@@ -153,20 +153,15 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export const UpdateCurrentUser = async (token, updateUserDto) => {
+export const UpdateCurrentUser = async (updateUserDto) => {
   try {
-    const response = await instance.patch(`api/users`, updateUserDto, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instance.patch(`api/users`, updateUserDto);
 
     if (response.status === 200) {
       // Dispatch the action here
       store.dispatch(
         setLogin({
           user: {
-            accessToken: response.data.AccessToken,
             username: response.data.Username,
             email: response.data.Email,
             fName: response.data.FirstName,
@@ -202,14 +197,9 @@ export const GetRegions = async () => {
       console.log(err);
     }
   };
-  export const PromoteToAdmin = async(token, username) =>{
+  export const PromoteToAdmin = async(username) =>{
     try{
-      const response = await instance.post(`api/users/admins`,JSON.stringify(username),{
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      })
+      const response = await instance.post(`api/users/admins`,JSON.stringify(username))
       return response.data
     }
     catch(err){
@@ -219,26 +209,18 @@ export const GetRegions = async () => {
   
   
   //Call to promote user to representative
-  export const PromoteToRepresentative = async(token, muniRepDto) => {
+  export const PromoteToRepresentative = async(muniRepDto) => {
     try{
-      const response = await instance.post(`api/users/representatives`,muniRepDto,{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      const response = await instance.post(`api/users/representatives`,muniRepDto,)
       return response.data;
     }
     catch(err){
       console.log(err);
     }
   }
-  export const GetUsersCount = async (token) => {
+  export const GetUsersCount = async () => {
     try {
-      const response = await instance.get(`api/users/count`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await instance.get(`api/users/count`);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -246,15 +228,10 @@ export const GetRegions = async () => {
   };
   
   //Call to get users by page and count
-  export const GetUsers = async (token, page, count) => {
+  export const GetUsers = async (page, count) => {
     try {
       const response = await instance.get(
-        `api/users?page=${page}&count=${count}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        `api/users?page=${page}&count=${count}`
       );
       return response.data.$values
     } catch (err) {
