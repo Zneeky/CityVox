@@ -127,9 +127,15 @@ namespace CityVoxWeb.Services.User_Services
             return userDto;
         }
 
-        public Task<UserDefaultDto> GetByUsernameAsync(string username)
+        public async Task<UserWithIdDto> GetByUsernameAsync(string username)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(username);
+            var roles = await _userManager.GetRolesAsync(user);
+            var sortedRoles = roles.OrderBy(r => r).ToList();
+            var userDto = _mapper.Map<UserWithIdDto>(user);
+            userDto.Role = sortedRoles.First();
+
+            return userDto;
         }
 
         public async Task<UserWithIdDto> UpdateUserAsync(UpdateUserDto updateUserDto)

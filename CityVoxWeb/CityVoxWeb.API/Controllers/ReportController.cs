@@ -1,5 +1,6 @@
 ﻿using CityVoxWeb.DTOs.Issues.Reports;
 using CityVoxWeb.Services.Interfaces;
+using CityVoxWeb.Services.User_Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,11 @@ namespace CityVoxWeb.API.Controllers
     public class ReportController : ControllerBase
     {
         private readonly IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto> _reportService;
-        public ReportController(IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto> reportService)
+        private readonly SofiaCallWebCrawlerService _callWebCrawlerService;
+        public ReportController(IGenericIssuesService<CreateReportDto, ExportReportDto, UpdateReportDto> reportService, SofiaCallWebCrawlerService callWebCrawlerService)
         {
             _reportService = reportService;
+            _callWebCrawlerService = callWebCrawlerService;
         }
 
         [HttpPost]
@@ -79,6 +82,14 @@ namespace CityVoxWeb.API.Controllers
             var reports = await _reportService.GetByUserIdAsync(userId);
 
             return Ok(reports);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("submission")]
+        public async Task<IActionResult> SubmitReportToSofiaCall([FromBody] ExportReportDto exportReportDto)
+        {
+            await _callWebCrawlerService.ForwardReportToCallSofia(exportReportDto);
+            return Ok();
         }
     }
 }

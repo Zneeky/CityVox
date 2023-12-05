@@ -116,7 +116,7 @@ export const items = () => {
     ];
   }
 
-  if (user && user.role === "admin") {
+  if (user && user.role === "Admin") {
     itemsArray = [
       ...itemsArray,
       {

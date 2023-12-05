@@ -153,6 +153,31 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+export const UpdateCurrentUser = async (updateUserDto) => {
+  try {
+    const response = await instance.patch(`api/users`, updateUserDto);
+
+    if (response.status === 200) {
+      // Dispatch the action here
+      store.dispatch(
+        setLogin({
+          user: {
+            username: response.data.Username,
+            email: response.data.Email,
+            fName: response.data.FirstName,
+            lName: response.data.LastName,
+            pfp: response.data.ProfilePicture,
+            role: response.data.Role,
+            id: response.data.Id,
+          },
+        })
+      );
+    }
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 //Call to get the regions
 export const GetRegions = async () => {
@@ -172,6 +197,48 @@ export const GetRegions = async () => {
       console.log(err);
     }
   };
+  export const PromoteToAdmin = async(username) =>{
+    try{
+      const response = await instance.post(`api/users/admins`,JSON.stringify(username))
+      return response.data
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+  
+  
+  //Call to promote user to representative
+  export const PromoteToRepresentative = async(muniRepDto) => {
+    try{
+      const response = await instance.post(`api/users/representatives`,muniRepDto,)
+      return response.data;
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+  export const GetUsersCount = async () => {
+    try {
+      const response = await instance.get(`api/users/count`);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
+  //Call to get users by page and count
+  export const GetUsers = async (page, count) => {
+    try {
+      const response = await instance.get(
+        `api/users?page=${page}&count=${count}`
+      );
+      return response.data.$values
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
 
   //Call to get all reports by municipality
 export const GetReportsByMunicipality = async (muniId) => {

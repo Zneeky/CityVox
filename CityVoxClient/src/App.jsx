@@ -14,6 +14,8 @@ import CreateEmergency from "./pages/create-emergency";
 import CreateInfIssue from "./pages/create-inf-issue";
 import Requests from './pages/admin/requests-page';
 import PostPage from './pages/post/post-page';
+import ManageUsers from './pages/admin/manage-users';
+import Account from "./pages/account";
 import 'leaflet/dist/leaflet.css'
 
 function App() {
@@ -57,6 +59,7 @@ function App() {
               <Route path="/"></Route>
               <Route path="/home" element={<Home/>}></Route>
               <Route path="/report" element={<CreateReport />}></Route>
+              <Route path="/account" element={<Account />}></Route>
               <Route path="/emergency" element={<CreateEmergency />}></Route>
               <Route path="/events"></Route>
               <Route
@@ -70,6 +73,7 @@ function App() {
             <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
               <Route path="/admin/dashboard" element={<Dashboard />}></Route>
               <Route path="/admin/requests" element={<Requests />}></Route>
+              <Route path='/admin/manage_users' element={<ManageUsers />}></Route>
             </Route>
             {/*catch all */}
             <Route path="*"></Route>
