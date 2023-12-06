@@ -17,9 +17,6 @@ import EditEmergency from "./edit-pages/edit-emergency";
 import EditInfIssue from "./edit-pages/edit-inf-issue";
 import Requests from "./pages/admin/requests-page";
 import PostPage from "./pages/post/post-page";
-import "leaflet/dist/leaflet.css";
-import Requests from './pages/admin/requests-page';
-import PostPage from './pages/post/post-page';
 import ManageUsers from './pages/admin/manage-users';
 import Account from "./pages/account";
 import 'leaflet/dist/leaflet.css'
