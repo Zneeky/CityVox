@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="2CaptchaAPI" Version="1.10.1" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="PuppeteerExtraSharp" Version="2.0.0" />
     <PackageReference Include="PuppeteerSharp" Version="10.1.0" />
   </ItemGroup>
 

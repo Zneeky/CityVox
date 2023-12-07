@@ -1,40 +1,42 @@
-﻿using AutoMapper;
-using CityVoxWeb.DTOs.Issues.Reports;
+﻿using CityVoxWeb.DTOs.Issues.Reports;
 using PuppeteerSharp;
-using System;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static CityVoxWeb.Common.AddressParser;
 using CityVoxWeb.DTOs.Users;
 using CityVoxWeb.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
+using _2CaptchaAPI;
+using PuppeteerExtraSharp.Plugins.Recaptcha.Provider.AntiCaptcha;
+using PuppeteerExtraSharp.Plugins.Recaptcha;
+using PuppeteerExtraSharp.Plugins.Recaptcha.Provider._2Captcha;
+using PuppeteerExtraSharp;
+using PuppeteerExtraSharp.Plugins.ExtraStealth;
+using PuppeteerExtraSharp.Plugins.AnonymizeUa;
 
 namespace CityVoxWeb.Services.User_Services
 {
     public class SofiaCallWebCrawlerService
     {
-        private readonly IMapper _mapper;
         private readonly IUsersService _usersService;
+        private readonly IConfiguration _configuration;
 
-        public SofiaCallWebCrawlerService(IMapper mapper, IUsersService usersService)
+        public SofiaCallWebCrawlerService(IUsersService usersService, IConfiguration configuration)
         {
-            _mapper = mapper;
             _usersService = usersService;
+            _configuration = configuration;
         }
 
-        public  async Task ForwardReportToCallSofia(ExportReportDto reportDto)
+        public async Task ForwardReportToCallSofia(ExportReportDto reportDto)
         {
             try
             {
-                var user = await _usersService.GetByUsernameAsync(reportDto.CreatorUsername);
-                var browserFetcher = new BrowserFetcher();
-                var revisionInfo = browserFetcher.RevisionInfo(BrowserFetcher.DefaultChromiumRevision);
-                await browserFetcher.DownloadAsync(revisionInfo.Revision);
 
-                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
+                var user = await _usersService.GetByUsernameAsync(reportDto.CreatorUsername);
+                //var browserFetcher = new BrowserFetcher();
+                //var revisionInfo = browserFetcher.RevisionInfo(BrowserFetcher.DefaultChromiumRevision);
+                //await browserFetcher.DownloadAsync(revisionInfo.Revision);
+
+                var recaptchaPlugin = new RecaptchaPlugin(new TwoCaptcha(_configuration["reCaptchaSolver:ApiKey"]));
+                await using var browser = await new PuppeteerExtra().Use(new StealthPlugin()).Use(new AnonymizeUaPlugin()).Use(recaptchaPlugin).LaunchAsync(new LaunchOptions
                 {
                     Headless = false, // Set to false if you want to see the browser
                     Args = new[]
@@ -42,9 +44,31 @@ namespace CityVoxWeb.Services.User_Services
                             "--disable-web-security",
                             "--disable-features=IsolateOrigins,site-per-process",
                     },
+                    SlowMo = 10,
                 });
                 await using var page = await browser.NewPageAsync();
                 await page.GoToAsync("https://call.sofia.bg/bg/Signal/Create#");
+
+                //Click on the button that opens the map
+                await page.ClickAsync("a[href='#']");
+
+
+                // Add marker to the map
+                await page.EvaluateFunctionAsync(@"(lat, lng) => {
+                    // Confirm the map object is available
+                    if (window.map) {
+                        const position = new google.maps.LatLng(lat, lng);
+                        const marker = new google.maps.Marker({
+                        position: position,
+                        map: window.map
+                    });
+
+                    // Optionally set the map's center to the new marker's position
+                    window.map.setCenter(position);
+                    } else {
+                    throw new Error('Map object not found');
+                    }
+                    }", reportDto.Latitude, reportDto.Longitude);
 
                 // Map the ReportType to the website's form options
                 string mappedType = MapReportType(reportDto.TypeValue);
@@ -87,23 +111,21 @@ namespace CityVoxWeb.Services.User_Services
 
                 // Get the iframe element handle
                 var iframeCaptchaElementHandle = await page.QuerySelectorAsync("iframe[title='reCAPTCHA']");
-
                 // Switch to the iframe's content frame
                 var frameCaptcha = await iframeCaptchaElementHandle.ContentFrameAsync();
 
-                // Wait for the checkbox element within the iframe and click it
-                await frameCaptcha.WaitForSelectorAsync(".recaptcha-checkbox-checkmark");
-                await frameCaptcha.ClickAsync(".recaptcha-checkbox-checkmark");
-
+                //reCaptchV2 solver plugin -- costs around 2$ per 1000 captchas
+               // await recaptchaPlugin.SolveCaptchaAsync(page);
                 await page.ClickAsync("#submit-button-selector");
 
                 // Optionally, handle the response or confirmation
             }
             catch (Exception ex)
             {
-               throw new Exception("Error while forwarding report to Call Sofia", ex);
+                throw new Exception("Error while forwarding report to Call Sofia", ex);
             }
         }
+
 
         private static string MapReportType(int typeValue)
         {
