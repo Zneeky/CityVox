@@ -65,20 +65,32 @@ namespace CityVoxWeb.Services.User_Services
 
                     // Optionally set the map's center to the new marker's position
                     window.map.setCenter(position);
+
                     } else {
                     throw new Error('Map object not found');
                     }
                     }", reportDto.Latitude, reportDto.Longitude);
 
+
+                // Wait for the zoom-in button to be available
+                await page.WaitForSelectorAsync("button[title='Увеличаване на мащаба']");
+
+                // Define how many times you want to click the zoom-in button
+                int zoomClicks = 10; // for example, adjust as needed
+
+                // Click the zoom-in button the desired number of times
+                for (int i = 0; i < zoomClicks; i++)
+                {
+                    await page.ClickAsync("button[title='Увеличаване на мащаба']");
+                    // Wait a bit for the zoom animation to complete before the next click
+                    await page.WaitForTimeoutAsync(30); // Adjust the timeout as necessary
+                }
+
+
+                await page.ClickAsync("#map-canvas");
+
                 // Map the ReportType to the website's form options
                 string mappedType = MapReportType(reportDto.TypeValue);
-
-                // LOCATION INFORMATION FIELDS
-                string[] addressInfo = ParseAddress(reportDto.Address);
-                await page.TypeAsync("#CITY", addressInfo[3]);
-                await page.TypeAsync("#NEIGHBOURHOOD", addressInfo[2]);
-                await page.TypeAsync("#STREET", addressInfo[0]);
-                await page.TypeAsync("#STREET_NO", addressInfo[1]);
 
                 // ISSUE INFORMATION FIELDS
                 //Target the title field
@@ -115,7 +127,7 @@ namespace CityVoxWeb.Services.User_Services
                 var frameCaptcha = await iframeCaptchaElementHandle.ContentFrameAsync();
 
                 //reCaptchV2 solver plugin -- costs around 2$ per 1000 captchas
-               // await recaptchaPlugin.SolveCaptchaAsync(page);
+                await recaptchaPlugin.SolveCaptchaAsync(page);
                 await page.ClickAsync("#submit-button-selector");
 
                 // Optionally, handle the response or confirmation
