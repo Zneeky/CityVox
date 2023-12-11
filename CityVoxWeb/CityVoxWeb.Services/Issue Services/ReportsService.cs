@@ -50,7 +50,7 @@ namespace CityVoxWeb.Services.Issue_Services
                     .FirstOrDefaultAsync(r => r.Id.ToString() == reportId)
                     ?? throw new Exception("Invalid id!");
 
-                _mapper.Map(reportDto, report);
+                _mapper.Map(reportDto, report);               
                 await _dbContext.SaveChangesAsync();
 
                 var exportReportDto = _mapper.Map<ExportReportDto>(report);
