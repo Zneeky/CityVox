@@ -17,11 +17,13 @@ namespace CityVoxWeb.Services.Issue_Services
 
         private readonly CityVoxDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public EmergenciesService(CityVoxDbContext dbContext, IMapper mapper)
+        public EmergenciesService(CityVoxDbContext dbContext, IMapper mapper, INotificationService notificationService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
         public async Task<ExportEmergencyDto> CreateAsync(CreateEmergencyDto createEmergencyDto)
         {
@@ -71,6 +73,7 @@ namespace CityVoxWeb.Services.Issue_Services
                 _mapper.Map(emergencyDto, emergency);
                 await _dbContext.SaveChangesAsync();
 
+                await _notificationService.CreateNotificationForEmergencyAsync(emergencyDto.Status, "emergency", emergency);
                 var exportEmergencyDto = _mapper.Map<ExportEmergencyDto>(emergency);
                 return exportEmergencyDto;
             }
