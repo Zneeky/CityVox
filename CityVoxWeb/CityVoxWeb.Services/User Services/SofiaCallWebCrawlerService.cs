@@ -142,14 +142,34 @@ namespace CityVoxWeb.Services.User_Services
         private static string MapReportType(int typeValue)
         {
             // Implement the mapping logic here
-            // Example:
-            switch (typeValue)
+            //Littering = 0,
+            //Graffiti = 1,
+            //RoadIssues = 2,
+            //StreetlightIssues = 3,
+            //ParkingViolation = 4,
+            //PublicFacilities = 5,
+            //TreeHazards = 6,
+            //TrafficConcerns = 7,
+            //Wildlife = 8,
+            //PublicTransport = 9,
+            //Sidewalks = 10,
+            //Other = 11,
+            return typeValue switch
             {
-                case 0: return "1"; // Replace with actual value on the website
-                case 1: return "11";  // Replace with actual value on the website
+                0 => "1",
+                1 => "11",
+                2 => "3",
+                3 => "28",
+                4 => "5",
+                5 => "40",
+                6 => "6",
+                7 => "4",
+                8 => "22",
+                9 => "38",
+                10 => "3",
                 // ... other cases
-                default: return "11";   // Replace with actual value on the website
-            }
+                _ => "11",
+            };
         }
 
 
