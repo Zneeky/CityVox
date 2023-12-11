@@ -32,6 +32,31 @@ export const colorTokens = {
       800: "#00353F",
       900: "#001519",
     },
+    dashboardPrimary:{
+      100: "#040509",
+          200: "#080b12",
+          300: "#0c101b",
+          400: "#f6f4f2", // manually changed
+          500: "#141b2d",
+          600: "#1F2A40",
+          700: "#727681",
+          800: "#a1a4ab",
+          900: "#d0d1d5",
+
+    },
+    dashboardPrimaryGreen:{
+ 
+        100: "#dbf5ee",
+        200: "#b7ebde",
+        300: "#94e2cd",
+        400: "#70d8bd",
+        500: "#4cceac",
+        600: "#3da58a",
+        700: "#2e7c67",
+        800: "#1e5245",
+        900: "#0f2922",
+
+    }
   };
   
   // mui theme settings
@@ -84,6 +109,11 @@ export const colorTokens = {
               //   default: colorTokens.grey[1000],
               //   alt: colorTokens.grey[800],
               // },
+              dashboard:{
+                cardBackground:colorTokens.dashboardPrimary[400],
+                cardTextPrimary:colorTokens.dashboardPrimary[100],
+                cardTextNumbers:colorTokens.dashboardPrimaryGreen[600],
+              }
             }
           : {
               // palette values for light mode
@@ -132,6 +162,12 @@ export const colorTokens = {
               //   default: colorTokens.grey[0],
               //   alt: colorTokens.grey[10],
               // },
+              dashboard:{
+                cardBackground:colorTokens.dashboardPrimary[400],
+                cardTextPrimary:colorTokens.dashboardPrimary[100],
+                cardTextNumbers:colorTokens.dashboardPrimaryGreen[600],
+                
+              }
             }
           };
 
