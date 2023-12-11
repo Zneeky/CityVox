@@ -11,7 +11,7 @@ namespace CityVoxWeb.Services.Mapping_Profiles
 {
     public class NotificationProfile : Profile
     {
-        NotificationProfile()
+        public NotificationProfile()
         {
             CreateMap<Notification, ExportNotificationDto>()
                 .ForMember(dest => dest.Id,

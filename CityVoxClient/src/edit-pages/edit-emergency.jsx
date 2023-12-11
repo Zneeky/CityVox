@@ -53,7 +53,7 @@ const EditEmergency = () => {
 
   if (
     appUser.username === emergency?.CreatorUsername ||
-    appUser.role === "admin"
+    appUser.role === "Admin"
   ) {
     return (
       <>

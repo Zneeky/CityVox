@@ -53,7 +53,7 @@ const EditInfIssue = () => {
 
   if (
     appUser.username === infIssue?.CreatorUsername ||
-    appUser.role === "admin"
+    appUser.role === "Admin"
   ) {
     return (
       <>
