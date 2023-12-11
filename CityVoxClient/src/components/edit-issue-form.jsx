@@ -225,7 +225,7 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
               )}
             </Dropzone>
           </Box>
-          {role === "admin" ? (
+          {role === "Admin" ? (
             <FormControl fullWidth variant="filled">
               <InputLabel id="statusType-label" mt="1em">
                 Status Type
