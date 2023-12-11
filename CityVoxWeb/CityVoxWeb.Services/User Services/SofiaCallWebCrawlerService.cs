@@ -1,40 +1,42 @@
-﻿using AutoMapper;
-using CityVoxWeb.DTOs.Issues.Reports;
+﻿using CityVoxWeb.DTOs.Issues.Reports;
 using PuppeteerSharp;
-using System;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static CityVoxWeb.Common.AddressParser;
 using CityVoxWeb.DTOs.Users;
 using CityVoxWeb.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
+using _2CaptchaAPI;
+using PuppeteerExtraSharp.Plugins.Recaptcha.Provider.AntiCaptcha;
+using PuppeteerExtraSharp.Plugins.Recaptcha;
+using PuppeteerExtraSharp.Plugins.Recaptcha.Provider._2Captcha;
+using PuppeteerExtraSharp;
+using PuppeteerExtraSharp.Plugins.ExtraStealth;
+using PuppeteerExtraSharp.Plugins.AnonymizeUa;
 
 namespace CityVoxWeb.Services.User_Services
 {
     public class SofiaCallWebCrawlerService
     {
-        private readonly IMapper _mapper;
         private readonly IUsersService _usersService;
+        private readonly IConfiguration _configuration;
 
-        public SofiaCallWebCrawlerService(IMapper mapper, IUsersService usersService)
+        public SofiaCallWebCrawlerService(IUsersService usersService, IConfiguration configuration)
         {
-            _mapper = mapper;
             _usersService = usersService;
+            _configuration = configuration;
         }
 
-        public  async Task ForwardReportToCallSofia(ExportReportDto reportDto)
+        public async Task ForwardReportToCallSofia(ExportReportDto reportDto)
         {
             try
             {
-                var user = await _usersService.GetByUsernameAsync(reportDto.CreatorUsername);
-                var browserFetcher = new BrowserFetcher();
-                var revisionInfo = browserFetcher.RevisionInfo(BrowserFetcher.DefaultChromiumRevision);
-                await browserFetcher.DownloadAsync(revisionInfo.Revision);
 
-                await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
+                var user = await _usersService.GetByUsernameAsync(reportDto.CreatorUsername);
+                //var browserFetcher = new BrowserFetcher();
+                //var revisionInfo = browserFetcher.RevisionInfo(BrowserFetcher.DefaultChromiumRevision);
+                //await browserFetcher.DownloadAsync(revisionInfo.Revision);
+
+                var recaptchaPlugin = new RecaptchaPlugin(new TwoCaptcha(_configuration["reCaptchaSolver:ApiKey"]));
+                await using var browser = await new PuppeteerExtra().Use(new StealthPlugin()).Use(new AnonymizeUaPlugin()).Use(recaptchaPlugin).LaunchAsync(new LaunchOptions
                 {
                     Headless = false, // Set to false if you want to see the browser
                     Args = new[]
@@ -42,19 +44,53 @@ namespace CityVoxWeb.Services.User_Services
                             "--disable-web-security",
                             "--disable-features=IsolateOrigins,site-per-process",
                     },
+                    SlowMo = 10,
                 });
                 await using var page = await browser.NewPageAsync();
                 await page.GoToAsync("https://call.sofia.bg/bg/Signal/Create#");
 
+                //Click on the button that opens the map
+                await page.ClickAsync("a[href='#']");
+
+
+                // Add marker to the map
+                await page.EvaluateFunctionAsync(@"(lat, lng) => {
+                    // Confirm the map object is available
+                    if (window.map) {
+                        const position = new google.maps.LatLng(lat, lng);
+                        const marker = new google.maps.Marker({
+                        position: position,
+                        map: window.map
+                    });
+
+                    // Optionally set the map's center to the new marker's position
+                    window.map.setCenter(position);
+
+                    } else {
+                    throw new Error('Map object not found');
+                    }
+                    }", reportDto.Latitude, reportDto.Longitude);
+
+
+                // Wait for the zoom-in button to be available
+                await page.WaitForSelectorAsync("button[title='Увеличаване на мащаба']");
+
+                // Define how many times you want to click the zoom-in button
+                int zoomClicks = 10; // for example, adjust as needed
+
+                // Click the zoom-in button the desired number of times
+                for (int i = 0; i < zoomClicks; i++)
+                {
+                    await page.ClickAsync("button[title='Увеличаване на мащаба']");
+                    // Wait a bit for the zoom animation to complete before the next click
+                    await page.WaitForTimeoutAsync(30); // Adjust the timeout as necessary
+                }
+
+
+                await page.ClickAsync("#map-canvas");
+
                 // Map the ReportType to the website's form options
                 string mappedType = MapReportType(reportDto.TypeValue);
-
-                // LOCATION INFORMATION FIELDS
-                string[] addressInfo = ParseAddress(reportDto.Address);
-                await page.TypeAsync("#CITY", addressInfo[3]);
-                await page.TypeAsync("#NEIGHBOURHOOD", addressInfo[2]);
-                await page.TypeAsync("#STREET", addressInfo[0]);
-                await page.TypeAsync("#STREET_NO", addressInfo[1]);
 
                 // ISSUE INFORMATION FIELDS
                 //Target the title field
@@ -87,35 +123,56 @@ namespace CityVoxWeb.Services.User_Services
 
                 // Get the iframe element handle
                 var iframeCaptchaElementHandle = await page.QuerySelectorAsync("iframe[title='reCAPTCHA']");
-
                 // Switch to the iframe's content frame
                 var frameCaptcha = await iframeCaptchaElementHandle.ContentFrameAsync();
 
-                // Wait for the checkbox element within the iframe and click it
-                await frameCaptcha.WaitForSelectorAsync(".recaptcha-checkbox-checkmark");
-                await frameCaptcha.ClickAsync(".recaptcha-checkbox-checkmark");
+                //reCaptchV2 solver plugin -- costs around 2$ per 1000 captchas
+                //Here could be added logic that would check the how much money are left in the account and if they are less than 0.2$ to throw an exception of insufficient funds
+                await recaptchaPlugin.SolveCaptchaAsync(page);
 
+                //This is intended to stop the execution until we are ready with actual report cases, that are valid and can be directed to SofiaCall
                 await page.ClickAsync("#submit-button-selector");
 
                 // Optionally, handle the response or confirmation
             }
             catch (Exception ex)
             {
-               throw new Exception("Error while forwarding report to Call Sofia", ex);
+                throw new Exception("Error while forwarding report to Call Sofia", ex);
             }
         }
+
 
         private static string MapReportType(int typeValue)
         {
             // Implement the mapping logic here
-            // Example:
-            switch (typeValue)
+            //Littering = 0,
+            //Graffiti = 1,
+            //RoadIssues = 2,
+            //StreetlightIssues = 3,
+            //ParkingViolation = 4,
+            //PublicFacilities = 5,
+            //TreeHazards = 6,
+            //TrafficConcerns = 7,
+            //Wildlife = 8,
+            //PublicTransport = 9,
+            //Sidewalks = 10,
+            //Other = 11,
+            return typeValue switch
             {
-                case 0: return "1"; // Replace with actual value on the website
-                case 1: return "11";  // Replace with actual value on the website
+                0 => "1",
+                1 => "11",
+                2 => "3",
+                3 => "28",
+                4 => "5",
+                5 => "40",
+                6 => "6",
+                7 => "4",
+                8 => "22",
+                9 => "38",
+                10 => "3",
                 // ... other cases
-                default: return "11";   // Replace with actual value on the website
-            }
+                _ => "11",
+            };
         }
 
 
