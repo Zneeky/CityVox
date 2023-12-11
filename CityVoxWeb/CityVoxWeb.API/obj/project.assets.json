@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "2CaptchaAPI/1.10.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/2Captcha.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/2Captcha.dll": {}
+        }
+      },
       "AutoMapper/12.0.1": {
         "type": "package",
         "dependencies": {
@@ -864,6 +876,19 @@
           }
         }
       },
+      "PuppeteerExtraSharp/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "PuppeteerSharp": "9.0.2",
+          "RestSharp": "108.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/PuppeteerExtraSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/PuppeteerExtraSharp.dll": {}
+        }
+      },
       "PuppeteerSharp/10.1.0": {
         "type": "package",
         "dependencies": {
@@ -880,6 +905,19 @@
         },
         "runtime": {
           "lib/netstandard2.0/PuppeteerSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "RestSharp/108.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/RestSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/RestSharp.dll": {
             "related": ".xml"
           }
         }
@@ -2453,10 +2491,12 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "2CaptchaAPI": "1.10.1",
           "AutoMapper": "12.0.1",
           "CityVoxWeb.Common": "1.0.0",
           "CityVoxWeb.DTOs": "1.0.0",
           "CityVoxWeb.Data": "1.0.0",
+          "PuppeteerExtraSharp": "2.0.0",
           "PuppeteerSharp": "10.1.0"
         },
         "compile": {
@@ -2469,6 +2509,19 @@
     }
   },
   "libraries": {
+    "2CaptchaAPI/1.10.1": {
+      "sha512": "RO0XNsW661GwO3FtKd7HX7hLTgJshtkrZstSz48ofygAVrHDuu5ol8WfDBqGVORkQzaKAGJyYEKyP3N8v1CdZQ==",
+      "type": "package",
+      "path": "2captchaapi/1.10.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "2captcha.png",
+        "2captchaapi.1.10.1.nupkg.sha512",
+        "2captchaapi.nuspec",
+        "lib/netstandard1.3/2Captcha.dll"
+      ]
+    },
     "AutoMapper/12.0.1": {
       "sha512": "hvV62vl6Hp/WfQ24yzo3Co9+OPl8wH8hApwVtgWpiAynVJkUcs7xvehnSftawL8Pe8FrPffBRM3hwzLQqWDNjA==",
       "type": "package",
@@ -3614,6 +3667,18 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
+    "PuppeteerExtraSharp/2.0.0": {
+      "sha512": "dNbWUR1TEUOsNe0Ai2z260p7GTE3wa7I29oQAYoZDUtEkw2xwORsynhMu7iUhGqz+Ck2QpsUPKWmLdPHW+iv4w==",
+      "type": "package",
+      "path": "puppeteerextrasharp/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/PuppeteerExtraSharp.dll",
+        "puppeteerextrasharp.2.0.0.nupkg.sha512",
+        "puppeteerextrasharp.nuspec"
+      ]
+    },
     "PuppeteerSharp/10.1.0": {
       "sha512": "6CN7AhihyC1YD5ibQ8R+92vmDYvk1toG5Llbgy+awdwWZCVIp6ppIoRPHzYznogyoFPxD/GHpUH2cgO/7x6jmg==",
       "type": "package",
@@ -3625,6 +3690,24 @@
         "lib/netstandard2.0/PuppeteerSharp.xml",
         "puppeteersharp.10.1.0.nupkg.sha512",
         "puppeteersharp.nuspec"
+      ]
+    },
+    "RestSharp/108.0.3": {
+      "sha512": "phq1AkVhqVXHZxvWDV4fJEJKCR5OHNFUGx2Ix8o5EFShS6654oZhth4X2RWvaU/W7UexIswW0T+lTirxfLU2Ow==",
+      "type": "package",
+      "path": "restsharp/108.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/RestSharp.dll",
+        "lib/net5.0/RestSharp.xml",
+        "lib/net6.0/RestSharp.dll",
+        "lib/net6.0/RestSharp.xml",
+        "lib/netstandard2.0/RestSharp.dll",
+        "lib/netstandard2.0/RestSharp.xml",
+        "restsharp.108.0.3.nupkg.sha512",
+        "restsharp.nuspec",
+        "restsharp.png"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
