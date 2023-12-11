@@ -92,3 +92,6 @@ E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\refint\CityVoxWeb
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\CityVoxWeb.API.pdb
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\CityVoxWeb.API.genruntimeconfig.cache
 E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\obj\Debug\net6.0\ref\CityVoxWeb.API.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\2Captcha.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\PuppeteerExtraSharp.dll
+E:\Projects\CityVox\CityVoxWeb\CityVoxWeb.API\bin\Debug\net6.0\RestSharp.dll
