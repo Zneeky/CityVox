@@ -16,11 +16,13 @@ namespace CityVoxWeb.Services.Issue_Services
     {
         private readonly CityVoxDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public ReportsService(CityVoxDbContext dbContext, IMapper mapper)
+        public ReportsService(CityVoxDbContext dbContext, IMapper mapper, INotificationService notificationService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
         public async Task<ExportReportDto> CreateAsync(CreateReportDto createReportDto)
@@ -53,6 +55,7 @@ namespace CityVoxWeb.Services.Issue_Services
                 _mapper.Map(reportDto, report);               
                 await _dbContext.SaveChangesAsync();
 
+               await _notificationService.CreateNotificationForReportAsync(reportDto.Status, "report", report);
                 var exportReportDto = _mapper.Map<ExportReportDto>(report);
                 return exportReportDto;
             }

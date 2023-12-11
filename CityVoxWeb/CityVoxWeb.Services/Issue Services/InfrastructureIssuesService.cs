@@ -17,11 +17,13 @@ namespace CityVoxWeb.Services.Issue_Services
 
         private readonly CityVoxDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly INotificationService _notificationService;
 
-        public InfrastructureIssuesService(CityVoxDbContext dbContext, IMapper mapper)
+        public InfrastructureIssuesService(CityVoxDbContext dbContext, IMapper mapper, INotificationService notificationService)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _notificationService = notificationService;
         }
 
         public async Task<ExportInfIssueDto> CreateAsync(CreateInfIssueDto createInfIssueDto)
@@ -54,6 +56,7 @@ namespace CityVoxWeb.Services.Issue_Services
                 _mapper.Map(updateInfIssueDto, infIssue);
                 await _dbContext.SaveChangesAsync();
 
+                await _notificationService.CreateNotificationForInfrastructureIssueAsync(updateInfIssueDto.Status, "infIssue", infIssue);
                 var exportInfIssueDto = _mapper.Map<ExportInfIssueDto>(infIssue);
                 return exportInfIssueDto;
             }
