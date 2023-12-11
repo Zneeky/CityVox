@@ -127,7 +127,10 @@ namespace CityVoxWeb.Services.User_Services
                 var frameCaptcha = await iframeCaptchaElementHandle.ContentFrameAsync();
 
                 //reCaptchV2 solver plugin -- costs around 2$ per 1000 captchas
+                //Here could be added logic that would check the how much money are left in the account and if they are less than 0.2$ to throw an exception of insufficient funds
                 await recaptchaPlugin.SolveCaptchaAsync(page);
+
+                //This is intended to stop the execution until we are ready with actual report cases, that are valid and can be directed to SofiaCall
                 await page.ClickAsync("#submit-button-selector");
 
                 // Optionally, handle the response or confirmation
