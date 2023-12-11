@@ -99,7 +99,7 @@ namespace CityVoxWeb.Common
         public static class NotificationValidations
         {
             public const int ContentMinLength = 5;
-            public const int ContentMaxLength = 50;
+            public const int ContentMaxLength = 300;
         }
     }
 }
