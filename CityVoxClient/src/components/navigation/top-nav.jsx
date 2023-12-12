@@ -16,24 +16,65 @@ import {
   Tooltip,
   useMediaQuery,
   useTheme,
+  Menu,
+  MenuItem,
 } from "@mui/material";
+import NotificationForm from "../notification/notification-form";
 import { alpha } from "@mui/material/styles";
 import { usePopover } from "../../hooks/use-popover";
 import { AccountPopover } from "./account-popover";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../redux/index";
+import { useCallback, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { GetAllNotifications } from "../../utils/api";
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
 
+// Additional logic, if needed, can be placed here
+
 export const TopNav = (props) => {
   const { onNavOpen } = props;
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const accountPopover = usePopover();
   const dispatch = useDispatch();
   const theme = useTheme();
   const dark = theme.palette.static.dark;
+  const navigate = useNavigate();
+
+  const [userNotifications, setNotifications] = useState([]);
+  const [notificationMenu, setNotificationMenu] = useState(null);
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const notifications = await GetAllNotifications(user.id);
+        setNotifications(notifications);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+
+    fetchNotifications();
+  }, [user.id]);
+
+  const onClickNotification = (notification) => {
+    //notification.IsRead = true;
+    onNotificatonsDropdownClose();
+    const issueType = notification.Content.split(",")[1].trim();
+    const reportId = notification.Content.split(",")[2].trim();
+    navigate(`/${issueType}s/edit/${reportId}`);
+  };
+
+  const onBellClick = (event) => {
+    setNotificationMenu(event.currentTarget);
+  };
+
+  const onNotificatonsDropdownClose = () => {
+    setNotificationMenu(null);
+  };
 
   return (
     <>
@@ -90,14 +131,44 @@ export const TopNav = (props) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Notifications">
-              <IconButton>
-                <Badge badgeContent={4} color="success" variant="dot">
-                  <SvgIcon fontSize="small">
+              <IconButton onClick={onBellClick}>
+                <Badge
+                /*badgeContent={
+                    /*GetAllUserUnreadNotificationsCount > 0
+                      ? GetAllUserUnreadNotificationsCount
+                      : null
+                  }
+                  color={"error"}*/
+                >
+                  <SvgIcon fontSize="medium">
                     <BellIcon />
                   </SvgIcon>
                 </Badge>
               </IconButton>
             </Tooltip>
+            {/*notifications dropdown */}
+            <Menu
+              anchorEl={notificationMenu}
+              open={Boolean(notificationMenu)}
+              onClose={onNotificatonsDropdownClose}
+              PaperProps={{
+                style: {
+                  maxHeight: "65%",
+                },
+              }}
+            >
+              {userNotifications.length > 0 &&
+                userNotifications.$values.map((notification) => (
+                  <MenuItem key={notification.Id}>
+                    <NotificationForm
+                      title={notification.Content.split(",")[0]}
+                      dateTime={notification.TimeSent}
+                      isRead={notification.IsRead}
+                      handleClick={() => onClickNotification(notification)}
+                    />
+                  </MenuItem>
+                ))}
+            </Menu>
             <Avatar
               onClick={accountPopover.handleOpen}
               ref={accountPopover.anchorRef}

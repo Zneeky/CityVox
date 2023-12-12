@@ -53,7 +53,7 @@ const EditReport = () => {
 
   if (
     appUser.username === report?.CreatorUsername ||
-    appUser.role === "admin"
+    appUser.role === "Admin"
   ) {
     return (
       <>

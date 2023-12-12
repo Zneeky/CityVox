@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {}
+    "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
+    "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
+        "projectUniqueName": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
         "projectName": "CityVoxWeb.Common",
-        "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
-        "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\obj\\",
+        "projectPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj",
+        "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -55,21 +60,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
+    "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj",
         "projectName": "CityVoxWeb.Data.Models",
-        "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj",
-        "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\obj\\",
+        "projectPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj",
+        "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,14 +86,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
-                "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj"
+              "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj": {
+                "projectPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Common\\CityVoxWeb.Common.csproj"
               }
             }
           }
@@ -120,21 +130,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {
+    "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
         "projectName": "CityVoxWeb.Data",
-        "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
-        "packagesPath": "C:\\Users\\Arki\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\obj\\",
+        "projectPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\CityVoxWeb.Data.csproj",
+        "packagesPath": "C:\\Users\\Laptop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Arki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -142,14 +156,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
-                "projectPath": "E:\\Projects\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj"
+              "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\Laptop\\Desktop\\CityVox FE views\\CityVox\\CityVox\\CityVoxWeb\\CityVoxWeb.Data.Models\\CityVoxWeb.Data.Models.csproj"
               }
             }
           }
@@ -205,7 +220,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

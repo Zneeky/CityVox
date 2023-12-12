@@ -4,6 +4,7 @@ using CityVoxWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CityVoxWeb.Data.Migrations
 {
     [DbContext(typeof(CityVoxDbContext))]
-    partial class CityVoxDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231211221036_NotificationMaxLength")]
+    partial class NotificationMaxLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
