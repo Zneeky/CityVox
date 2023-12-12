@@ -6,9 +6,9 @@ The CityVox app aims to enhance civic engagement by simplifying the process for 
 Loading...
 
 ## Key Features
-Problem Reporting: Residents can effortlessly report non-emergency issues in their neighborhood, such as graffiti, potholes, broken streetlights, or uncollected trash. These reports are geotagged and automatically forwarded to the relevant local government department. Users can also track the status of their reports, with resolutions confirmed by fellow residents.
+Problem Reporting: Residents can effortlessly report issues in their neighborhood, such as graffiti, potholes, broken streetlights, or uncollected trash. These reports are geotagged and can be automatically forwarded to the relevant local government department. Users can also track the status of their reports.
 
-Information Access: Stay updated with the latest local government news, announcements, and ongoing projects. This includes details on local council meetings, planning applications, budget allocations, and more.
+Information Access: Stay updated with the latest local government news, announcements, and ongoing projects. This includes details on local council meetings, budget allocations, and more.
 
 Community Engagement: Engage with the community through features like local event postings and community social media for discussing local issues.
 
