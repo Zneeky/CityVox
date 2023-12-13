@@ -104,7 +104,7 @@ namespace CityVoxWeb.Tests.Controllers
             Assert.NotNull(messageProperty);
 
             var messageValue = messageProperty.GetValue(returnValue).ToString();
-            Assert.Equal("Invalid tokens! Sing in again!", messageValue);
+            Assert.Equal("Refresh token not found. Sign in again!", messageValue);
         }
 
         [Fact]
