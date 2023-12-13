@@ -163,7 +163,7 @@ const Dashboard = () => {
           backgroundColor={palette.dashboard.cardBackground}
           p="30px"
         >
-          <Typography variant="h5" fontWeight="600">
+          <Typography variant="h5" fontWeight="600" color = "black">
             Recently Added
           </Typography>
           <Box
@@ -184,6 +184,7 @@ const Dashboard = () => {
             variant="h5"
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
+            color = "black"
           >
             Idk bro
           </Typography>
@@ -202,6 +203,7 @@ const Dashboard = () => {
             variant="h5"
             fontWeight="600"
             sx={{ marginBottom: "15px" }}
+            color = "black"
           >
             Geographic Map
           </Typography>
