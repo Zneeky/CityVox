@@ -6,6 +6,7 @@ import {
 } from "./consts";
 import { setLogin, setLogout } from "../redux";
 import { store } from "../redux/store";
+import { useState } from "react";
 
 //img upload to cloudinary.com anonymous
 export const uploadToCloudinary = async (file) => {
@@ -188,6 +189,20 @@ export const GetAllNotifications = async (userId) => {
   try {
     const response = await instance.get(`api/notifications/${userId}`);
     return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const MarkNotificationRead = async (notificationId) => {
+  try {
+    const response = await instance.get(`api/notifications/${notificationId}`);
+    const notification = response.data;
+
+    await instance.put(`api/notifications/${notificationId}`, {
+      ...notification,
+      IsRead: true,
+    });
   } catch (err) {
     console.log(err);
   }

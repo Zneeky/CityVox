@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../redux/index";
 import { useCallback, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { GetAllNotifications } from "../../utils/api";
+import { GetAllNotifications, MarkNotificationRead } from "../../utils/api";
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
@@ -46,26 +46,50 @@ export const TopNav = (props) => {
 
   const [userNotifications, setNotifications] = useState([]);
   const [notificationMenu, setNotificationMenu] = useState(null);
+  const [unreadNotificationsValue, setUnreadValue] = useState();
+
+  const unreadNotificationsCount = (allNotifications) => {
+    const notificationsArray = Array.isArray(allNotifications)
+      ? allNotifications
+      : [allNotifications];
+    const unreadCount = notificationsArray.filter(
+      (notification) => !notification.IsRead
+    ).length;
+
+    return unreadCount;
+  };
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
         const notifications = await GetAllNotifications(user.id);
+        setUnreadValue(unreadNotificationsCount(notifications.$values));
         setNotifications(notifications);
-      } catch (error) {
-        console.error("Error fetching notifications:", error);
+      } catch (err) {
+        console.error(err);
       }
     };
 
     fetchNotifications();
   }, [user.id]);
 
-  const onClickNotification = (notification) => {
-    //notification.IsRead = true;
-    onNotificatonsDropdownClose();
-    const issueType = notification.Content.split(",")[1].trim();
-    const reportId = notification.Content.split(",")[2].trim();
-    navigate(`/${issueType}s/edit/${reportId}`);
+  const onClickNotification = async (notification) => {
+    try {
+      await MarkNotificationRead(notification.Id);
+
+      const updatedNotifications = await GetAllNotifications(user.id);
+      setUnreadValue(unreadNotificationsCount(updatedNotifications.$values));
+      setNotifications(updatedNotifications);
+
+      onNotificatonsDropdownClose();
+
+      const issueType = notification.Content.split(",")[1].trim();
+      const reportId = notification.Content.split(",")[2].trim();
+
+      navigate(`/${issueType}s/edit/${reportId}`);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const onBellClick = (event) => {
@@ -133,12 +157,12 @@ export const TopNav = (props) => {
             <Tooltip title="Notifications">
               <IconButton onClick={onBellClick}>
                 <Badge
-                /*badgeContent={
-                    /*GetAllUserUnreadNotificationsCount > 0
-                      ? GetAllUserUnreadNotificationsCount
+                  badgeContent={
+                    unreadNotificationsValue > 0
+                      ? unreadNotificationsValue
                       : null
                   }
-                  color={"error"}*/
+                  color={"error"}
                 >
                   <SvgIcon fontSize="medium">
                     <BellIcon />
@@ -157,7 +181,7 @@ export const TopNav = (props) => {
                 },
               }}
             >
-              {userNotifications.length > 0 &&
+              {userNotifications.$values !== undefined &&
                 userNotifications.$values.map((notification) => (
                   <MenuItem key={notification.Id}>
                     <NotificationForm

@@ -3,7 +3,7 @@ import { Paper, Typography } from "@mui/material";
 
 function formatDate(dateString) {
   const now = new Date();
-  const date = new Date(dateString);
+  const date = new Date(dateString.split(" ")[0]);
 
   const timeDifference = now - date;
   const seconds = Math.floor(timeDifference / 1000);
