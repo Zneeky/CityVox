@@ -43,18 +43,3 @@ C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debu
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\refint\CityVoxWeb.Data.Models.dll
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.pdb
 C:\Users\usr\Documents\GitHub\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\ref\CityVoxWeb.Data.Models.dll
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\bin\Debug\net6.0\CityVoxWeb.Data.Models.deps.json
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\bin\Debug\net6.0\CityVoxWeb.Data.Models.dll
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\bin\Debug\net6.0\CityVoxWeb.Data.Models.pdb
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\bin\Debug\net6.0\CityVoxWeb.Common.dll
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\bin\Debug\net6.0\CityVoxWeb.Common.pdb
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.csproj.AssemblyReference.cache
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.AssemblyInfoInputs.cache
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.AssemblyInfo.cs
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.csproj.CoreCompileInputs.cache
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.csproj.CopyComplete
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.dll
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\refint\CityVoxWeb.Data.Models.dll
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\CityVoxWeb.Data.Models.pdb
-C:\Users\Laptop\Desktop\CityVox FE views\CityVox\CityVox\CityVoxWeb\CityVoxWeb.Data.Models\obj\Debug\net6.0\ref\CityVoxWeb.Data.Models.dll
