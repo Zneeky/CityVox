@@ -109,7 +109,7 @@ export const LogoutRefresh = async () => {
 //For Authorized calls there will be the need of JWT token and the RefreshToken which is HTTPS only
 //Instance for being able to manage the token states
 const instance = axios.create({
-  baseURL: httpsApiCode,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
