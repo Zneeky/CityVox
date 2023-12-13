@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Paper, Typography } from "@mui/material";
 
 function formatDate(dateString) {
@@ -25,8 +25,10 @@ function formatDate(dateString) {
   }
 }
 
-const NotificationForm = ({ title, dateTime, isRead, handleClick }) => {
+const NotificationForm = ({ title, dateTime, handleClick }) => {
+  const [clicked, setClicked] = useState(false);
   const handleClickNotification = () => {
+    setClicked(true);
     handleClick();
   };
   return (
@@ -34,13 +36,17 @@ const NotificationForm = ({ title, dateTime, isRead, handleClick }) => {
       elevation={3}
       sx={{
         padding: 2,
-        backgroundColor: isRead ? "white" : "#E3F2FD",
-        borderLeft: isRead ? "4px slid transperant" : "4px solid #1976D2",
+        backgroundColor: clicked ? "white" : "#E3F2FD",
+        borderLeft: clicked ? "4px slid transperant" : "4px solid #1976D2",
         width: "100%",
       }}
       onClick={handleClickNotification}
     >
-      <Typography variant="h6" color={isRead ? "textPrimary" : "primary"}>
+      <Typography
+        variant="h6"
+        color={clicked ? "textPrimary" : "primary"}
+        style={{ whiteSpace: "pre-line" }}
+      >
         {title}
       </Typography>
       <Typography variant="body2" color={"#616161"} textAlign={"right"}>

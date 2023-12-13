@@ -187,7 +187,6 @@ export const TopNav = (props) => {
                     <NotificationForm
                       title={notification.Content.split(",")[0]}
                       dateTime={notification.TimeSent}
-                      isRead={notification.IsRead}
                       handleClick={() => onClickNotification(notification)}
                     />
                   </MenuItem>

@@ -196,13 +196,7 @@ export const GetAllNotifications = async (userId) => {
 
 export const MarkNotificationRead = async (notificationId) => {
   try {
-    const response = await instance.get(`api/notifications/${notificationId}`);
-    const notification = response.data;
-
-    await instance.put(`api/notifications/${notificationId}`, {
-      ...notification,
-      IsRead: true,
-    });
+    await instance.put(`api/notifications/${notificationId}`);
   } catch (err) {
     console.log(err);
   }
