@@ -58,7 +58,7 @@ export const RegisterUser = async (values, onSubmitProps) => {
 
   try {
     const response = await instance.post(
-      `${httpsApiCode}api/auth/register`,
+      `${import.meta.env.VITE_API_URL}api/auth/register`,
       values
     );
     return response;
@@ -71,7 +71,7 @@ export const RegisterUser = async (values, onSubmitProps) => {
 export const LoginUser = async (values, onSubmitProps) => {
   try {
     const response = await instance.post(
-      `${httpsApiCode}api/auth/login`,
+      `${import.meta.env.VITE_API_URL}api/auth/login`,
       values
     );
 
@@ -84,7 +84,7 @@ export const LoginUser = async (values, onSubmitProps) => {
 //login with refreshToken api call anonymous
 export const LoginRefresh = async () => {
   try {
-    const response = await instance.get(`${httpsApiCode}api/auth/login/token`);
+    const response = await instance.get(`${import.meta.env.VITE_API_URL}api/auth/login/token`);
 
     return response;
   } catch (error) {
@@ -95,7 +95,7 @@ export const LoginRefresh = async () => {
 //logout to delete refreshToken api call anonymous
 export const LogoutRefresh = async () => {
   try {
-    const response = await instance.get(`${httpsApiCode}api/auth/logout`);
+    const response = await instance.get(`${import.meta.env.VITE_API_URL}api/auth/logout`);
     store.dispatch(setLogout({}));
     return response;
   } catch (error) {
