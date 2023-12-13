@@ -52,6 +52,12 @@ namespace CityVoxWeb.Tests.Services
             _mockUserManager.Setup(um => um.CreateAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>()))
                             .ReturnsAsync(IdentityResult.Success);
 
+            //Setup for IConfiguration
+            _mockConfig = new Mock<IConfiguration>();
+            _mockConfig.Setup(c => c[It.IsAny<string>()]).Returns("SameValueForAll");
+
+            _mockEmailService = new Mock<IEmailService>();
+
             _userService = new UsersService(_mockMapper.Object, _dbContext, _mockUserManager.Object, _mockRoleManager.Object , _mockConfig.Object , _mockEmailService.Object );
             SeedDatabase(_dbContext);
         }
@@ -277,7 +283,7 @@ namespace CityVoxWeb.Tests.Services
             // Arrange
             string testEmail = "zneeky@abv.bg";
             string testPassword = "TestPassword"; // Note: set this to whatever is the correct password for the mock user
-            string testRole = "user"; // Note: set this to whatever is the expected role for the user
+            string testRole = "User"; // Note: set this to whatever is the expected role for the user
 
             var loginDto = new LoginDto
             {
@@ -310,6 +316,7 @@ namespace CityVoxWeb.Tests.Services
             var userDtoExpected = new UserWithIdDto
             {
                 //... set the expected values
+                Email = "zneeky@abv.bg",
             };
 
             // Mocking the FindByEmailAsync method to return our mock user
@@ -323,6 +330,10 @@ namespace CityVoxWeb.Tests.Services
             // Mocking the GetRolesAsync method to return a list with our test role
             _mockUserManager.Setup(um => um.GetRolesAsync(mockUser))
                             .ReturnsAsync(new List<string> { testRole });
+
+            // Mocking the IsEmailConfirmedAsync method to return true
+            _mockUserManager.Setup(um => um.IsEmailConfirmedAsync(mockUser))
+                            .ReturnsAsync(true);
 
             // Mocking the Mapper method
             _mockMapper.Setup(m => m.Map<UserWithIdDto>(mockUser))
