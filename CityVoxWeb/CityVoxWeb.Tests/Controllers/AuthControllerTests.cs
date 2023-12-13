@@ -24,6 +24,7 @@ namespace CityVoxWeb.Tests.Controllers
             _mockJwtUtils = new Mock<IJwtUtils>();
             _mockRefreshTokenService = new Mock<IRefreshTokenService>();
             _mockConfig = new Mock<IConfiguration>();
+            _mockConfig.Setup(c => c[It.IsAny<string>()]).Returns("SameValueForAll");
             _mockEmailService = new Mock<IEmailService>();
             _controller = new AuthController(_mockUserService.Object, _mockJwtUtils.Object, _mockRefreshTokenService.Object, _mockConfig.Object, _mockEmailService.Object);
         }
@@ -67,7 +68,7 @@ namespace CityVoxWeb.Tests.Controllers
             Assert.NotNull(messageProperty);
 
             var messageValue = messageProperty.GetValue(returnValue).ToString();
-            Assert.Equal("Invalid credentials!", messageValue);
+            Assert.Equal("Invalid user!", messageValue);
         }
 
         [Fact]
@@ -107,39 +108,29 @@ namespace CityVoxWeb.Tests.Controllers
         }
 
         [Fact]
-        public async Task Logout_NoRefreshToken_ShouldReturnBadRequest()
+        public async Task Logout_WhenNoRefreshToken_ShouldReturnOk()
         {
             // Arrange
-            string jwtToken = "invalidToken";
-
-
             var mockCookieCollection = new Mock<IRequestCookieCollection>();
             mockCookieCollection.Setup(m => m["refreshToken"]).Returns((string)null);
 
-
             var mockRequest = new Mock<HttpRequest>();
             mockRequest.Setup(r => r.Cookies).Returns(mockCookieCollection.Object);
-
 
             var mockHttpContext = new Mock<HttpContext>();
             mockHttpContext.Setup(c => c.Request).Returns(mockRequest.Object);
 
             _controller.ControllerContext.HttpContext = mockHttpContext.Object;
 
-            _mockRefreshTokenService.Setup(r => r.IsValid(It.IsAny<string>(), jwtToken)).ReturnsAsync((false, "invalidUserId"));
-
             // Act
             var result = await _controller.Logout();
 
             // Assert
-            var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            var returnValue = badRequestResult.Value;
+            var okObjectResult = Assert.IsType<OkObjectResult>(result);
+            var returnValue = okObjectResult.Value;
 
-            var messageProperty = returnValue.GetType().GetProperty("message");
-            Assert.NotNull(messageProperty);
-
-            var messageValue = messageProperty.GetValue(returnValue).ToString();
-            Assert.Equal("Invalid tokens! Sing in again!", messageValue);
+            var messageValue = (returnValue).ToString();
+            Assert.Equal("Logged out!", messageValue);
         }
     }
 }

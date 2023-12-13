@@ -128,13 +128,17 @@ namespace CityVoxWeb.API.Controllers
         public async Task<IActionResult> Logout()
         {
             var refreshToken = Request.Cookies["refreshToken"];
+            var jwtToekn = Request.Cookies["jwtToken"];
             if (refreshToken != null)
             {
                 await _refreshTokenService.RevokeTokenAsync(refreshToken);
+                Response.Cookies.Delete("refreshToken");
+                if(jwtToekn != null)
+                {
+                    Response.Cookies.Delete("jwtToken");
+                }
             }
-            Response.Cookies.Delete("refreshToken");
-            Response.Cookies.Delete("jwtToken");
-            return Ok();
+            return Ok("Logged out!");
         }
 
 
