@@ -15,9 +15,16 @@
     "@heroicons/react": "^2.0.18",
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
+    "@nivo/bar": "^0.84.0",
+    "@nivo/core": "^0.84.0",
+    "@nivo/geo": "^0.84.0",
+    "@nivo/line": "^0.84.0",
+    "@nivo/pie": "^0.84.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@turf/turf": "^6.5.0",
     "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "firebase": "^10.7.1",
     "formik": "^2.4.5",
     "leaflet": "^1.9.4",
     "opencage-api-client": "^1.0.2",
@@ -45,6 +52,6 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
-    "vite": "^4.5.0"
+    "vite": "^4.5.1"
   }
 }
