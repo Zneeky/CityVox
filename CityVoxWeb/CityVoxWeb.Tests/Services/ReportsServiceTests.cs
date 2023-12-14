@@ -145,5 +145,39 @@ namespace CityVoxWeb.Tests.Services
             Assert.NotNull(result);
             // Additional assertions based on your mock data...
         }
+
+        [Fact]
+        public async Task DeleteAsync_ValidReportId_ShouldDeleteReportAndReturnTrue()
+        {
+
+            // Arrange
+            string reportId = Guid.NewGuid().ToString();
+            Guid municipalityId = Guid.NewGuid();
+            Guid userId = Guid.NewGuid();
+
+            var existingReport = new Report
+            {
+                Id = Guid.Parse(reportId),
+                Title = "Title",
+                Description = "Description",
+                ReportTime = DateTime.UtcNow,
+                ImageUrl = "imageUrl.jpg",
+                Latitude = 12.5,
+                Longitude = 13.5,
+                Address = "St address",
+                UserId = userId,
+                MunicipalityId = municipalityId,
+                Type = ReportType.Graffiti,
+                Status = ReportStatus.Approved
+            };
+            _dbContext.Reports.Add(existingReport);
+            await _dbContext.SaveChangesAsync();
+
+            // Act
+            var result = await _reportsService.DeleteAsync(existingReport.Id.ToString());
+
+            // Assert
+            Assert.True(result);
+        }
     }
 }
