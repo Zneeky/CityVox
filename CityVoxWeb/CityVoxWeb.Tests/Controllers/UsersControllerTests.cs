@@ -44,5 +44,20 @@ namespace CityVoxWeb.Tests.Controllers
             var okResult = Assert.IsType<OkObjectResult>(result);
             Assert.Equal(expectedUsers, okResult.Value);
         }
+
+        [Fact]
+        public async Task GetUser_ShouldReturnUserDetails()
+        {
+            // Arrange
+            var expectedUser = new UserDefaultDto() { /* sample properties */ };
+          //  _mockUserService.Setup(service => service.GetByUsernameAsync(It.IsAny<string>())).ReturnsAsync(expectedUser);
+            // Act
+            var result = await _controller.GetUser("sampleUsername");
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(expectedUser, okResult.Value);
+        }
+
     }
 }
