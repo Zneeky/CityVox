@@ -12,9 +12,9 @@ import Home from "./pages/home-page";
 import CreateReport from "./pages/create-report";
 import CreateEmergency from "./pages/create-emergency";
 import CreateInfIssue from "./pages/create-inf-issue";
-import EditReport from "./edit-pages/edit-report";
-import EditEmergency from "./edit-pages/edit-emergency";
-import EditInfIssue from "./edit-pages/edit-inf-issue";
+import EditReport from "./pages/edit-pages/edit-report";
+import EditEmergency from "./pages/edit-pages/edit-emergency";
+import EditInfIssue from "./pages/edit-pages/edit-inf-issue"
 import Requests from "./pages/admin/requests-page";
 import PostPage from "./pages/post/post-page";
 import ManageUsers from './pages/admin/manage-users';

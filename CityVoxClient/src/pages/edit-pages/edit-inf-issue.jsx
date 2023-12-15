@@ -2,25 +2,25 @@ import {
   LayoutContainer,
   LayoutRoot,
   SIDE_NAV_WIDTH,
-} from "../pages/home-page";
-import { TopNav } from "../components/navigation/top-nav";
-import { SideNav } from "../components/navigation/side-nav";
-import EditIssueForm from "../components/edit-issue-form";
-import { EmergencyTypes, EmergencyStatusTypes } from "../utils/consts";
+}  from "../home-page"
+import { TopNav } from "../../components/navigation/top-nav";
+import { SideNav } from "../../components/navigation/side-nav";
+import EditIssueForm from "../../components/edit-issue-form";
+import { InfIssueTypes, InfIssueStatusTypes } from "../../utils/consts"
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Alert, AlertTitle } from "@mui/material";
-import { GetEmergency } from "../utils/api";
+import { GetInfIssue } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import MapViewIssue from "../components/map/map-view-issue";
+import MapViewIssue from "../../components/map/map-view-issue";
 
-const EditEmergency = () => {
-  const { emergencyId } = useParams();
+const EditInfIssue = () => {
+  const { infIssueId } = useParams();
   const location = useLocation();
   const pathname = location.pathname;
   const [openNav, setOpenNav] = useState(false);
-  const [emergency, setEmergency] = useState(null);
+  const [infIssue, setInfIssue] = useState(null);
   const appUser = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(true);
@@ -34,25 +34,25 @@ const EditEmergency = () => {
   useEffect(() => {
     const FetchIssue = async () => {
       try {
-        const response = await GetEmergency(emergencyId);
-        setEmergency(response);
+        const response = await GetInfIssue(infIssueId);
+        setInfIssue(response);
       } catch (error) {
-        console.error("Failed to fetch emergency:", error);
+        console.error("Failed to fetch infIsue:", error);
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false once fetching is done
       }
     };
 
     FetchIssue();
     handlePathnameChange();
-  }, [pathname, emergencyId]);
+  }, [pathname, infIssueId]);
 
   if (loading) {
     return <div>Loading...</div>; // You can replace this with a spinner or any loading component
   }
 
   if (
-    appUser.username === emergency?.CreatorUsername ||
+    appUser.username === infIssue?.CreatorUsername ||
     appUser.role === "Admin"
   ) {
     return (
@@ -62,7 +62,7 @@ const EditEmergency = () => {
         <LayoutRoot>
           <LayoutContainer>
             <Typography p="1.6rem" mt="0.5rem" variant="h4">
-              Edit Emergency{" "}
+              Edit Infrastructure Issue{" "}
             </Typography>
             <Box
               mt="0.5rem"
@@ -74,13 +74,13 @@ const EditEmergency = () => {
             >
               <Box pr="1em">
                 <EditIssueForm
-                  type={"emergency"}
-                  issueTypes={EmergencyTypes}
-                  statusTypes={EmergencyStatusTypes}
-                  issue={emergency}
+                  type={"infIssue"}
+                  issueTypes={InfIssueTypes}
+                  statusTypes={InfIssueStatusTypes}
+                  issue={infIssue}
                 />
               </Box>
-              <MapViewIssue issue={emergency} type={"emergency"} />
+              <MapViewIssue issue={infIssue} type={"infIssue"} />
             </Box>
           </LayoutContainer>
         </LayoutRoot>
@@ -96,4 +96,4 @@ const EditEmergency = () => {
   }
 };
 
-export default EditEmergency;
+export default EditInfIssue;

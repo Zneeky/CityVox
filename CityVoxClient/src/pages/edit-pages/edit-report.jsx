@@ -2,25 +2,25 @@ import {
   LayoutContainer,
   LayoutRoot,
   SIDE_NAV_WIDTH,
-} from "../pages/home-page";
-import { TopNav } from "../components/navigation/top-nav";
-import { SideNav } from "../components/navigation/side-nav";
-import EditIssueForm from "../components/edit-issue-form";
-import { InfIssueTypes, InfIssueStatusTypes } from "../utils/consts";
+} from "../home-page";
+import { TopNav } from "../../components/navigation/top-nav";
+import { SideNav } from "../../components/navigation/side-nav";
+import EditIssueForm from "../../components/edit-issue-form";
+import { ReportTypes, ReportStatusTypes } from "../../utils/consts";
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Typography, Alert, AlertTitle } from "@mui/material";
-import { GetInfIssue } from "../utils/api";
+import { GetReport } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import MapViewIssue from "../components/map/map-view-issue";
+import MapViewIssue from "../../components/map/map-view-issue";
 
-const EditInfIssue = () => {
-  const { infIssueId } = useParams();
+const EditReport = () => {
+  const { reportId } = useParams();
   const location = useLocation();
   const pathname = location.pathname;
   const [openNav, setOpenNav] = useState(false);
-  const [infIssue, setInfIssue] = useState(null);
+  const [report, setReport] = useState(null);
   const appUser = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(true);
@@ -34,10 +34,10 @@ const EditInfIssue = () => {
   useEffect(() => {
     const FetchIssue = async () => {
       try {
-        const response = await GetInfIssue(infIssueId);
-        setInfIssue(response);
+        const response = await GetReport(reportId);
+        setReport(response);
       } catch (error) {
-        console.error("Failed to fetch infIsue:", error);
+        console.error("Failed to fetch report:", error);
       } finally {
         setLoading(false); // Set loading to false once fetching is done
       }
@@ -45,14 +45,14 @@ const EditInfIssue = () => {
 
     FetchIssue();
     handlePathnameChange();
-  }, [pathname, infIssueId]);
+  }, [pathname, reportId]);
 
   if (loading) {
     return <div>Loading...</div>; // You can replace this with a spinner or any loading component
   }
 
   if (
-    appUser.username === infIssue?.CreatorUsername ||
+    appUser.username === report?.CreatorUsername ||
     appUser.role === "Admin"
   ) {
     return (
@@ -62,7 +62,7 @@ const EditInfIssue = () => {
         <LayoutRoot>
           <LayoutContainer>
             <Typography p="1.6rem" mt="0.5rem" variant="h4">
-              Edit Infrastructure Issue{" "}
+              Edit Report{" "}
             </Typography>
             <Box
               mt="0.5rem"
@@ -74,13 +74,13 @@ const EditInfIssue = () => {
             >
               <Box pr="1em">
                 <EditIssueForm
-                  type={"infIssue"}
-                  issueTypes={InfIssueTypes}
-                  statusTypes={InfIssueStatusTypes}
-                  issue={infIssue}
+                  type={"report"}
+                  issueTypes={ReportTypes}
+                  statusTypes={ReportStatusTypes}
+                  issue={report}
                 />
               </Box>
-              <MapViewIssue issue={infIssue} type={"infIssue"} />
+              <MapViewIssue issue={report} type={"report"} />
             </Box>
           </LayoutContainer>
         </LayoutRoot>
@@ -96,4 +96,4 @@ const EditInfIssue = () => {
   }
 };
 
-export default EditInfIssue;
+export default EditReport;
