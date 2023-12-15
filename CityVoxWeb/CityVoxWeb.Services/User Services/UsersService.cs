@@ -72,21 +72,28 @@ namespace CityVoxWeb.Services.User_Services
 
         public async Task SendEmailConfirmationAsync(ApplicationUser user, string token)
         {
-            string appDomain = _configuration.GetSection("Application:AppDomain").Value;
-            string confirmationLink = _configuration.GetSection("Application:EmailConfirmation").Value;
-
-            UserEmailOptions options = new UserEmailOptions
+            try
             {
-                ToEmails = new List<string>() { user.Email },
-                PlaceHolders = new List<KeyValuePair<string, string>>()
+                string appDomain = _configuration.GetSection("Application:AppDomain").Value;
+                string confirmationLink = _configuration.GetSection("Application:EmailConfirmation").Value;
+
+                UserEmailOptions options = new UserEmailOptions
+                {
+                    ToEmails = new List<string>() { user.Email },
+                    PlaceHolders = new List<KeyValuePair<string, string>>()
                 {
                     new KeyValuePair<string, string>("{{UserName}}", user.FirstName),
                     new KeyValuePair<string, string>("{{Link}}",
                         string.Format(appDomain + confirmationLink, user.Id, token))
                 }
-            };
+                };
 
-            await _emailService.SendEmailForEmailConfirmationAsync(options);
+                await _emailService.SendEmailForEmailConfirmationAsync(options);
+            }
+            catch ( Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<IdentityResult> ConfirmEmailAsync(string uid, string token)

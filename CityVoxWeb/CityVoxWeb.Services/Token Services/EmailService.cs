@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using CityVoxWeb.DTOs.User;
+using static CityVoxWeb.Common.EmailTemplates;
 
 namespace CityVoxWeb.Services.Token_Services
 {
@@ -27,7 +28,7 @@ namespace CityVoxWeb.Services.Token_Services
         {
             userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, This is test email subject from book store web app", userEmailOptions.PlaceHolders);
 
-            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("TestEmail"), userEmailOptions.PlaceHolders);
+            userEmailOptions.Body = UpdatePlaceHolders(/*GetEmailBody("TestEmail")*/EmailTest, userEmailOptions.PlaceHolders);
 
             await SendEmail(userEmailOptions);
         }
@@ -36,18 +37,19 @@ namespace CityVoxWeb.Services.Token_Services
         {
             userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, Confirm your email id.", userEmailOptions.PlaceHolders);
 
-            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("EmailConfirm"), userEmailOptions.PlaceHolders);
+            userEmailOptions.Body = UpdatePlaceHolders(EmailConfirm, userEmailOptions.PlaceHolders);
 
             await SendEmail(userEmailOptions);
         }
 
         public async Task SendEmailForForgotPasswordAsync(UserEmailOptions userEmailOptions)
         {
-            userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, reset your password.", userEmailOptions.PlaceHolders);
+            //userEmailOptions.Subject = UpdatePlaceHolders("Hello {{UserName}}, reset your password.", userEmailOptions.PlaceHolders);
 
-            userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("ForgotPassword"), userEmailOptions.PlaceHolders);
+            //userEmailOptions.Body = UpdatePlaceHolders(GetEmailBody("ForgotPassword"), userEmailOptions.PlaceHolders);
 
-            await SendEmail(userEmailOptions);
+            //await SendEmail(userEmailOptions);
+            throw new NotImplementedException();
         }
 
         public EmailService(IOptions<SMTPConfigModel> smtpConfig)
@@ -92,17 +94,35 @@ namespace CityVoxWeb.Services.Token_Services
             return body;
         }
 
+        //private string UpdatePlaceHolders(string text, List<KeyValuePair<string, string>> keyValuePairs)
+        //{
+        //    if (!string.IsNullOrEmpty(text) && keyValuePairs != null)
+        //    {
+        //        foreach (var placeholder in keyValuePairs)
+        //        {
+        //            if (text.Contains(placeholder.Key))
+        //            {
+        //                text = text.Replace(placeholder.Key, placeholder.Value);
+        //            }
+        //        }
+        //    }
+
+        //    return text;
+        //}
+
         private string UpdatePlaceHolders(string text, List<KeyValuePair<string, string>> keyValuePairs)
         {
             if (!string.IsNullOrEmpty(text) && keyValuePairs != null)
             {
+                var stringBuilder = new StringBuilder(text);
                 foreach (var placeholder in keyValuePairs)
                 {
                     if (text.Contains(placeholder.Key))
                     {
-                        text = text.Replace(placeholder.Key, placeholder.Value);
+                        stringBuilder.Replace(placeholder.Key, placeholder.Value);
                     }
                 }
+                return stringBuilder.ToString();
             }
 
             return text;

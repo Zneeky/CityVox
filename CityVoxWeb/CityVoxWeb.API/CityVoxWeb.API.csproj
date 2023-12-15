@@ -33,4 +33,8 @@
     <ProjectReference Include="..\CityVoxWeb.Services\CityVoxWeb.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+	<EmbeddedResource Include="EmailTemplate\*.html" />
+  </ItemGroup>
+
 </Project>
