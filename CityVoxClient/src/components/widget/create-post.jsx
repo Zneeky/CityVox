@@ -221,6 +221,7 @@ const CreatePost = ({ open, handleClose }) => {
                       backgroundColor: palette.primary.light,
                       borderRadius: "8px",
                       padding: "1rem 2rem",
+                      color: "black",
                     }}
                   />
                 </FlexBetween>

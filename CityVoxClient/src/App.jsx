@@ -14,7 +14,10 @@ import CreateEmergency from "./pages/create-emergency";
 import CreateInfIssue from "./pages/create-inf-issue";
 import EditReport from "./pages/edit-pages/edit-report";
 import EditEmergency from "./pages/edit-pages/edit-emergency";
-import EditInfIssue from "./pages/edit-pages/edit-inf-issue"
+import EditInfIssue from "./pages/edit-pages/edit-inf-issue";
+import Emergency from './pages/issue-pages/emergency';
+import InfIssue from './pages/issue-pages/inf-issue';
+import Report from './pages/issue-pages/report';
 import Requests from "./pages/admin/requests-page";
 import PostPage from "./pages/post/post-page";
 import ManageUsers from './pages/admin/manage-users';
@@ -65,6 +68,9 @@ function App() {
               <Route path="/account" element={<Account />}></Route>
               <Route path="/emergency" element={<CreateEmergency />}></Route>
               <Route path="/events"></Route>
+              <Route path="/reports/:reportId" element={<Report />}></Route>
+              <Route path="/emergencies/:emergencyId" element={<Emergency />}></Route>
+              <Route path="/infrastructure_issues/:infIssueId" element={<InfIssue />}></Route>
               <Route
                 path="/infrastructure_issue"
                 element={<CreateInfIssue />}
