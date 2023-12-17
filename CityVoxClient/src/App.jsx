@@ -22,6 +22,7 @@ import Requests from "./pages/admin/requests-page";
 import PostPage from "./pages/post/post-page";
 import ManageUsers from './pages/admin/manage-users';
 import Account from "./pages/account";
+import Root from "./pages/root-page"
 import 'leaflet/dist/leaflet.css'
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
             ) : (
               <>
                 {/*Public routes for non-authenticated users*/}
-                {/* <Route path="/" element={<Root />} /> */}
+                <Route path="/" element={<Root />} />
                 <Route path="/auth/register" element={<Register />} />
                 <Route path="/auth/login" element={<Login />} />
               </>
