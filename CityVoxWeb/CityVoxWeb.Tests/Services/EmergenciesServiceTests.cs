@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
 using CityVoxWeb.Data;
+using CityVoxWeb.Data.Models.GeoEntities;
+using CityVoxWeb.Data.Models.IssueEntities;
+using CityVoxWeb.Data.Models.IssueEntities.Enumerators.Emergency;
+using CityVoxWeb.Data.Models.UserEntities;
 using CityVoxWeb.DTOs.Issues.Emergencies;
 using CityVoxWeb.Services.Interfaces;
 using CityVoxWeb.Services.Issue_Services;
@@ -64,6 +68,83 @@ namespace CityVoxWeb.Tests.Services
             Assert.NotNull(result);
             Assert.Equal(createDto.Title, result.Title);
             Assert.Equal(createDto.Latitude, result.Latitude);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_ValidEmergency_ShouldUpdateEmergencyAndReturnUpdatedDto()
+        {
+            // Arrange: seed a report into the database
+            string emergencyId = Guid.NewGuid().ToString();
+            Guid municipalityId = Guid.NewGuid();
+            Guid userId = Guid.NewGuid();
+
+            var existingUser = new ApplicationUser
+            {
+                UserName = "Zneeky",
+                Email = "zneeky@abv.bg",
+                FirstName = "Arkan",
+                LastName = "Ahmedov",
+                ProfilePictureUrl = "https://i.imgur.com/3tj9h9X.jpg",
+                PasswordHash = Guid.NewGuid().ToString(),
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Id = userId,
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0,
+                LockoutEnd = null,
+                PhoneNumber = null,
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                NormalizedEmail = "ZNEEKY@ABV.BG",
+                NormalizedUserName = "ZNEEKY",
+            };
+            _dbContext.Users.Add(existingUser);
+
+            var exisitngMuni = new Municipality
+            {
+                Id = municipalityId,
+                MunicipalityName = "Pancharevo",
+                OpenStreetMapCode = "3759439",
+                RegionId = Guid.Parse("D0282A05-BDB5-4B8D-B90C-AB62A3543ED8"),
+            };
+            _dbContext.Municipalities.Add(exisitngMuni);
+
+            var existingEmergency = new Emergency
+            {
+                Id = Guid.Parse(emergencyId),
+                Title = "Title",
+                Description = "Description",
+                ReportTime = DateTime.UtcNow,
+                ImageUrl = "imageUrl.jpg",
+                Latitude = 12.5,
+                Longitude = 13.5,
+                Address = "St address",
+                UserId = userId,
+                MunicipalityId = municipalityId,
+                Type = EmergencyType.Medical,
+                Status = EmergencyStatus.Reported,
+            };
+            _dbContext.Emergencies.Add(existingEmergency);
+            await _dbContext.SaveChangesAsync();
+
+            var updateDto = new UpdateEmergencyDto
+            {
+                Title = "Updated Title",
+                Description = "Updated Description",
+                ImageUrl = null,
+                Type = 0,
+                Status = 1
+            };
+
+
+            // Act
+            var result = await _emergenciesService.UpdateAsync(existingEmergency.Id.ToString(), updateDto);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(updateDto.Title, result.Title);
+            // Additional assertions based on your mock data...
         }
     }
 }
