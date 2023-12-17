@@ -214,5 +214,73 @@ namespace CityVoxWeb.Tests.Services
             Assert.NotNull(result);
             Assert.Equal(2, result.Count);
         }
+
+        [Fact]
+        public async Task GetByUserIdAsync_GivenValidUserId_ShouldReturnEmergenciesForThatUser()
+        {
+            //Arrange
+            Guid userId = Guid.NewGuid();
+            Guid userId2 = Guid.NewGuid();
+            Guid municipalityId = Guid.NewGuid();
+            Guid municipality2Id = Guid.NewGuid();
+
+            var existingUser = new ApplicationUser
+            {
+                UserName = "Zneeky",
+                Email = "zneeky@abv.bg",
+                FirstName = "Arkan",
+                LastName = "Ahmedov",
+                ProfilePictureUrl = "https://i.imgur.com/3tj9h9X.jpg",
+                PasswordHash = Guid.NewGuid().ToString(),
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Id = userId,
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = false,
+                TwoFactorEnabled = false,
+                LockoutEnabled = false,
+                AccessFailedCount = 0,
+                LockoutEnd = null,
+                PhoneNumber = null,
+                ConcurrencyStamp = Guid.NewGuid().ToString(),
+                NormalizedEmail = "ZNEEKY@ABV.BG",
+                NormalizedUserName = "ZNEEKY",
+            };
+            _dbContext.Users.Add(existingUser);
+
+            var exisitngMuni = new Municipality
+            {
+                Id = municipalityId,
+                MunicipalityName = "Pancharevo",
+                OpenStreetMapCode = "3759439",
+                RegionId = Guid.Parse("D0282A05-BDB5-4B8D-B90C-AB62A3543ED8"),
+            };
+
+            var exisitngMuni2 = new Municipality
+            {
+                Id = municipality2Id,
+                MunicipalityName = "Ilinden",
+                OpenStreetMapCode = "3759438",
+                RegionId = Guid.Parse("D0282A05-BDB5-4B8D-B90C-AB62A3543ED8"),
+            };
+            _dbContext.Municipalities.AddRange(exisitngMuni, exisitngMuni2);
+
+            var emergencies = new List<Emergency>
+            {
+                 new Emergency {Id = Guid.NewGuid(), Title = "Title", Description = "Description", ImageUrl = "imageUrl.jpg", Latitude = 12.5, Longitude = 13.5, Address = "St address", UserId = userId, MunicipalityId = municipalityId, Type = EmergencyType.Fire,  Status = EmergencyStatus.Reported},
+                 new Emergency {Id = Guid.NewGuid(), Title = "Title2", Description = "Description2", ImageUrl = "imageUrl2.jpg", Latitude = 32.5, Longitude = 31.5, Address = "2St address", UserId = userId, MunicipalityId = municipalityId, Type = EmergencyType.Medical,  Status = EmergencyStatus.Acknowledged},
+                 new Emergency {Id = Guid.NewGuid(), Title = "Title3", Description = "Description3", ImageUrl = "imageUrl3.jpg", Latitude = 32.5, Longitude = 31.5, Address = "3St address", UserId = userId, MunicipalityId = municipalityId, Type = EmergencyType.Fire,  Status = EmergencyStatus.Acknowledged},
+                 new Emergency {Id = Guid.NewGuid(), Title = "Title4", Description = "Description4", ImageUrl = "imageUrl4.jpg", Latitude = 32.5, Longitude = 31.5, Address = "4St address", UserId = userId, MunicipalityId = municipality2Id, Type = EmergencyType.Medical,  Status = EmergencyStatus.Acknowledged},
+            };
+
+            _dbContext.Emergencies.AddRange(emergencies);
+            await _dbContext.SaveChangesAsync();
+
+            //Act
+            var result = await _emergenciesService.GetByUserIdAsync(userId.ToString());
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(3, result.Count);
+        }
     }
 }
