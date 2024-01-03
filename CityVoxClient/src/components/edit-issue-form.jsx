@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
+  Grid,
   Button,
   TextField,
   FormControl,
@@ -261,21 +262,39 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
               helperText={touched.StatusValue && errors.StatusValue} // use Formik's touched and errors
             />
           )}
-          <Button type="submit" variant="contained" sx={{ mt: "4.5em" }}>
-            Edit
-          </Button>
+          <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+            <Grid item >
+              <Button type="submit" variant="contained" sx={{ mt: "4.5em" }}>
+                Edit
+              </Button>
+            </Grid>
 
-          {/* Delete button conditionally rendered */}
-          {(role === "admin" || issueFormData.CreatorUsername === username) && (
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDeleteIssue}
-              sx={{ mt: "4.5em", ml: "1em" }}
-            >
-              Delete
-            </Button>
-          )}
+            {(role === "Admin" || issueFormData.CreatorUsername === username) && (
+              <Grid item xs>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleDeleteIssue}
+                  sx={{ mt: "4.5em" }}
+                >
+                  Delete
+                </Button>
+              </Grid>
+            )}
+
+            {(role === "Admin" && type === "report") && (
+              <Grid item xs>
+                <Button
+                  variant="contained"
+                  color="background"
+                  onClick={handleDeleteIssue}
+                  sx={{ mt: "4.5em", width: '100%' }}
+                >
+                  Forward Report
+                </Button>
+              </Grid>
+            )}
+          </Grid>
         </Form>
       )}
     </Formik>
