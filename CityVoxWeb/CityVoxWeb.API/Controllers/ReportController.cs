@@ -84,8 +84,7 @@ namespace CityVoxWeb.API.Controllers
             return Ok(reports);
         }
 
-        [AllowAnonymous]
-        [HttpPost("submission")]
+        [HttpPost("call-sofia-submission")]
         public async Task<IActionResult> SubmitReportToSofiaCall([FromBody] ExportReportDto exportReportDto)
         {
             await _callWebCrawlerService.ForwardReportToCallSofia(exportReportDto);

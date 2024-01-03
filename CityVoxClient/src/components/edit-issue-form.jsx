@@ -19,6 +19,7 @@ import {
   DeleteReport,
   DeleteEmergency,
   DeleteInfIssue,
+  ForwardReportToCallSofia
 } from "../utils/api";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import * as Yup from "yup";
@@ -96,6 +97,15 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
       window.history.back();
     }
   };
+
+  const handleForwardReportToCallSofia = async () =>{
+    if (window.confirm("Are you sure you want to forward this report to callsofia.bg?")) {
+      const response = await ForwardReportToCallSofia(issueFormData);
+      if(response.status==="Ok"){
+        window.alert("Success")
+      }
+    }
+  }
 
   const handleFormSubmit = async (values) => {
     // If ImageUrl is a File object
@@ -287,7 +297,7 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
                 <Button
                   variant="contained"
                   color="background"
-                  onClick={handleDeleteIssue}
+                  onClick={handleForwardReportToCallSofia}
                   sx={{ mt: "4.5em", width: '100%' }}
                 >
                   Forward Report
