@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   Box,
+  Grid,
   Button,
   TextField,
   FormControl,
@@ -18,6 +19,7 @@ import {
   DeleteReport,
   DeleteEmergency,
   DeleteInfIssue,
+  ForwardReportToCallSofia
 } from "../utils/api";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import * as Yup from "yup";
@@ -96,6 +98,17 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
     }
   };
 
+  const handleForwardReportToCallSofia = async () =>{
+    if (window.confirm("Are you sure you want to forward this report to callsofia.bg?")) {
+      const response = await ForwardReportToCallSofia(issue);
+      if(response.status==="Ok"){
+        window.alert("Success")
+      }else{
+        window.alert("There was a problem forwarding the report!")
+      }
+    }
+  }
+
   const handleFormSubmit = async (values) => {
     // If ImageUrl is a File object
     if (values.ImageUrl instanceof File) {
@@ -111,8 +124,8 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
       await UpdateInfIssue(values);
     }
     // Do something after updating, e.g., show a success message or redirect
-    //navigate('/home');
-    window.history.back();
+    navigate('/home');
+    //window.history.back();
   };
 
   return (
@@ -261,21 +274,39 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
               helperText={touched.StatusValue && errors.StatusValue} // use Formik's touched and errors
             />
           )}
-          <Button type="submit" variant="contained" sx={{ mt: "4.5em" }}>
-            Edit
-          </Button>
+          <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+            <Grid item >
+              <Button type="submit" variant="contained" sx={{ mt: "4.5em" }}>
+                Edit
+              </Button>
+            </Grid>
 
-          {/* Delete button conditionally rendered */}
-          {(role === "admin" || issueFormData.CreatorUsername === username) && (
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleDeleteIssue}
-              sx={{ mt: "4.5em", ml: "1em" }}
-            >
-              Delete
-            </Button>
-          )}
+            {(role === "Admin" || issueFormData.CreatorUsername === username) && (
+              <Grid item xs>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleDeleteIssue}
+                  sx={{ mt: "4.5em" }}
+                >
+                  Delete
+                </Button>
+              </Grid>
+            )}
+
+            {(role === "Admin" && type === "report") && (
+              <Grid item xs>
+                <Button
+                  variant="contained"
+                  color="background"
+                  onClick={handleForwardReportToCallSofia}
+                  sx={{ mt: "4.5em", width: '100%' }}
+                >
+                  Forward Report
+                </Button>
+              </Grid>
+            )}
+          </Grid>
         </Form>
       )}
     </Formik>

@@ -552,6 +552,17 @@ export const DeleteReport = async (reportId) => {
   }
 };
 
+//Call to forward report to callsofia
+export const ForwardReportToCallSofia = async (report) => {
+  try{
+    console.log(report)
+    const response = await instance.post(`api/reports/call-sofia-submission`, report);
+    return response;
+  }catch (err) {
+    console.log(err);
+  }
+}
+
 //Call to get all requested InfIssues
 export const GetRequestedInfIssues = async (page, count) => {
   try {

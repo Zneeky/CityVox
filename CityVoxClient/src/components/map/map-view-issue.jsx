@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 // Component to move the map view to the location of a specific issue
 const MoveToIssueLocation = ({ issue }) => {
@@ -82,19 +82,21 @@ const MapViewIssue = ({ issue, type }) => {
         >
           {/* Popup with details about the issue */}
           <Popup minWidth={90}>
-            <Typography variant="h6">{issue.Title}</Typography>
-            <Typography variant="body1">{issue.Description}</Typography>
-            <Typography variant="body4" color="text.secondary">
-              Municipality: {issue.Municipality}
-              <br />
-              Coordinates: {issue.Latitude}, {issue.Longitude}
-              <br />
-              Address: {issue.Address}
-            </Typography>
-            <Typography variant="body2">Type: {issue.Type}</Typography>
-            <Typography variant="body2">
-              Submitted By: {issue.CreatorUsername}
-            </Typography>
+            <Box sx={{ maxHeight: '500px', overflowY: 'auto' }}>
+              <Typography variant="h6">{issue.Title}</Typography>
+              <Typography variant="body1">{issue.Description}</Typography>
+              <Typography variant="body4" color="text.secondary">
+                Municipality: {issue.Municipality}
+                <br />
+                Coordinates: {issue.Latitude}, {issue.Longitude}
+                <br />
+                Address: {issue.Address}
+              </Typography>
+              <Typography variant="body2">Type: {issue.Type}</Typography>
+              <Typography variant="body2">
+                Submitted By: {issue.CreatorUsername}
+              </Typography>
+            </Box>
           </Popup>
         </Marker>
       )}
