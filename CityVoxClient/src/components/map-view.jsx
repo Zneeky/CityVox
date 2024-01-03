@@ -71,7 +71,7 @@ const MapView = ({ selectedMunicipalityId, osmId, issueToPresent = "all" }) => {
     }
   };
 
-  const getLinkToEdit = (type) =>{
+  const getLinkToEdit = (type) => {
     if (type === "report") {
       return `reports`; //red
     } else if (type === "emergency") {
@@ -111,7 +111,7 @@ const MapView = ({ selectedMunicipalityId, osmId, issueToPresent = "all" }) => {
       ref={mapRef}
       center={center}
       zoom={zoom}
-      style={{ width: "100%", height:"100%" }}
+      style={{ width: "100%", height: "100%" }}
       whenCreated={(mapInstance) => {
         mapRef.current = mapInstance;
       }}
@@ -136,10 +136,11 @@ const MapView = ({ selectedMunicipalityId, osmId, issueToPresent = "all" }) => {
             icon={createColoredIcon(getStatusColor(issue.Represent))} // Pass the correct color based on the right representation
           >
             <Popup minWidth={90}>
-              <Typography variant="h6">
+              <Box sx={{ maxHeight: '500px', overflowY: 'auto' }}>
+              <Typography variant="h6" sx={{wordWrap: 'break-word'}}>
                 {issue.Title}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{wordWrap: 'break-word'}}>
                 {issue.Description}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -148,18 +149,19 @@ const MapView = ({ selectedMunicipalityId, osmId, issueToPresent = "all" }) => {
                 Address: {issue.Address}
               </Typography>
               <Box display="flex" justifyContent="space-between">
-              <Typography variant="body2">
-                Submitted By: {issue.CreatorUsername}
-              </Typography>
-              {(appUser.username === issue.CreatorUsername || appUser.role === "Admin") ? (
-                <Button type="text" onClick={() => navigate(`/${getLinkToEdit(issue.Represent)}/edit/${issue.Id}`)}>
-                  Edit Issue
-                </Button>
-              ):(
-                <Button  type="text" onClick={() => navigate(`/${getLinkToEdit(issue.Represent)}/${issue.Id}`)}>
+                <Typography variant="body2">
+                  Submitted By: {issue.CreatorUsername}
+                </Typography>
+                {(appUser.username === issue.CreatorUsername || appUser.role === "Admin") && (
+                  <Button type="text" onClick={() => navigate(`/${getLinkToEdit(issue.Represent)}/edit/${issue.Id}`)}>
+                    Edit
+                  </Button>
+                )}
+                <Button type="text" onClick={() => navigate(`/${getLinkToEdit(issue.Represent)}/${issue.Id}`)}>
                   View
                 </Button>
-              )}
+
+              </Box>
               </Box>
             </Popup>
           </Marker>
