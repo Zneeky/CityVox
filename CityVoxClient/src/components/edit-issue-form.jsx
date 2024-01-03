@@ -100,9 +100,11 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
 
   const handleForwardReportToCallSofia = async () =>{
     if (window.confirm("Are you sure you want to forward this report to callsofia.bg?")) {
-      const response = await ForwardReportToCallSofia(issueFormData);
+      const response = await ForwardReportToCallSofia(issue);
       if(response.status==="Ok"){
         window.alert("Success")
+      }else{
+        window.alert("There was a problem forwarding the report!")
       }
     }
   }
@@ -122,8 +124,8 @@ const EditIssueForm = ({ type, issueTypes, statusTypes, issue }) => {
       await UpdateInfIssue(values);
     }
     // Do something after updating, e.g., show a success message or redirect
-    //navigate('/home');
-    window.history.back();
+    navigate('/home');
+    //window.history.back();
   };
 
   return (

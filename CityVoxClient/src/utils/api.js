@@ -556,7 +556,7 @@ export const DeleteReport = async (reportId) => {
 export const ForwardReportToCallSofia = async (report) => {
   try{
     console.log(report)
-    const response = await instance.put(`api/reports/call-sofia-submission`, report);
+    const response = await instance.post(`api/reports/call-sofia-submission`, report);
     return response;
   }catch (err) {
     console.log(err);
