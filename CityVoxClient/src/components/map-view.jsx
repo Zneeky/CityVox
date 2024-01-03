@@ -151,7 +151,7 @@ const MapView = ({ selectedMunicipalityId, osmId, issueToPresent = "all" }) => {
               <Typography variant="body2">
                 Submitted By: {issue.CreatorUsername}
               </Typography>
-              {appUser.username === issue.CreatorUsername ? (
+              {(appUser.username === issue.CreatorUsername || appUser.role === "Admin") ? (
                 <Button type="text" onClick={() => navigate(`/${getLinkToEdit(issue.Represent)}/edit/${issue.Id}`)}>
                   Edit Issue
                 </Button>
