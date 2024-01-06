@@ -16,12 +16,15 @@ import { Logo } from "../styling/Logo";
 import { Scrollbar } from "../styling/scroll-bar";
 import { items } from "./configuration";
 import { SideNavItem } from "./side-nav-item";
+import ThreeScene from "../planet/planet-component";
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = useLocation();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const itemsArray = items();
+  
+
 
   const content = (
     <Scrollbar
@@ -144,7 +147,8 @@ export const SideNav = (props) => {
               },
             }}
           >
-            <img alt="Globe" src="/images/globe-removebg.png" />
+            <ThreeScene/>
+           
           </Box>
           <Button
             component="a"
