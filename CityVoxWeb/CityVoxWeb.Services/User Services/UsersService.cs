@@ -222,7 +222,7 @@ namespace CityVoxWeb.Services.User_Services
                 _dbContext.MunicipalityRepresentatives.Add(muniRep);
                 await _dbContext.SaveChangesAsync();
 
-                await _userManager.AddToRoleAsync(user, "representative");
+                await _userManager.AddToRoleAsync(user, "Representative");
 
                 return true;
             }
@@ -237,7 +237,7 @@ namespace CityVoxWeb.Services.User_Services
             try
             {
                 var user = await _userManager.FindByNameAsync(username) ?? throw new ArgumentNullException("There is no such user!");
-                await _userManager.AddToRoleAsync(user, "admin");
+                await _userManager.AddToRoleAsync(user, "Admin");
                 return true;
             }
             catch (Exception ex)
