@@ -3,6 +3,7 @@ name: Deploy ASP.NET WEB API to Azure and run test on Qodana
 on:
   push:
     branches:
+    - main
     - SofiaCallWebCrawler
 env:
   AZURE_WEBAPP_NAME: CityVox

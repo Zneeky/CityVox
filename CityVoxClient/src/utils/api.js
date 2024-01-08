@@ -1,7 +1,12 @@
-import axios from 'axios';
-import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_UPLOAD_URL, httpsApiCode } from './consts';
+import axios from "axios";
+import {
+  CLOUDINARY_UPLOAD_PRESET,
+  CLOUDINARY_UPLOAD_URL,
+  httpsApiCode,
+} from "./consts";
 import { setLogin, setLogout } from "../redux";
 import { store } from "../redux/store";
+import { useState } from "react";
 
 //img upload to cloudinary.com anonymous
 export const uploadToCloudinary = async (file) => {
@@ -58,7 +63,7 @@ export const RegisterUser = async (values, onSubmitProps) => {
 
   try {
     const response = await instance.post(
-      `${httpsApiCode}api/auth/register`,
+      `${import.meta.env.VITE_API_URL}api/auth/register`,
       values
     );
     return response;
@@ -71,7 +76,7 @@ export const RegisterUser = async (values, onSubmitProps) => {
 export const LoginUser = async (values, onSubmitProps) => {
   try {
     const response = await instance.post(
-      `${httpsApiCode}api/auth/login`,
+      `${import.meta.env.VITE_API_URL}api/auth/login`,
       values
     );
 
@@ -84,7 +89,7 @@ export const LoginUser = async (values, onSubmitProps) => {
 //login with refreshToken api call anonymous
 export const LoginRefresh = async () => {
   try {
-    const response = await instance.get(`${httpsApiCode}api/auth/login/token`);
+    const response = await instance.get(`${import.meta.env.VITE_API_URL}api/auth/login/token`);
 
     return response;
   } catch (error) {
@@ -95,7 +100,7 @@ export const LoginRefresh = async () => {
 //logout to delete refreshToken api call anonymous
 export const LogoutRefresh = async () => {
   try {
-    const response = await instance.get(`${httpsApiCode}api/auth/logout`);
+    const response = await instance.get(`${import.meta.env.VITE_API_URL}api/auth/logout`);
     store.dispatch(setLogout({}));
     return response;
   } catch (error) {
@@ -109,7 +114,7 @@ export const LogoutRefresh = async () => {
 //For Authorized calls there will be the need of JWT token and the RefreshToken which is HTTPS only
 //Instance for being able to manage the token states
 const instance = axios.create({
-  baseURL: httpsApiCode,
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
@@ -179,6 +184,24 @@ export const UpdateCurrentUser = async (updateUserDto) => {
   }
 };
 
+//Call to get all the notifications
+export const GetAllNotifications = async (userId) => {
+  try {
+    const response = await instance.get(`api/notifications/${userId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const MarkNotificationRead = async (notificationId) => {
+  try {
+    await instance.put(`api/notifications/${notificationId}`);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 //Call to get the regions
 export const GetRegions = async () => {
   try {
@@ -189,104 +212,102 @@ export const GetRegions = async () => {
   }
 };
 
-  export const GetMunicipalities = async (regionId) => {
-    try {
-      const response = await instance.get(`api/map/municipalities/${regionId}`);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  export const PromoteToAdmin = async(username) =>{
-    try{
-      const response = await instance.post(`api/users/admins`,JSON.stringify(username))
-      return response.data
-    }
-    catch(err){
-      console.log(err);
-    }
+export const GetMunicipalities = async (regionId) => {
+  try {
+    const response = await instance.get(`api/map/municipalities/${regionId}`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
   }
-  
-  
-  //Call to promote user to representative
-  export const PromoteToRepresentative = async(muniRepDto) => {
-    try{
-      const response = await instance.post(`api/users/representatives`,muniRepDto,)
-      return response.data;
-    }
-    catch(err){
-      console.log(err);
-    }
+};
+export const PromoteToAdmin = async (username) => {
+  try {
+    const response = await instance.post(
+      `api/users/admins`,
+      JSON.stringify(username)
+    );
+    return response.data;
+  } catch (err) {
+    console.log(err);
   }
-  export const GetUsersCount = async () => {
-    try {
-      const response = await instance.get(`api/users/count`);
-      return response.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
-  //Call to get users by page and count
-  export const GetUsers = async (page, count) => {
-    try {
-      const response = await instance.get(
-        `api/users?page=${page}&count=${count}`
-      );
-      return response.data.$values
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
+};
 
-  //Call to get all reports by municipality
-export const GetReportsByMunicipality = async (muniId) => {
+//Call to promote user to representative
+export const PromoteToRepresentative = async (muniRepDto) => {
+  try {
+    const response = await instance.post(
+      `api/users/representatives`,
+      muniRepDto
+    );
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const GetUsersCount = async () => {
+  try {
+    const response = await instance.get(`api/users/count`);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get users by page and count
+export const GetUsers = async (page, count) => {
   try {
     const response = await instance.get(
-      `api/reports/municipalities/${muniId}`
+      `api/users?page=${page}&count=${count}`
     );
+    return response.data.$values;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+//Call to get all reports by municipalityrId
+export const GetReportsByMunicipality = async (muniId) => {
+  try {
+    const response = await instance.get(`api/reports/municipalities/${muniId}`);
     return response?.data?.$values;
   } catch (err) {
     console.log(err);
   }
 };
-  
 
- //Call to get User's approved issue so they can create posts
-  export const GetApprovedIssuesForUser = async (userId) => {
-    try {
-  
-      // Start all three requests in parallel.
-      const [response1, response2, response3] = await Promise.all([
-        instance.get(`api/reports/valid/users/${userId}`),
-        instance.get(`api/emergencies/valid/users/${userId}`),
-        instance.get(`api/infIssues/valid/users/${userId}`),
-      ]);
-  
-      // Combine the results of the three responses into one array.
-      let issueArray = [
-        ...response1.data.$values,
-        ...response2.data.$values,
-        ...response3.data.$values,
-      ];
-  
-      return issueArray; // return the combined array
-    } catch (err) {
-      console.log(err);
-      return null; // or handle the error in a way suitable for your application
-    }
-  };
-  //Call to create a Post
-  export const CreatePost = async (postData) => {
-    try {
-      const response = await instance.post(`api/posts`, postData);
-  
-      return response.data;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+//Call to get User's approved issue so they can create posts
+export const GetApprovedIssuesForUser = async (userId) => {
+  try {
+    // Start all three requests in parallel.
+    const [response1, response2, response3] = await Promise.all([
+      instance.get(`api/reports/valid/users/${userId}`),
+      instance.get(`api/emergencies/valid/users/${userId}`),
+      instance.get(`api/infIssues/valid/users/${userId}`),
+    ]);
+
+    // Combine the results of the three responses into one array.
+    let issueArray = [
+      ...response1.data.$values,
+      ...response2.data.$values,
+      ...response3.data.$values,
+    ];
+
+    return issueArray; // return the combined array
+  } catch (err) {
+    console.log(err);
+    return null; // or handle the error in a way suitable for your application
+  }
+};
+//Call to create a Post
+export const CreatePost = async (postData) => {
+  try {
+    const response = await instance.post(`api/posts`, postData);
+
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 //Call to create a formal Post only for representatives
 export const CreateFormalPost = async (postData) => {
@@ -334,9 +355,7 @@ export const CreateComment = async (commentDto) => {
 //Call to create a vote
 export const CreateUpVote = async (postId) => {
   try {
-    const response = await instance.post(
-      `api/posts/vote/${postId}`,
-    );
+    const response = await instance.post(`api/posts/vote/${postId}`);
     return response;
   } catch (err) {
     console.log(err);
@@ -515,7 +534,8 @@ export const UpdateReport = async (formData) => {
   try {
     const response = await instance.patch(
       `api/reports/${formData.Id}`,
-      updateReportDto);
+      updateReportDto
+    );
 
     return response.data;
   } catch (err) {
@@ -531,6 +551,17 @@ export const DeleteReport = async (reportId) => {
     console.log(err);
   }
 };
+
+//Call to forward report to callsofia
+export const ForwardReportToCallSofia = async (report) => {
+  try{
+    console.log(report)
+    const response = await instance.post(`api/reports/call-sofia-submission`, report);
+    return response;
+  }catch (err) {
+    console.log(err);
+  }
+}
 
 //Call to get all requested InfIssues
 export const GetRequestedInfIssues = async (page, count) => {
@@ -611,7 +642,7 @@ export const UpdateInfIssue = async (formData) => {
     const response = await instance.patch(
       `api/infIssues/${formData.Id}`,
       updateInfIssueDto
-      );
+    );
 
     return response.data;
   } catch (err) {

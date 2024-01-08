@@ -9,7 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { SideNav } from "../../components/navigation/side-nav";
 import { TopNav } from "../../components/navigation/top-nav";
 import LineChart from "../../components/dashboardcomponents/line-chart";
-import BarChart from "../../components/dashboardcomponents/bar-chart";
+import ProgressCircle from "../../components/dashboardcomponents/progress-circle";
 import StatBox from "../../components/dashboardcomponents/stat-box";
 import MapView from "../../components/map-view";
 
@@ -163,7 +163,7 @@ const Dashboard = () => {
           backgroundColor={palette.dashboard.cardBackground}
           p="30px"
         >
-          <Typography variant="h5" fontWeight="600">
+          <Typography variant="h5" fontWeight="600" color = "black">
             Recently Added
           </Typography>
           <Box
@@ -180,16 +180,22 @@ const Dashboard = () => {
           gridRow="span 2"
           backgroundColor={palette.dashboard.cardBackground}
         >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mt="25px"
           >
-            Idk bro
-          </Typography>
-          <Box height="250px" mt="20px">
-            <img src="https://fpmi.bg/cms/wp-content/uploads/2018/02/al_petkov.jpg" alt="Sashko savage" style={{ width: '100%', height: '90%', objectFit: 'cover' }}/>
-            
+            <ProgressCircle size="125" />
+            <Typography
+              variant="h5"
+              color={palette.dashboard.cardTextPrimary}
+              sx={{ mt: "15px" }}
+            >
+              Total Users online
+            </Typography>
+            <Typography color={palette.dashboard.cardTextPrimary}>Includes admins and special users</Typography>
+
           </Box>
         </Box>
         <Box
@@ -202,6 +208,7 @@ const Dashboard = () => {
             variant="h5"
             fontWeight="600"
             sx={{ marginBottom: "15px" }}
+            color = "black"
           >
             Geographic Map
           </Typography>

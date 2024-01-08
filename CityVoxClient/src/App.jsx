@@ -12,13 +12,17 @@ import Home from "./pages/home-page";
 import CreateReport from "./pages/create-report";
 import CreateEmergency from "./pages/create-emergency";
 import CreateInfIssue from "./pages/create-inf-issue";
-import EditReport from "./edit-pages/edit-report";
-import EditEmergency from "./edit-pages/edit-emergency";
-import EditInfIssue from "./edit-pages/edit-inf-issue";
+import EditReport from "./pages/edit-pages/edit-report";
+import EditEmergency from "./pages/edit-pages/edit-emergency";
+import EditInfIssue from "./pages/edit-pages/edit-inf-issue";
+import Emergency from './pages/issue-pages/emergency';
+import InfIssue from './pages/issue-pages/inf-issue';
+import Report from './pages/issue-pages/report';
 import Requests from "./pages/admin/requests-page";
 import PostPage from "./pages/post/post-page";
 import ManageUsers from './pages/admin/manage-users';
 import Account from "./pages/account";
+import Root from "./pages/root-page"
 import 'leaflet/dist/leaflet.css'
 
 function App() {
@@ -45,7 +49,7 @@ function App() {
             ) : (
               <>
                 {/*Public routes for non-authenticated users*/}
-                {/* <Route path="/" element={<Root />} /> */}
+                <Route path="/" element={<Root />} />
                 <Route path="/auth/register" element={<Register />} />
                 <Route path="/auth/login" element={<Login />} />
               </>
@@ -65,6 +69,9 @@ function App() {
               <Route path="/account" element={<Account />}></Route>
               <Route path="/emergency" element={<CreateEmergency />}></Route>
               <Route path="/events"></Route>
+              <Route path="/reports/:reportId" element={<Report />}></Route>
+              <Route path="/emergencies/:emergencyId" element={<Emergency />}></Route>
+              <Route path="/infrastructure_issues/:infIssueId" element={<InfIssue />}></Route>
               <Route
                 path="/infrastructure_issue"
                 element={<CreateInfIssue />}

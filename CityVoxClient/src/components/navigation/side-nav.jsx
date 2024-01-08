@@ -16,12 +16,15 @@ import { Logo } from "../styling/Logo";
 import { Scrollbar } from "../styling/scroll-bar";
 import { items } from "./configuration";
 import { SideNavItem } from "./side-nav-item";
+import video from "../../../public/videos/planet-logo.mp4"
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = useLocation();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const itemsArray = items();
+  
+
 
   const content = (
     <Scrollbar
@@ -121,30 +124,32 @@ export const SideNav = (props) => {
           sx={{
             px: 2,
             py: 3,
+            position: "relative", // Make the position relative
+            overflow: "hidden", // Hide overflow to confine the ThreeScene within the box
           }}
         >
           <Typography color="neutral.100" variant="subtitle2">
             Better world together, step by step!
           </Typography>
-          {/* <Typography color="neutral.400" variant="body2">
-            Open for hiring.
-          </Typography> */}
-          {/* <Typography color="neutral.500" variant="body2">
-            Check out my GitHub!
-          </Typography> */}
+          {/* ... (existing code) */}
           <Box
             sx={{
               display: "flex",
               mt: 2,
               mx: "auto",
-              width: "160px",
-              "& img": {
-                width: "100%",
-                height: "170px"
-              },
+              width: "200px",
+              height: "200px", // Set a fixed height for the box
+              overflow: "hidden", // Hide overflow to confine the ThreeScene
+              display: "flex",
+            flexDirection: "column",
+            alignItems: "center", // Center horizontally
+            justifyContent: "center", // Center vertically
             }}
           >
-            <img alt="Globe" src="/images/globe-removebg.png" />
+            <video width={300} height={200} loop muted autoPlay>
+      <source src={video} type="video/mp4"/>
+     </video>
+
           </Box>
           <Button
             component="a"
@@ -154,12 +159,12 @@ export const SideNav = (props) => {
               </SvgIcon>
             }
             fullWidth
-            href="https://github.com/Zneeky"
+            href="https://github.com/Zneeky/CityVox"
             sx={{ mt: 2 }}
             target="_blank"
             variant="contained"
           >
-            Zneeky
+            CityVox
           </Button>
         </Box>
       </Box>

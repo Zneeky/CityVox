@@ -16,24 +16,89 @@ import {
   Tooltip,
   useMediaQuery,
   useTheme,
+  Menu,
+  MenuItem,
 } from "@mui/material";
+import NotificationForm from "../notification/notification-form";
 import { alpha } from "@mui/material/styles";
 import { usePopover } from "../../hooks/use-popover";
 import { AccountPopover } from "./account-popover";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "../../redux/index";
+import { useCallback, useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { GetAllNotifications, MarkNotificationRead } from "../../utils/api";
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
 
+// Additional logic, if needed, can be placed here
+
 export const TopNav = (props) => {
   const { onNavOpen } = props;
-  const user = useSelector((state) => state.user)
+  const user = useSelector((state) => state.user);
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const accountPopover = usePopover();
   const dispatch = useDispatch();
   const theme = useTheme();
   const dark = theme.palette.static.dark;
+  const navigate = useNavigate();
+
+  const [userNotifications, setNotifications] = useState([]);
+  const [notificationMenu, setNotificationMenu] = useState(null);
+  const [unreadNotificationsValue, setUnreadValue] = useState();
+
+  const unreadNotificationsCount = (allNotifications) => {
+    const notificationsArray = Array.isArray(allNotifications)
+      ? allNotifications
+      : [allNotifications];
+    const unreadCount = notificationsArray.filter(
+      (notification) => !notification.IsRead
+    ).length;
+
+    return unreadCount;
+  };
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const notifications = await GetAllNotifications(user.id);
+        setUnreadValue(unreadNotificationsCount(notifications.$values));
+        setNotifications(notifications);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchNotifications();
+  }, [user.id]);
+
+  const onClickNotification = async (notification) => {
+    try {
+      await MarkNotificationRead(notification.Id);
+
+      const updatedNotifications = await GetAllNotifications(user.id);
+      setUnreadValue(unreadNotificationsCount(updatedNotifications.$values));
+      setNotifications(updatedNotifications);
+
+      onNotificatonsDropdownClose();
+
+      const issueType = notification.Content.split(",")[1].trim();
+      const reportId = notification.Content.split(",")[2].trim();
+
+      navigate(`/${issueType}s/edit/${reportId}`);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const onBellClick = (event) => {
+    setNotificationMenu(event.currentTarget);
+  };
+
+  const onNotificatonsDropdownClose = () => {
+    setNotificationMenu(null);
+  };
 
   return (
     <>
@@ -90,14 +155,43 @@ export const TopNav = (props) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="Notifications">
-              <IconButton>
-                <Badge badgeContent={4} color="success" variant="dot">
-                  <SvgIcon fontSize="small">
+              <IconButton onClick={onBellClick}>
+                <Badge
+                  badgeContent={
+                    unreadNotificationsValue > 0
+                      ? unreadNotificationsValue
+                      : null
+                  }
+                  color={"error"}
+                >
+                  <SvgIcon fontSize="medium">
                     <BellIcon />
                   </SvgIcon>
                 </Badge>
               </IconButton>
             </Tooltip>
+            {/*notifications dropdown */}
+            <Menu
+              anchorEl={notificationMenu}
+              open={Boolean(notificationMenu)}
+              onClose={onNotificatonsDropdownClose}
+              PaperProps={{
+                style: {
+                  maxHeight: "65%",
+                },
+              }}
+            >
+              {userNotifications.$values !== undefined &&
+                userNotifications.$values.map((notification) => (
+                  <MenuItem key={notification.Id}>
+                    <NotificationForm
+                      title={notification.Content.split(",")[0]}
+                      dateTime={notification.TimeSent}
+                      handleClick={() => onClickNotification(notification)}
+                    />
+                  </MenuItem>
+                ))}
+            </Menu>
             <Avatar
               onClick={accountPopover.handleOpen}
               ref={accountPopover.anchorRef}

@@ -52,6 +52,11 @@ const AccountProfileDetails = () => {
             Email: values.email,
             ProfilePictureUrl: values.pfp
         }
+
+        const response = await UpdateCurrentUser(updateUserDto);
+        if (response.status === 200) {
+            setOpenSnackbar(true);
+        }
     }; 
 
     return (
