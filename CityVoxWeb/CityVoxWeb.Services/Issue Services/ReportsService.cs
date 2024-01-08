@@ -53,10 +53,11 @@ namespace CityVoxWeb.Services.Issue_Services
                     ?? throw new Exception("Invalid id!");
 
                 _mapper.Map(reportDto, report);               
-                await _dbContext.SaveChangesAsync();
+                //await _dbContext.SaveChangesAsync();
 
                await _notificationService.CreateNotificationForReportAsync(reportDto.Status, "report", report);
                 var exportReportDto = _mapper.Map<ExportReportDto>(report);
+                await _dbContext.SaveChangesAsync();
                 return exportReportDto;
             }
             catch (Exception ex)

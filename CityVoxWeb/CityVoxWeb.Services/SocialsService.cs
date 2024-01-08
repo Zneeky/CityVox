@@ -93,6 +93,7 @@ namespace CityVoxWeb.Services
                     .Include(p => p.Event)
                     .Include(p => p.InfrastructureIssue)
                     .Include(p => p.Comments)
+                    .ThenInclude(c => c.User)
                     .Where(p => p.Report != null && p.Report.MunicipalityId.ToString() == municipalityId
                              || p.Emergency != null && p.Emergency.MunicipalityId.ToString() == municipalityId
                              || p.Event != null && p.Event.MunicipalityId.ToString() == municipalityId
@@ -132,6 +133,7 @@ namespace CityVoxWeb.Services
                     .Include(p => p.Event)
                     .Include(p => p.InfrastructureIssue)
                     .Include(p => p.Comments)
+                    .ThenInclude(c => c.User)
                     .Where(p => representativeUserIds.Contains(p.UserId))
                     .ToListAsync();
 

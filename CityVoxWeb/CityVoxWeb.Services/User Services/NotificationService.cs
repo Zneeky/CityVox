@@ -41,7 +41,6 @@ namespace CityVoxWeb.Services.User_Services
                 };
 
                 await _dbContext.Notifications.AddAsync(notificationToCreate);
-                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -63,7 +62,6 @@ namespace CityVoxWeb.Services.User_Services
                 };
 
                 await _dbContext.Notifications.AddAsync(notificationToCreate);
-                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
