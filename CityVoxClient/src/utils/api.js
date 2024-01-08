@@ -223,8 +223,7 @@ export const GetMunicipalities = async (regionId) => {
 export const PromoteToAdmin = async (username) => {
   try {
     const response = await instance.post(
-      `api/users/admins`,
-      JSON.stringify(username)
+      `api/users/admins/${username}`
     );
     return response.data;
   } catch (err) {

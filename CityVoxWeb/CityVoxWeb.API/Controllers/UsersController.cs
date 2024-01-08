@@ -53,9 +53,9 @@ namespace CityVoxWeb.API.Controllers
             return Ok(user);
         }
 
-        [HttpPost("admins")]
+        [HttpPost("admins/{username}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateAdmin([FromBody] string username)
+        public async Task<IActionResult> CreateAdmin(string username)
         {
             var wasCreated = await _userService.CreateNewAdminAsync(username);
 

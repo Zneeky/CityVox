@@ -35,7 +35,7 @@ const UserRoleChangeDialog = ({ open, onClose, username }) => {
     });
 
     const handleRoleChange = async (values) => {
-        if (role === "representative") {
+        if (role === "Representative") {
             // API call to promote to representative using values
             if (window.confirm('Are you sure you want to promote this user to representative?')){
                 const createMuniRepDto ={
