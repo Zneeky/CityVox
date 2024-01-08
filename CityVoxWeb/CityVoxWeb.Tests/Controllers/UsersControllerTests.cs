@@ -1,6 +1,7 @@
 ﻿using CityVoxWeb.API.Controllers;
 using CityVoxWeb.DTOs.Users;
 using CityVoxWeb.Services.Interfaces;
+using CityVoxWeb.Services.User_Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -49,8 +50,8 @@ namespace CityVoxWeb.Tests.Controllers
         public async Task GetUser_ShouldReturnUserDetails()
         {
             // Arrange
-            var expectedUser = new UserDefaultDto() { /* sample properties */ };
-          //  _mockUserService.Setup(service => service.GetByUsernameAsync(It.IsAny<string>())).ReturnsAsync(expectedUser);
+            var expectedUser = new UserWithIdDto() { /* sample properties */ };
+            _mockUserService.Setup(service => service.GetByUsernameAsync(It.IsAny<string>())).ReturnsAsync(expectedUser);
             // Act
             var result = await _controller.GetUser("sampleUsername");
 
