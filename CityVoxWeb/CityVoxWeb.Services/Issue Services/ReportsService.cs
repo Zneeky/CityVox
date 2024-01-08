@@ -55,9 +55,9 @@ namespace CityVoxWeb.Services.Issue_Services
                 _mapper.Map(reportDto, report);               
                 //await _dbContext.SaveChangesAsync();
 
-               await _notificationService.CreateNotificationForReportAsync(reportDto.Status, "report", report);
-                var exportReportDto = _mapper.Map<ExportReportDto>(report);
+                await _notificationService.CreateNotificationForReportAsync(reportDto.Status, "report", report);
                 await _dbContext.SaveChangesAsync();
+                var exportReportDto = _mapper.Map<ExportReportDto>(report);
                 return exportReportDto;
             }
             catch (Exception ex)

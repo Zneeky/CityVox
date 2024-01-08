@@ -90,7 +90,7 @@ namespace CityVoxWeb.Services.User_Services
                 await page.ClickAsync("#map-canvas");
 
                 // Map the ReportType to the website's form options
-                string mappedType = MapReportType(reportDto.TypeValue);
+                string mappedType = MapReportTypeSelectorV1(reportDto.TypeValue);
 
                 // ISSUE INFORMATION FIELDS
                 //Target the title field
@@ -105,11 +105,48 @@ namespace CityVoxWeb.Services.User_Services
                 await frameDescription.TypeAsync("body#tinymce", reportDto.Description);
 
                 //select the category based on the report type
-                await page.SelectAsync("#CATEGORY_ID", mappedType);
+                //await page.SelectAsync("#CATEGORY_ID", mappedType);
+                await page.SelectAsync("#CATEGORY_SCRIPT_ID", mappedType);
+
+
+                // Selector for the parent div
+                string parentDivSelector = "#CurrentQuestion";
+
+                // Check if the parent div exists
+                bool isParentDivPresent = await page.WaitForSelectorAsync(parentDivSelector, new WaitForSelectorOptions { Timeout = 5000 }).ContinueWith(task => task.IsCompletedSuccessfully);
+
+                if (isParentDivPresent)
+                {
+                    // The parent div exists, so we attempt to click the button
+                    while (true)
+                    {
+                        try
+                        {
+                            // Selector for the button with specific data-bind attribute and class
+                            string buttonSelector = "button[data-bind*='selectQuestion'][class='btn btn-default']";
+
+                            // Wait for the button to be available for clicking
+                            await page.WaitForSelectorAsync(buttonSelector);
+
+                            // Click the button
+                            await page.ClickAsync(buttonSelector);
+
+                            // Wait for some condition or delay to ensure the button can reappear
+                            await page.WaitForTimeoutAsync(500); // Example delay
+                        }
+                        catch (PuppeteerException)
+                        {
+                            // If the WaitForSelectorAsync times out, the button is not present, and we break the loop
+                            break;
+                        }
+                    }
+                    // Continue with the next step after the button has been clicked as needed
+                }
+
 
                 // USER's INFORMATION FIELD
                 await page.TypeAsync("#SUBMITTER_NAME", $"{user.FirstName} {user.LastName}");
-                await page.TypeAsync("#SUBMITTER_PHONE", "0882331910");
+                await page.TypeAsync("#SUBMITTER_PHONE", "0889765432");
                 await page.TypeAsync("#SUBMITTER_EMAIL", user.Email);
 
                 //SUBMIT REPORT
@@ -130,6 +167,9 @@ namespace CityVoxWeb.Services.User_Services
                 //Here could be added logic that would check the how much money are left in the account and if they are less than 0.2$ to throw an exception of insufficient funds
                 await recaptchaPlugin.SolveCaptchaAsync(page);
 
+                //Delay to see the submitted result
+                await Task.Delay(TimeSpan.FromMinutes(1));
+
                 //This is intended to stop the execution until we are ready with actual report cases, that are valid and can be directed to SofiaCall
                 await page.ClickAsync("#submit-button-selector");
 
@@ -142,7 +182,40 @@ namespace CityVoxWeb.Services.User_Services
         }
 
 
-        private static string MapReportType(int typeValue)
+        private static string MapReportTypeSelectorV1(int typeValue)
+        {
+            // Implement the mapping logic here
+            //Littering = 0,
+            //Graffiti = 1,
+            //RoadIssues = 2,
+            //StreetlightIssues = 3,
+            //ParkingViolation = 4,
+            //PublicFacilities = 5,
+            //TreeHazards = 6,
+            //TrafficConcerns = 7,
+            //Wildlife = 8,
+            //PublicTransport = 9,
+            //Sidewalks = 10,
+            //Other = 11,
+            return typeValue switch
+            {
+                0 => "10196",
+                1 => "300048",
+                2 => "30056",
+                3 => "280068",
+                4 => "50154",
+                5 => "90198",
+                6 => "60195",
+                7 => "40081",
+                8 => "220187",
+                9 => "380260",
+                10 => "30035",
+                // ... other cases
+                _ => "11",
+            };
+        }
+
+        private static string MapReportTypeSelectorV2(int typeValue)
         {
             // Implement the mapping logic here
             //Littering = 0,
@@ -174,7 +247,6 @@ namespace CityVoxWeb.Services.User_Services
                 _ => "11",
             };
         }
-
 
     }
 }
