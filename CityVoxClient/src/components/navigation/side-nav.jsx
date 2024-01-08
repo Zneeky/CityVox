@@ -146,7 +146,7 @@ export const SideNav = (props) => {
             justifyContent: "center", // Center vertically
             }}
           >
-            <video width={200} height={200} loop muted autoPlay>
+            <video width={300} height={200} loop muted autoPlay>
       <source src={video} type="video/mp4"/>
      </video>
 
@@ -159,12 +159,12 @@ export const SideNav = (props) => {
               </SvgIcon>
             }
             fullWidth
-            href="https://github.com/Zneeky"
+            href="https://github.com/Zneeky/CityVox"
             sx={{ mt: 2 }}
             target="_blank"
             variant="contained"
           >
-            Zneeky
+            CityVox
           </Button>
         </Box>
       </Box>
