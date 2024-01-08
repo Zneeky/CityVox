@@ -172,6 +172,7 @@ namespace CityVoxWeb.Services.User_Services
             try
             {
                 var users = await _dbContext.Users
+                    .Where(u=>u.EmailConfirmed == true)
                     .Skip(page * count)
                     .Take(count)
                     .ToListAsync();
@@ -198,7 +199,9 @@ namespace CityVoxWeb.Services.User_Services
         {
             try
             {
-                var usersCount = await _dbContext.Users.CountAsync();
+                var usersCount = await _dbContext.Users
+                    .Where(u=>u.EmailConfirmed == true)
+                    .CountAsync();
                 return usersCount;
             }
             catch (Exception ex)

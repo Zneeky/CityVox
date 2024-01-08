@@ -16,14 +16,14 @@ import { Logo } from "../styling/Logo";
 import { Scrollbar } from "../styling/scroll-bar";
 import { items } from "./configuration";
 import { SideNavItem } from "./side-nav-item";
-import video from "../../../public/videos/planet-logo.mp4"
+import video from "/videos/planet-logo.mp4"
 
 export const SideNav = (props) => {
   const { open, onClose } = props;
   const pathname = useLocation();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const itemsArray = items();
-  
+
 
 
   const content = (
@@ -33,7 +33,7 @@ export const SideNav = (props) => {
         "& .simplebar-content": {
           height: "100%",
         },
-        "& .simplebar-placeholder":{
+        "& .simplebar-placeholder": {
           display: "none"
         },
         "& .simplebar-scrollbar:before": {
@@ -125,7 +125,7 @@ export const SideNav = (props) => {
             px: 2,
             py: 3,
             position: "relative", // Make the position relative
-            overflow: "hidden", // Hide overflow to confine the ThreeScene within the box
+            overflow: "hidden",
           }}
         >
           <Typography color="neutral.100" variant="subtitle2">
@@ -140,15 +140,14 @@ export const SideNav = (props) => {
               width: "200px",
               height: "200px", // Set a fixed height for the box
               overflow: "hidden", // Hide overflow to confine the ThreeScene
-              display: "flex",
-            flexDirection: "column",
-            alignItems: "center", // Center horizontally
-            justifyContent: "center", // Center vertically
+              flexDirection: "column",
+              alignItems: "center", // Center horizontally
+              justifyContent: "center", // Center vertically
             }}
           >
             <video width={300} height={200} loop muted autoPlay>
-      <source src={video} type="video/mp4"/>
-     </video>
+              <source src={video} type="video/mp4" />
+            </video>
 
           </Box>
           <Button
