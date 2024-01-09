@@ -71,7 +71,7 @@ const CreatePost = ({ open, handleClose }) => {
   };
 
   const handlePostSubmit = async (values) => {
-    if (user.role !== "representative") {
+    if (user.role !== "Representative") {
       // Implement logic here to send the post data to your backend
       let uploadedImageUrls = [];
 
@@ -185,7 +185,7 @@ const CreatePost = ({ open, handleClose }) => {
     >
       <DialogTitle>Create a New Post</DialogTitle>
       <DialogContent sx={{ height: "100%", width: "100%" }}>
-        {user.role === "representative" && (
+        {user.role === "Representative" && (
           <Typography>For municipality representatives only</Typography>
         )}
         <Formik
@@ -328,7 +328,7 @@ const CreatePost = ({ open, handleClose }) => {
                       Image
                     </Typography>
                   </FlexBetween>
-                  {user.role === "representative" ? (
+                  {user.role === "Representative" ? (
                     <Button
                       type="submit"
                       disabled={!values.text}
