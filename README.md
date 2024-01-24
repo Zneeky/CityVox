@@ -5,8 +5,9 @@ The CityVox app aims to enhance civic engagement by simplifying the process for 
 ## Preview
 https://cityvoxclient.web.app/
 
-admin@abv.bg 
-Admin2002
+Credentials to sign in
+email: admin@abv.bg 
+pass: Admin2002
 
 ## Key Features
 Problem Reporting: Residents can effortlessly report issues in their neighborhood, such as graffiti, potholes, broken streetlights, or uncollected trash. These reports are geotagged and can be automatically forwarded to the relevant local government department. Users can also track the status of their reports.
