@@ -1,12 +1,15 @@
 # CityVox- Bridging the Gap Between Residents and Authorities
 ![alt text](https://i.ibb.co/gTMTBJJ/Logo.png)
+<br>
 The CityVox app aims to enhance civic engagement by simplifying the process for residents to report community and infrastructre issues. Additionally, it serves as a platform for accessing information about local government activities, ensuring transparency and accountability.
 
 ## Preview
 https://cityvoxclient.web.app/
 
-Credentials to sign in
+Credentials to sign in:
+<br>
 email: admin@abv.bg 
+<br>
 pass: Admin2002
 
 ## Key Features
